@@ -1,0 +1,41 @@
+<mvc:View
+	controllerName="com.telcomdataperu.app.Portal.controller.Aplicacion"
+	xmlns="sap.m"
+	xmlns:ux="sap.uxap"
+	xmlns:core="sap.ui.core"
+	xmlns:tnt="sap.tnt"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:forms="sap.ui.layout.form"
+	displayBlock="true"
+	xmlns:l="sap.ui.layout"
+	class="viewPadding wrapper-home">
+	<ux:ObjectPageLayout id="ObjectPageLayout" sections="{usuarioLogeadoModel>/Accesos/}">
+		<ux:sections backgroundColor="Transparent">
+			<ux:ObjectPageSection title="{usuarioLogeadoModel>NombreGrupo}">
+				<ux:subSections backgroundColor="Transparent">
+					<ux:ObjectPageSubSection >
+						<ux:blocks>
+							<l:VerticalLayout>
+							 <l:HorizontalLayout id="SlideTileContainer" allowWrapping="true">
+									<FlexBox alignItems="Start" justifyContent="Start" items="{path:'usuarioLogeadoModel>Aplicaciones/', templateShareable:false}">
+										<items>
+											<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+												header="{usuarioLogeadoModel>Nombre}"
+												subheader="{usuarioLogeadoModel>Nombre}" press="onNavegarAplicacion">
+												<TileContent footer="{usuarioLogeadoModel>Descripcion}">
+															<ImageContent src="{usuarioLogeadoModel>Ico}"/>
+												</TileContent>
+											</GenericTile>
+										</items>
+									</FlexBox>
+									</l:HorizontalLayout>
+
+							</l:VerticalLayout>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>
+		</ux:sections>
+	</ux:ObjectPageLayout>
+
+</mvc:View>

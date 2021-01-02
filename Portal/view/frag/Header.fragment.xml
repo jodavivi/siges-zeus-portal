@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Bar class="wrapper-bar heaHeader">
+    <contentLeft>
+      <Button icon="sap-icon://person-placeholder"  press="onPressProfile"/>
+      <Image class="logo-home" src="img/logo.png" press="onPressHome"></Image>
+    </contentLeft>
+    <contentMiddle>
+      <Title id="headerTitulo" class="headerTitulo" text="APLICACIONES"></Title>
+    </contentMiddle>
+    <contentRight>
+      <Button icon="sap-icon://message-popup" text="8" press="onPressMessages"/>
+    </contentRight>
+  </Bar>
+</core:FragmentDefinition>

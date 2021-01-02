@@ -1,0 +1,54 @@
+<mvc:View
+	controllerName="com.telcomdataperu.app.Acceso.controller.Accesos"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+		<Page
+		title="Accesos" 
+		showNavButton="true" >
+		 <content>
+			  <IconTabBar  
+		expanded="true" >
+		<items>
+			<IconTabFilter
+				key="info"
+				icon="sap-icon://hint"
+				iconColor="Positive">
+				<Text text="Info content goes here ..." />
+			</IconTabFilter>
+			<IconTabSeparator icon=""/>
+			<IconTabFilter
+				key="attachments"
+				icon="sap-icon://attachment"
+				iconColor="Neutral"
+				count="3">
+				<Text text="Attachments go here ..." />
+			</IconTabFilter>
+			<IconTabSeparator icon=""/>
+			<IconTabFilter
+				key="notes"
+				icon="sap-icon://notes"
+				count="12">
+				<Text text="Notes go here ..." />
+			</IconTabFilter>
+			<IconTabSeparator icon=""/>
+			<IconTabFilter
+				key="people"
+				icon="sap-icon://group"
+				iconColor="Negative">
+				<Text text="People content goes here ..." />
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="Accept" type="Accept" />
+				<Button text="Reject" type="Reject" />
+				<Button text="Edit" />
+				<Button text="Delete" />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,72 @@
+<mvc:View
+	controllerName="com.telcomdataperu.app.Maestra.controller.Maestra"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+		<Page
+		title="Maestra de Configuración" 
+		showNavButton="false"> 
+		<content>
+			<SplitContainer id="SplitAppMatestros" initialDetail="NotFound" initialMaster="master">
+				<masterPages>
+					<Page id="master" showHeader="false" icon="sap-icon://action" class="sapUiStdPage">
+						<subHeader>
+							<Toolbar>
+								<SearchField width="100%" liveChange="onLiveSearch" showSearchButton="false"/>
+							</Toolbar>
+						</subHeader>
+						<content>
+							<ScrollContainer height="100%" vertical="true">
+								<List id="listTabla" updateStarted="MasterSegmented" updateFinished="selectFirstItem" items="{ path : 'modelTablaGenerica>/tablaGenerica'}" mode="SingleSelectMaster" select="onSelectMaestro" class="marcoimagenheader" enableBusyIndicator="true">
+									<items>
+										<ObjectListItem title="{modelTablaGenerica>descripcionTabla}" type="Active" icon="sap-icon://menu2">
+											<attributes>
+												<ObjectAttribute text="{modelTablaGenerica>codigoTabla}"/>
+											</attributes>
+										</ObjectListItem>
+									</items>
+								</List>
+							</ScrollContainer>
+						</content>
+						<footer>
+							<Toolbar>
+								<Button icon="sap-icon://add" tooltip="Agregar tabla" press="onAgregarTabla"/>
+								<Button icon="sap-icon://delete" tooltip="Eliminar tabla" press="onConfirmarEliminarTienda" enabled="{midata>/btnEliminarTabla}"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://excel-attachment" tooltip="Exportar a Excel" visible="false"/>
+								<Button icon="sap-icon://sort" tooltip="Ordenar" press="onPressSortMaestro"/>
+								<Button icon="sap-icon://filter" tooltip="Filtrar" visible="false"/>
+							</Toolbar>
+						</footer>
+					</Page>
+				</masterPages>
+				<detailPages>
+					<Page id="detail" title="Detail Detail" class="sapUiStdPage genPageDetailMaster" showNavButton="true" navButtonText="Back" navButtonPress="onPressDetailBack">
+						<customHeader>
+							<Toolbar>
+								<ToolbarSpacer/>
+								<Title text="DescripcionTabla" level="H2"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+						</customHeader>
+						<content>
+							<IconTabBar id="iconTabDetalle" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" select="onPressTab">
+								<items>
+									<!-- Pestaña Detalles -->
+									<IconTabFilter icon="sap-icon://hint" text="Información" class="colortabs" key="1"></IconTabFilter>
+									<IconTabFilter icon="sap-icon://list" text="Parámetros" class="colortabs" key="2"></IconTabFilter>
+								</items>
+							</IconTabBar>
+						</content>
+					</Page>
+					<Page id="NotFound">
+						<MessagePage showHeader="false" text="Seleccione un elemento de la lista." description="" icon="sap-icon://detail-view"/>
+					</Page>
+				</detailPages>
+			</SplitContainer> 
+		</content>
+	 
+	</Page>
+</mvc:View>
