@@ -92,9 +92,19 @@
 			"target": "maestra"
 		},
 		{
+			"pattern": "maestra/detalle/:id:",
+			"name": "appMaestra2",
+			"target": "maestra"
+		},
+		{
 			"pattern": "acceso",
 			"name": "appAcceso",
 			"target": "targetAcceso"
+		},
+		{
+			"pattern": "auditoria",
+			"name": "appAuditoria",
+			"target": "targetAuditoria"
 		}],
 			"targets": {
 				"home": {
@@ -119,6 +129,12 @@
 					"viewName": "AccesoComponent",
 					"viewId": "AccesoComponent",
 					"viewLevel": 3
+				  },
+				  "targetAuditoria": {
+					"transition": "slide",
+					"viewName": "AuditoriaComponent",
+					"viewId": "AuditoriaComponent",
+					"viewLevel": 4
 				  }
 			}
 		}

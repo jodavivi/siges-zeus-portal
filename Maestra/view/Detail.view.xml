@@ -1,0 +1,63 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.Maestra.controller.Detail"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	 <Page 
+		id		=	"detail" 
+		title	=	"Detail 1" 
+		class	=	"sapUiStdPage">
+	
+		<customHeader>
+			<Toolbar>
+				
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"{modelTablaGenerica>/oTablaSeleccionada/CodigoTabla}" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+	
+		<content> 
+			<IconTabBar 
+				id		=	"iconTabDetalle" 
+				class	=	"sapUiResponsiveContentPadding" 
+				select	=	"onPressTabDetalle">
+				<items> 
+					<!-- Pestaña Detalles -->
+					<IconTabFilter 
+						icon	=	"sap-icon://hint" 
+						text	=	"Información" 
+						class	=	"colortabs" 
+						key		=	"1">
+						<core:Fragment fragmentName="com.telcomdataperu.app.Maestra.view.frag.table.maestroTabla" type="XML"></core:Fragment>
+					</IconTabFilter>
+					
+					<!-- Pestaña Parametros -->
+					<IconTabFilter icon="sap-icon://list" text="Parámetros" class="colortabs" key="2">
+						<core:Fragment fragmentName="com.telcomdataperu.app.Maestra.view.frag.table.maestroCampo" type="XML"></core:Fragment>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/> 
+				<Button 
+				id			="btnGuardar"
+				visible		="{modelTablaGenerica>/oControles/btnGuardarTabla}"
+				type		=	"Accept" 
+				text		=	"Actualizar" 
+				press		=	"onPressEditarDetalle" 
+				icon		=	"sap-icon://save"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

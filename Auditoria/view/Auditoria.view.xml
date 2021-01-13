@@ -1,0 +1,152 @@
+<mvc:View
+	controllerName="com.telcomdataperu.app.Auditoria.controller.Auditoria"
+	xmlns:c="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified" 
+	xmlns="sap.m" 
+	xmlns:t="sap.ui.table" 
+	xmlns:f="sap.f" 
+	xmlns:layout="sap.ui.layout" 
+	xmlns:lf="sap.ui.layout.form"
+	height="100%">
+		 <f:DynamicPage id="dynamicPageId" preserveHeaderStateOnScroll="false">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Auditoria"/>
+				</f:heading>
+				<f:actions>
+					<Button id="botonBuscar" icon="sap-icon://search" press="onPressBuscarAuditoria" type="Emphasized" tooltip="Buscar"
+						text="Buscar"/>
+					<Button id="botonLimpiar" icon="sap-icon://clear-filter" press="onPressLimpiarFiltros" type="Emphasized" tooltip="Limpiar"
+						text="Limpiar"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<layout:HorizontalLayout allowWrapping="true">
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<ObjectAttribute title="IdTransacción"/>
+							<Input id="transaccionInput" placeholder="Ingresar transacción" width="14rem"/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<ObjectAttribute title="Aplicación"/> 
+							<Input
+								id="aplicacionInput"
+								type="Text"
+								placeholder="Buscar aplicación"
+								liveChange="fnLiveChangeAplicacion"
+								valueLiveUpdate="true" 
+								showSuggestion="true"
+								showValueHelp="true"
+								valueHelpRequest="showDialAplicaciones"
+								suggestionItems="{modelAuditoria>/VAplicacion}" 
+								valueHelpOnly="true">
+								<suggestionItems>
+									<c:Item text="{modelAuditoria>sAplicacion}" />
+								</suggestionItems>
+							</Input>
+                            
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<ObjectAttribute title="Proceso"/>
+                            
+							<Input
+								id="procesoInput"
+								type="Text"
+								enabled="false"
+								placeholder="Buscar proceso"
+								showSuggestion="true"
+								showValueHelp="true"
+								valueHelpRequest="showDialProceso"
+								suggestionItems="{modelAuditoria>/VProceso}" 
+								valueHelpOnly="true">
+								<suggestionItems>
+									<c:Item text="{modelAuditoria>sNombreProceso}" />
+								</suggestionItems>
+							</Input>
+                            
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<ObjectAttribute title="Fecha" />
+							<DateRangeSelection id="fechaInicioFin" delimiter="al" displayFormat="dd/MM/YYYY"  width="14rem"
+								tooltip="Fecha" placeholder="Rango de fechas"/>
+						</layout:VerticalLayout>
+                        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<ObjectAttribute title="Estado" />
+                            
+							<Select id="idEstado"    
+                                             fieldGroupIds="validadorGrupoSelectSimple2"> 
+                                    <c:Item text	="Todos" key="0"/>
+                                    <c:Item text	="OK" key="1"/> 
+                                    <c:Item text	="Alerta" key="2"/>
+                                    <c:Item text	="Error" key="3"/>
+                                </Select>
+                        
+						</layout:VerticalLayout>
+                        
+					</layout:HorizontalLayout>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<Table id="tableTransacciones" growing="true" growingTriggerText="Continuar" growingThreshold="12" inset="false"
+				items="{ path : 'modelAuditoria>/VAuditoria', sorter : { path : 'iId', descending: 'true'} }" noDataText="No hay Información">
+				<headerToolbar>
+					<Toolbar>
+						<content>
+							<Title id="transacciones" text="Transacciones"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Id"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="13rem">
+						<Text text="IdTransacción"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Fecha"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="Usuario"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Aplicación"/>
+					</Column>
+                    
+                    <Column width="15rem">
+						<Text text="Proceso"/>
+					</Column>
+                    <Column width="5rem">
+						<Text text="Tiempo P."/>
+					</Column>
+
+					<Column width="6rem">
+						<Text text="Estado"/>
+					</Column>
+				</columns> 
+				<items>
+					<ColumnListItem type="Navigation" press="onPressDetalleTransaccion">
+						<cells>
+							<Text text="{modelAuditoria>iId}"/>
+							<Text text="{modelAuditoria>sIdTransaccion}"/>
+						
+							<Text text="{ path : 'modelAuditoria>dFechaTransaccion', formatter : '.formatter.FormatterFecha2'}"/>
+							<Text text="{modelAuditoria>sUsuario}"/> 
+							<Text text="{modelAuditoria>sAplicacion}"/>
+                            <ObjectIdentifier
+								title	=	"{modelAuditoria>sNombreProceso}"/>
+                                  <Text text="{modelAuditoria>fTiempoProceso} ms"/>
+							<ObjectStatus state="{path:'modelAuditoria>sEstado', formatter:'.formatter.FormatterEstado'}" text="{path:'modelAuditoria>sEstado', formatter:'.formatter.FormatterEstadoTexto'}"/>
+					
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

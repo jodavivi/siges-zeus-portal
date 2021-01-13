@@ -19,10 +19,12 @@ sap.ui.define([
 		 * @override
 		 */
 		init: function () {
+			console.log(window.location.href);
 			//sap.ui.core.BusyIndicator.show(0)
 			if(localStorage.login === undefined){
 				window.location.href = Constantes.urlWebLogin;
 			}
+			
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 
@@ -32,7 +34,11 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.usuarioLogeadoModel(), "usuarioLogeadoModel");
-			this.getModel("usuarioLogeadoModel").setProperty("/", JSON.parse(UtilUi.decodeJwt(localStorage.login).data));
+			console.log(JSON.parse(UtilUi.decodeJwt(localStorage.login).data));
+			var oInfoUsuario =  JSON.parse(UtilUi.decodeJwt(localStorage.login).data);
+			oInfoUsuario.sUsuarioIniciales = oInfoUsuario.Nombre.substring(0,1) + oInfoUsuario.Apellido.substring(0,1);
+		 
+			this.getModel("usuarioLogeadoModel").setProperty("/", oInfoUsuario);
 		 
 			console.log(this.getModel("usuarioLogeadoModel").getProperty("/grupos"));
 		}

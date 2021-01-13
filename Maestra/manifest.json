@@ -72,20 +72,71 @@
 				"async": true,
 				"viewPath": "com.telcomdataperu.app.Maestra.view",
 				"controlAggregation": "pages",
-				"controlId": "app",
+				"controlId": "idSplitContainer",
 				"clearControlAggregation": false
 			},
 			"routes": [ {
-				"pattern": "maestra",
-				"name": "maestraRoute",
-				"target": "targetMaesrta"
-			  }],
-			"targets": {
-				"targetMaesrta": {
-					"viewName": "Maestra",
-					"viewLevel": 1,
-					"viewId": "idMaestra"
+					"pattern": "maestra",
+					"name": "maestraRoute",
+					"target": [
+						"TargetHome",
+						"targetNotFound"
+					] 
+			  },{
+					"name": "RouteHomeDetalle",
+					"pattern": "maestra/detalle/{maestroId}",
+					"target": [
+						"TargetHome",
+						"targetDetail"
+					]
+				},{
+					"name": "RouteHomeAddParameter",
+					"pattern": "maestra/detalle/{maestroId}/parametro",
+					"target": [
+						"TargetHome",
+						"targetAddParametro"
+					]
+				},{
+					"name": "RouteHomeEditParameter",
+					"pattern": "maestra/detalle/{maestroId}/parametro/{parametroId}",
+					"target": [
+						"TargetHome",
+						"targetEditParametro"
+					]
 				}
+			],
+			"targets": { 
+				"TargetHome": {
+					"transition": "slide",
+					"viewName": "Maestra",
+					"controlAggregation": "masterPages",
+					"viewLevel": 0
+				},
+				"targetNotFound": {
+					"transition": "slide",
+					"viewName": "NotFound",
+					"controlAggregation": "detailPages",
+					"viewLevel": 1
+				},
+				"targetDetail": {
+					"transition": "slide",
+					"viewName": "Detail",
+					"controlAggregation": "detailPages",
+					"viewLevel": 2
+				},
+				"targetAddParametro": {
+					"transition": "slide",
+					"viewName": "ParametroRegistro",
+					"controlAggregation": "detailPages",
+					"viewLevel": 3
+				},
+				"targetEditParametro": {
+					"transition": "slide",
+					"viewName": "ParametroEditar",
+					"controlAggregation": "detailPages",
+					"viewLevel": 3
+				}
+
 			}
 		}
 	}

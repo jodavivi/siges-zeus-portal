@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core">
+	
+	<ViewSettingsDialog
+		confirm	=	"onPressConfirmarSorter"
+		id		=	"dialogSortMaestra"
+		>
+		
+		<sortItems>
+			<ViewSettingsItem 
+				text		=	"Codigo Tabla" 
+				key			=	"CodigoTabla" 
+				selected	=	"true" />
+			<ViewSettingsItem 
+				text		=	"Descripción" 
+				key			=	"DescripcionTabla" />
+
+		</sortItems> 
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,115 @@
+<c:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+    height="100%">
+	
+	<Table
+				id="tblParametros"
+				rows="{ path : 'modelTablaGenerica>/oTablaSeleccionada/aParametros' , sorter: { path: 'Id', descending: true }}"
+				selectionMode="MultiToggle"  
+				class="tbTabla"
+				alternateRowColors="true" 
+				rowActionCount="2"
+				visibleRowCountMode="Auto"
+				minAutoRowCount="15"  
+				enableBusyIndicator="true"  
+				selectionBehavior="RowSelector"
+				fixedColumnCount="2"
+				showOverlay="false" 
+				ariaLabelledBy="title">
+				<extension>
+					<m:OverflowToolbar>
+						<m:Title id="title" text="Parámetros"/>
+						<m:ToolbarSpacer/>
+						<m:Button 
+							icon		=	"sap-icon://delete" 
+							type		=	"Reject"
+							tooltip		=	"Eliminar Parametro" 
+							press		=	"onEliminarParametro"  />
+						<m:Button 
+							icon		=	"sap-icon://add-document" 
+							tooltip		=	"Registrar Parametro" 
+							press		=	"onRegistrarParametro"  />
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column width="2.5rem" hAlign="Center"> 
+						<template>
+							<c:Icon press="onVerAuditoria"  size="1.2rem"  src="sap-icon://show"/>
+						</template>
+					</Column>
+					<Column width="2.5rem" hAlign="Center"> 
+						<template>
+							<c:Icon press="onEditarParametro"  size="1.2rem"  src="sap-icon://edit"/>
+						</template>
+					</Column>
+					<Column filterProperty="Codigo" sortProperty="Codigo" width="6rem">
+						<m:Label text="Codigo" />
+						<template>
+								<m:Link text="{modelTablaGenerica>Codigo}" press="onParametroDetalle" /> 
+						</template>
+					</Column>
+					<Column width="9rem" filterProperty="Campo1" sortProperty="Campo1">
+						<m:Label text="Campo1" />
+						<template>
+							<m:Text text="{modelTablaGenerica>Campo1}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="10rem"  filterProperty="Campo2" sortProperty="Campo2">
+						<m:Label text="Campo2"  />
+						<template>
+							<m:Text text="{modelTablaGenerica>Campo2}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="9rem">
+						<m:Label text="Campo3" />
+						<template>
+							<m:Text text="{modelTablaGenerica>Campo3}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="8rem">
+						<m:Label text="Campo4" />
+						<template>
+							<m:Text text="{modelTablaGenerica>Campo4}" wrapping="false" />
+						</template>
+					</Column>
+ 
+					<Column width="10rem">
+						<m:Label text="Campo5" />
+						<template>
+							<m:Text text="{modelTablaGenerica>Campo5}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="10rem">
+						<m:Label text="Campo6" />
+						<template>
+							<m:Text text="{modelTablaGenerica>Campo6}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="10rem">
+						<m:Label text="Campo7" />
+						<template>
+							<m:Text text="{modelTablaGenerica>Campo7}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="8rem">
+						<m:Label text="Padre" />
+						<template>
+							<m:Text text="{modelTablaGenerica>PadreCod}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="8rem">
+						<m:Label text="Estado" />
+						<template>
+							<m:ObjectStatus 
+								text    =   "{modelTablaGenerica>EstadoCampo}"
+								state   =   "{	path		:	'modelTablaGenerica>EstadoCampoId', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelTablaGenerica>EstadoCampoId', formatter	:	'.formatter.iconEstado'}"/> 
+						</template>
+					</Column>  
+				</columns> 
+			</Table> 
+</c:FragmentDefinition>

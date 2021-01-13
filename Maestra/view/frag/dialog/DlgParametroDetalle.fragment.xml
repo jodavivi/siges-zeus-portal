@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:u="sap.ui.unified">
+  <Dialog id="dlgAddAcceso" titleAlignment="Center" class="dlg" title="Detalle Parametro" draggable="true" contentWidth="800px">
+    <content> 
+          <VBox class="sapUiSmallMargin">
+		<f:Form  
+			editable="false"> 
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Codigo">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Codigo}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Campo1">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Campo1}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Campo2">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Campo2}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Campo3">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Campo3}" />
+							</f:fields>
+						</f:FormElement>
+            <f:FormElement label="Campo4">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Campo4}" />
+							</f:fields>
+						</f:FormElement>
+            <f:FormElement label="Campo5">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Campo5}" />
+							</f:fields>
+						</f:FormElement>
+            <f:FormElement label="Campo6">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Campo6}" />
+							</f:fields>
+						</f:FormElement>
+            <f:FormElement label="Campo7">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/Campo7}" />
+							</f:fields>
+						</f:FormElement>
+            <f:FormElement label="Padre">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/PadreCod}" />
+							</f:fields>
+						</f:FormElement>
+            <f:FormElement label="Estado">
+							<f:fields>
+								<Text text="{modelTablaGenerica>/oParametroVistaDetalle/EstadoCampo}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form> 
+	    </VBox>
+    </content> 
+		<endButton> 
+        <Button text="Cerrar" type="Emphasized"  tooltip="Guardar" 	   press="onCerrarParametroDetalle"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

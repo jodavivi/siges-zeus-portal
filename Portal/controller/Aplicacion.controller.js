@@ -8,8 +8,7 @@ sap.ui.define([
 				 
 		},
 		onNavegarAplicacion:function(oEvent){
-			try{  
-			  
+			try{   
 			  var sPath = oEvent.getSource().getBindingContext("usuarioLogeadoModel").getPath();
         	  var oModel = this.getView().getModel("usuarioLogeadoModel");
 			  var oContext = oModel.getProperty(sPath); 

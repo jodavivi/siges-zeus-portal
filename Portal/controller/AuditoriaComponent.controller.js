@@ -4,17 +4,17 @@ sap.ui.define(
     function(Controller, Component) {
       "use strict";
   
-      return Controller.extend( "com.telcomdataperu.app.Portal.controller.AccesoComponent",
+      return Controller.extend( "com.telcomdataperu.app.Portal.controller.AuditoriaComponent",
         { 
           onInit: function() {
-            if (!Component.get("subAppAcceso")) {
+            if (!Component.get("subAuditoria")) {
               Component.create({
-                name: "com.telcomdataperu.app.Acceso",
-                id: "subAppAcceso"
+                name: "com.telcomdataperu.app.Auditoria",
+                id: "subAuditoria"
               }).then(
                 function(Component) {
                   this.getView()
-                    .byId("subCmpAcceso")
+                    .byId("subAuditoriaCtr")
                     .setComponent(Component);
                 }.bind(this)
               );

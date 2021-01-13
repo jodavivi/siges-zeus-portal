@@ -1,0 +1,70 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:rte	=	"sap.ui.richtexteditor"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form"
+	xmlns:t		=	"sap.ui.table"
+	xmlns:u		=	"sap.ui.unified"
+	xmlns:tnt	=	"sap.tnt"
+	xmlns:table	=	"sap.ui.table"
+	xmlns:w		=	"sap.m.Table">
+	     
+		 <VBox class="sapUiSmallMargin"> 
+			<f:SimpleForm 
+				id						=	"formularioDetallesEdit" 
+				editable				=	"false" 
+				layout					=	"ResponsiveGridLayout"  
+				labelSpanXL				=	"4"
+				labelSpanL				=	"4" 
+				labelSpanM				=	"12" 
+				labelSpanS				=	"12" 
+				adjustLabelSpan			=	"false" 
+				emptySpanXL				=	"0" 
+				emptySpanL				=	"0" 
+				emptySpanM				=	"0" 
+				emptySpanS				=	"0"
+				columnsXL				=	"1" 
+				columnsL				=	"1" 
+				columnsM				=	"1" 
+				singleContainerFullSize	=	"false" 
+				visible					=	"{midata>/setEditableEdit}">
+				<f:toolbar>
+				<Toolbar id="TB1">
+					<Title  text="Datos Maestra"/>
+					<ToolbarSpacer />
+					<Button icon="sap-icon://show" press="onAuditoriaMaestra"/> 
+				</Toolbar>
+			</f:toolbar>
+				<f:content>
+					<Label 	
+						text	=	"Codigo"/>
+					<Input  
+						value			=	"{modelTablaGenerica>/oTablaSeleccionada/Codigo}" 
+						width			=	"30%" 
+						liveChange		=	"onLiveCambios" 
+						required		=	"true" 
+						enabled			=	"false" 
+						fieldGroupIds 	=	"validarGrupoteInput2"/>
+					<Label 	
+						text	=	"Codigo de tabla"/>
+					<Input  
+						value			=	"{modelTablaGenerica>/oTablaSeleccionada/CodigoTabla}" 
+						width			=	"30%" 
+						liveChange		=	"onLiveCambios" 
+						required		=	"true" 
+						enabled			=	"false" 
+						fieldGroupIds 	=	"validarGrupoteInput2"/>
+					<Label 
+						text	=	"Descripción"/>
+					<Input  
+						value			=	"{modelTablaGenerica>/oTablaSeleccionada/DescripcionTabla}" 
+						width			=	"30%" 
+						liveChange		=	"onLiveCambios" 
+						required		=	"true" 
+						fieldGroupIds 	=	"validarGrupoteInput2"/>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+
+</core:FragmentDefinition>

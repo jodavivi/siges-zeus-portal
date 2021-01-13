@@ -3,6 +3,7 @@
 	xmlns="sap.m"
 	xmlns:f="sap.f"
 	displayBlock="true"
+	xmlns:core="sap.ui.core"
 	xmlns:tnt="sap.tnt" controllerName="com.telcomdataperu.app.Portal.controller.Root" >
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
@@ -11,17 +12,29 @@
 				homeIcon="./resources/sap/ui/documentation/sdk/images/logo_ui5.png"
 				showCopilot="true"
 				showNotifications="false"
-				menuButtonPressed="onMenuButtonPress"
+				copilotPressed="onPressHome"
+				menuButtonPressed="onMenuButtonPress" 
 				showProductSwitcher="false"
 				notificationsNumber="2">
  
 				<f:profile>
-					<f:Avatar initials="US" press="onPressProfile"/>
+					<f:Avatar initials="{usuarioLogeadoModel>/sUsuarioIniciales}" press="onPressProfile"/>
 				</f:profile>
-				<f:searchManager>
-					<f:SearchManager/>
-				</f:searchManager>
-			 
+				<f:searchManager> 
+					<f:SearchManager id="searchField"
+						search="handlerSearchFieldSearch"
+						liveChange="handlerSearchFieldLiveEvent"
+						suggest="handlerSearchSuggestEvent"
+						enableSuggestions="true"
+						suggestionItems="{
+							path: 'usuarioLogeadoModel>/aplicaciones/',
+							sorter: { path: 'Nombre' }
+						}">
+						<f:suggestionItems>
+							 <SuggestionItem text="{usuarioLogeadoModel>Nombre}" key="{usuarioLogeadoModel>Nombre}"/> 
+						</f:suggestionItems>
+					</f:SearchManager>
+				</f:searchManager> 
 			</f:ShellBar>
 		</tnt:header>
 		<tnt:mainContents>
