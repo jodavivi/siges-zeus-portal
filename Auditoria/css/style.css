@@ -1,1 +1,4 @@
 /* Enter your custom styles here */
+.tblAuditoria .sapMColumnHeaderContent {
+    font-weight: bold;
+}

@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+   xmlns		=	"sap.m"
+   xmlns:core	=	"sap.ui.core" >
+   	<SelectDialog
+   		id			=	"dlgProcesos"
+		noDataText	=	"No se encontraron aplicaciones"
+		title		=	"Proceso"
+		liveChange	=	"_handleBuscarProceso"
+		confirm		=	"_handleCerrarProceso"
+		cancel		=	"_handleCerrarProceso"
+		items		=	"{	path	:	'modelAuditoria>/aListaProceso'}" >
+		<StandardListItem
+			title				=	"{modelAuditoria>NombreProceso}"
+			iconDensityAware	=	"false"
+			iconInset			=	"false"
+			type				=	"Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

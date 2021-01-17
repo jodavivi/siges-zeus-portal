@@ -142,10 +142,15 @@ sap.ui.define([
 		onEliminarTabla: function(){ 
 			var that        = this;
 			try {
+				var oMaestroSeleccionado = that.getView().getModel("modelTablaGenerica").getProperty("/oTablaSeleccionada");  
+				if(oMaestroSeleccionado.Id === undefined ||oMaestroSeleccionado.Id === null){
+					sap.m.MessageToast.show("Seleccionar Maestra");
+					return;
+				}
 				sap.ui.core.BusyIndicator.show(0);
 				UtilPopUps.messageBox("¿Desea eliminar la maestra?", 'c', function(bConfirmacion) {
 					if (bConfirmacion) {
-						var oMaestroSeleccionado = that.getView().getModel("modelTablaGenerica").getProperty("/oTablaSeleccionada");   
+						 
 						TablaGenericaService.eliminarTablaGenerica(oMaestroSeleccionado, function(result) { 
 							sap.ui.core.BusyIndicator.hide();
 							UtilPopUps.validarRespuestaServicio(result,'La Maestra se elimino correctamente',function(e){});

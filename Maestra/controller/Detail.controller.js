@@ -92,9 +92,10 @@ sap.ui.define([
 		onEliminarParametro:function(evt){
 			try {
 				var self = this;
-				sap.ui.core.BusyIndicator.show(0);
+				
 				var indexes = self.getView().byId("tblParametros").getSelectedIndices();
 				if(indexes.length > 0){
+					sap.ui.core.BusyIndicator.show(0);
 					var aListaParametrosEliminar = [];
 					indexes.forEach(function(i) {
 						var oParametros = self.getView().byId("tblParametros").getContextByIndex(i).getObject();  
@@ -124,7 +125,9 @@ sap.ui.define([
 							sap.ui.core.BusyIndicator.hide();
 						}
 					}); 
-				}
+				}else{ 
+						sap.m.MessageToast.show("Seleccionar Parámetro"); 
+					} 
 			} catch (error) {
 				sap.ui.core.BusyIndicator.hide();
 				console.log(error);

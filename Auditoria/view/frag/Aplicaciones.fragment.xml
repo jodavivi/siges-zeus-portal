@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" >
+   	<SelectDialog
+   		id			=	"dlgAplicaciones"
+		noDataText	=	"No hay Aplicaciones"
+		title		=	"Aplicaciones"
+		liveChange	=	"_handleBuscarAplicaciones"
+		confirm		=	"_handleCerrarAplicaciones"
+		cancel		=	"_handleCerrarAplicaciones"
+		items		=	"{	path	:	'modelAuditoria>/aListaAplicacion'}" >
+		<StandardListItem
+			title				=	"{modelAuditoria>Aplicacion}"
+			iconDensityAware	=	"false"
+			iconInset			=	"false"
+			type				=	"Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

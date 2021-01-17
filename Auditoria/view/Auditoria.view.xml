@@ -9,7 +9,7 @@
 	xmlns:layout="sap.ui.layout" 
 	xmlns:lf="sap.ui.layout.form"
 	height="100%">
-		 <f:DynamicPage id="dynamicPageId" preserveHeaderStateOnScroll="false">
+		 <f:DynamicPage preserveHeaderStateOnScroll="false">
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
@@ -29,7 +29,7 @@
 					<layout:HorizontalLayout allowWrapping="true">
 						<layout:VerticalLayout class="sapUiMediumMarginEnd">
 							<ObjectAttribute title="IdTransacción"/>
-							<Input id="transaccionInput" placeholder="Ingresar transacción" width="14rem"/>
+							<Input id="transaccionInput" value="{modelAuditoria>/oFiltroAuditoria/sTransaccionId}" placeholder="Ingresar transacción" width="14rem"/>
 						</layout:VerticalLayout>
 						<layout:VerticalLayout class="sapUiMediumMarginEnd">
 							<ObjectAttribute title="Aplicación"/> 
@@ -42,10 +42,10 @@
 								showSuggestion="true"
 								showValueHelp="true"
 								valueHelpRequest="showDialAplicaciones"
-								suggestionItems="{modelAuditoria>/VAplicacion}" 
+								suggestionItems="{modelAuditoria>/aListaAplicacion}" 
 								valueHelpOnly="true">
 								<suggestionItems>
-									<c:Item text="{modelAuditoria>sAplicacion}" />
+									<c:Item text="{modelAuditoria>Aplicacion}" />
 								</suggestionItems>
 							</Input>
                             
@@ -61,10 +61,10 @@
 								showSuggestion="true"
 								showValueHelp="true"
 								valueHelpRequest="showDialProceso"
-								suggestionItems="{modelAuditoria>/VProceso}" 
+								suggestionItems="{modelAuditoria>/aListaProceso}" 
 								valueHelpOnly="true">
 								<suggestionItems>
-									<c:Item text="{modelAuditoria>sNombreProceso}" />
+									<c:Item text="{modelAuditoria>NombreProceso}" />
 								</suggestionItems>
 							</Input>
                             
@@ -79,10 +79,10 @@
                             
 							<Select id="idEstado"    
                                              fieldGroupIds="validadorGrupoSelectSimple2"> 
-                                    <c:Item text	="Todos" key="0"/>
-                                    <c:Item text	="OK" key="1"/> 
-                                    <c:Item text	="Alerta" key="2"/>
-                                    <c:Item text	="Error" key="3"/>
+                                    <c:Item text	="Todos" key="ALL"/>
+                                    <c:Item text	="OK" key="OK"/> 
+                                    <c:Item text	="Alerta" key="ALERTA"/>
+                                    <c:Item text	="Error" key="ERROR"/>
                                 </Select>
                         
 						</layout:VerticalLayout>
@@ -92,8 +92,8 @@
 			</f:DynamicPageHeader>
 		</f:header>
 		<f:content>
-			<Table id="tableTransacciones" growing="true" growingTriggerText="Continuar" growingThreshold="12" inset="false"
-				items="{ path : 'modelAuditoria>/VAuditoria', sorter : { path : 'iId', descending: 'true'} }" noDataText="No hay Información">
+			<Table  class="tblAuditoria" growing="true" growingTriggerText="Continuar" growingThreshold="12" inset="false"
+				items="{ path : 'modelAuditoria>/aAuditoria', sorter : { path : 'iId', descending: 'true'} }" noDataText="No hay Información">
 				<headerToolbar>
 					<Toolbar>
 						<content>
@@ -102,10 +102,10 @@
 					</Toolbar>
 				</headerToolbar>
 				<columns>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+					<Column minScreenWidth="Tablet" demandPopin="true" width="6rem" >
 						<Text text="Id"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="13rem">
+					<Column minScreenWidth="Tablet" demandPopin="true" >
 						<Text text="IdTransacción"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
@@ -118,30 +118,28 @@
 						<Text text="Aplicación"/>
 					</Column>
                     
-                    <Column width="15rem">
+                    <Column >
 						<Text text="Proceso"/>
 					</Column>
-                    <Column width="5rem">
+                    <Column  >
 						<Text text="Tiempo P."/>
 					</Column>
 
-					<Column width="6rem">
+					<Column  >
 						<Text text="Estado"/>
 					</Column>
 				</columns> 
 				<items>
 					<ColumnListItem type="Navigation" press="onPressDetalleTransaccion">
 						<cells>
-							<Text text="{modelAuditoria>iId}"/>
-							<Text text="{modelAuditoria>sIdTransaccion}"/>
-						
-							<Text text="{ path : 'modelAuditoria>dFechaTransaccion', formatter : '.formatter.FormatterFecha2'}"/>
-							<Text text="{modelAuditoria>sUsuario}"/> 
-							<Text text="{modelAuditoria>sAplicacion}"/>
-                            <ObjectIdentifier
-								title	=	"{modelAuditoria>sNombreProceso}"/>
-                                  <Text text="{modelAuditoria>fTiempoProceso} ms"/>
-							<ObjectStatus state="{path:'modelAuditoria>sEstado', formatter:'.formatter.FormatterEstado'}" text="{path:'modelAuditoria>sEstado', formatter:'.formatter.FormatterEstadoTexto'}"/>
+							<Text text="{modelAuditoria>Id}"/>
+							<Text text="{modelAuditoria>TransaccionId}"/> 
+							<Text text="{ path : 'modelAuditoria>FechaTransaccion', formatter:'.formatter.formatDate'}"/>
+							<Text text="{modelAuditoria>Usuario}"/> 
+							<Text text="{modelAuditoria>Aplicacion}"/>
+                            <Text text	=	"{modelAuditoria>NombreProceso}"/>
+                            <Text text="{modelAuditoria>TiempoProceso} ms"/>
+							<ObjectStatus  state="{path:'modelAuditoria>Estado', formatter:'.formatter.formatterEstado'}"  text="{path:'modelAuditoria>Estado'}"/>
 					
 						</cells>
 					</ColumnListItem>

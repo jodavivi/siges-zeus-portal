@@ -79,12 +79,22 @@
 				"pattern": "auditoria",
 				"name": "auditoriaRoute",
 				"target": "targetAuditoria"
+			  },
+			  {
+				"pattern": "auditoria/detalle/{auditoriaId}",
+				"name": "auditoriaDetalleRoute",
+				"target": "targetAuditoriaDetalle"
 			  }],
 			"targets": {
 				"targetAuditoria": {
 					"viewName": "Auditoria",
 					"viewLevel": 1,
 					"viewId": "idAuditoria"
+				},
+				"targetAuditoriaDetalle": {
+					"viewName": "AuditoriaDetalle",
+					"viewLevel": 2,
+					"viewId": "idAuditoriaDetalle"
 				}
 			}
 		}

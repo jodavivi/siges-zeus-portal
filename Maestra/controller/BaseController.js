@@ -1,10 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
-    "sap/ui/core/UIComponent",
-    "../servicio/TablaGenericaService" ,
-    '../util/formatter',
-  ], function(Controller, History, UIComponent, TablaGenericaService, formatter) {
+    "sap/ui/core/UIComponent", 
+    '../util/formatter'
+  ], function(Controller, History, UIComponent, formatter) {
     "use strict";
   
     return Controller.extend("com.telcomdataperu.app.Maestra.controller.BaseController", { 
@@ -30,8 +29,14 @@ sap.ui.define([
             if(result.iCode ===1){ 
               var itemSelecionado = {};
               that.getView().getModel("modelTablaGenerica").setProperty("/aTablaMaestra",result.oResults); 
+              
               var aListaMaestro = sap.ui.getCore().byId("__xmlview0--listTablaMaestra");
-              aListaMaestro.getModel("modelTablaGenerica").setProperty("/aTablaMaestra", result.oResults);
+              try {
+                aListaMaestro.getModel("modelTablaGenerica").setProperty("/aTablaMaestra", result.oResults);
+              } catch (error) {
+                console.log(error);
+              } 
+             
               aListaMaestro.removeSelections();
               
               for (let index = 0; index < aListaMaestro.getItems().length; index++) {

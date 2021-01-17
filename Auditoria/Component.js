@@ -25,6 +25,8 @@ sap.ui.define([
 
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
+			this.setModel(models.modelAuditoria(), "modelAuditoria");
+
 			var s = $(document).height() -48;
 			$(".prueba").height(s + 'px'); 
 		}

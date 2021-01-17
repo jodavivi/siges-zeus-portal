@@ -10,7 +10,18 @@ sap.ui.define([
 			var oModel = new JSONModel(Device);
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
-		}
+		},
+		modelAuditoria:function(){
+			var oParam                    = {};
+			oParam.aAuditoria             = []; 
+			oParam.oAuditoriaDetalle	  = {};
+			oParam.oFiltroAuditoria	  	  = {};
+			oParam.aListaAplicacion	  	  = [];
+			oParam.aListaProceso  	  	  = [];
+			var oModel                     = new JSONModel(oParam);
+			return oModel;
+		  }
+
 
 	};
 });

@@ -1,0 +1,113 @@
+<mvc:View 
+controllerName="com.telcomdataperu.app.Auditoria.controller.DetalleAuditoria" 
+height="100%" 
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:core="sap.ui.core"
+xmlns:layout="sap.ui.layout" 
+xmlns:f="sap.ui.layout.form" 
+xmlns="sap.m"
+busyIndicatorDelay="0">
+	<Page title="Detalle Auditoria" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<ObjectHeader 
+				id="oh1" 
+				responsive="true" 
+				fullScreenOptimized="true" 
+				intro=""
+				title="{modelAuditoria>/oAuditoriaDetalle/TransaccionId}"
+				numberState="Success"  >
+				<attributes>
+					<ObjectAttribute title="Usuario" text="{modelAuditoria>/oAuditoriaDetalle/Usuario}"/>
+					<ObjectAttribute title="Aplicación" text="{modelAuditoria>/oAuditoriaDetalle/Aplicacion}"/>
+					<ObjectAttribute title="Fecha" class="attributeInyectableAuditoria" text	=	"{	path		:	'modelAuditoria>/oAuditoriaDetalle/FechaTransaccion', formatter:'.formatter.formatDate' }" />
+					<ObjectAttribute title="Proceso" class="attributeInyectableAuditoria" text="{modelAuditoria>/oAuditoriaDetalle/NombreProceso}"/>
+					<ObjectAttribute title="IP" class="attributeInyectableAuditoria" text="{modelAuditoria>/oAuditoriaDetalle/Terminal}" />
+					
+				</attributes>
+				<statuses> 
+					<ObjectStatus  state="{path:'modelAuditoria>/oAuditoriaDetalle/Estado', formatter:'.formatter.formatterEstado'}"  text="{path:'modelAuditoria>/oAuditoriaDetalle/Estado'}"/>
+				</statuses>
+			</ObjectHeader>
+			<Panel  width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<core:Icon
+							src="sap-icon://internet-browser"
+							class="size1"
+							color="#031E48" >
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Title text="Url"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<layout:HorizontalLayout>
+					</layout:HorizontalLayout>
+					<Text  text= "{ path  : 'modelAuditoria>/oAuditoriaDetalle/Url' }" renderWhitespace = "true"  />
+				</content>
+			</Panel>
+			<Panel  width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<core:Icon
+							src="sap-icon://cause"
+							class="size1"
+							color="#031E48" >
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Title text="Datos de Entrada del Proceso"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<layout:HorizontalLayout>
+					</layout:HorizontalLayout>
+					<Text  text= "{ path  : 'modelAuditoria>/oAuditoriaDetalle/EntradaProceso',  formatter : '.formatter.stateEstadoUsuario'  }" renderWhitespace = "true"  />
+				</content>
+			</Panel>
+			<Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<core:Icon
+							src="sap-icon://action"
+							class="size1"
+							color="#031E48" >
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Title text="Datos de Respuesta del Proceso"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<layout:HorizontalLayout>
+					</layout:HorizontalLayout>
+					<Text  text= "{ path  : 'modelAuditoria>/oAuditoriaDetalle/RespuestaProceso' ,  formatter : '.formatter.stateEstadoUsuario'  }" renderWhitespace = "true"  />
+				</content>
+			</Panel>
+			<Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<core:Icon
+							src="sap-icon://message-popup"
+							class="size1"
+							color="#031E48" >
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Title text="Tipo de Respuesta"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<layout:HorizontalLayout>
+					</layout:HorizontalLayout>
+					<Text text="{ path  : 'modelAuditoria>/oAuditoriaDetalle/Estado',  formatter : '.formatter.stateTipoRespuesta' }" />
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>
