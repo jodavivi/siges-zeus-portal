@@ -13,7 +13,7 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="Auditoria"/>
+					<Title class="appAuditoria" text="Auditoria"/>
 				</f:heading>
 				<f:actions>
 					<Button id="botonBuscar" icon="sap-icon://search" press="onPressBuscarAuditoria" type="Emphasized" tooltip="Buscar"

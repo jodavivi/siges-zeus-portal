@@ -10,13 +10,14 @@
 	xmlns:ui		=	"sap.ui.table">
 	<Page 
 		id			=	"master"  
+		class		= "appMaestra"
 		showHeader	=	"true">
 		
 		<customHeader>
 			<Toolbar>
 				<ToolbarSpacer/>
 				<Title 
-					text	=	"Maestro de Configuración" 
+					text	=	"Maestra de Configuración" 
 					level	=	"H2"/>
 				<ToolbarSpacer/>
 			</Toolbar>

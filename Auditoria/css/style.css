@@ -2,3 +2,7 @@
 .tblAuditoria .sapMColumnHeaderContent {
     font-weight: bold;
 }
+
+.appAuditoria.sapMTitle{
+	font-weight: bold  !important; 
+}
