@@ -2,8 +2,9 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
     "sap/ui/core/UIComponent", 
-    '../util/formatter'
-  ], function(Controller, History, UIComponent, formatter) {
+    '../util/formatter',
+    "../servicio/TablaGenericaService" 
+  ], function(Controller, History, UIComponent, formatter, TablaGenericaService) {
     "use strict";
   
     return Controller.extend("com.telcomdataperu.app.Maestra.controller.BaseController", { 
