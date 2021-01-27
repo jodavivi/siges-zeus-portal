@@ -1,0 +1,21 @@
+<mvc:View
+	xmlns:html		=	"http://www.w3.org/1999/xhtml"
+	xmlns:mvc		=	"sap.ui.core.mvc"
+	displayBlock	=	"true"
+	xmlns			=	"sap.m"
+	xmlns:core		=	"sap.ui.core"
+	class			=	"viewPadding">
+	
+	<Page 
+		id			=	"NotFound" 
+		showHeader	=	"false">
+	
+		<MessagePage 
+			showHeader	=	"false" 
+			text		=	"Seleccione una opción de la lista." 
+			description	=	"" 
+			icon		=	"sap-icon://detail-view"/>
+
+	</Page> 
+	
+</mvc:View>

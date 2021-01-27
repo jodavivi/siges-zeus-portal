@@ -1,1 +1,32 @@
 /* Enter your custom styles here */
+.mantGrupo > div {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+} 
+#idVertical{
+	text-align: center !important;
+}
+#dglExitoso{
+	text-align: center !important;
+}
+
+#txtMensaje{
+	font-size: 1.1rem !important;
+}
+
+#inputTranscaccion{
+	width: 10rem		!important; 
+}
+
+.tamaniotexto{
+	font-size: 0.65rem	!important;
+}
+
+.tamanioTextoFiltros{
+    font-size: 1.2rem  !important;
+    font-weight: bold !important;
+}
+
+#inputTranscaccion-inner{
+	font-size: 0.65rem	!important;
+}

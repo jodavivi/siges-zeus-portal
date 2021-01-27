@@ -65,26 +65,108 @@
 				"uri": "css/style.css"
 			}]
 		},
-		"routing": {
+		"routing": { 
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
 				"viewPath": "com.telcomdataperu.app.Acceso.view",
 				"controlAggregation": "pages",
-				"controlId": "app",
+				"controlId": "idSplitContainer",
 				"clearControlAggregation": false
 			},
-			"routes": [ {
+			"routes": [ 
+				{
 				"pattern": "acceso",
-				"name": "accesoRoute",
-				"target": "targetAcceso"
-			  }],
-			"targets": {
+				"name": "AccesoRoute",
+				"target": [
+					"targetAcceso",
+					"targetNotFound"
+					 ] 
+				},
+				{
+					"pattern": "acceso/permisos",
+					"name": "PermisoRoute",
+					"target": [
+						"targetAcceso",
+						"targetPermiso"
+					] 
+				},
+				{
+					"pattern": "acceso/grupos",
+					"name": "GrupoRoute",
+					"target": [
+						"targetAcceso",
+						"targetGrupo"
+					] 
+				},
+				{
+					"pattern": "acceso/aplicaciones",
+					"name": "AplicacionRoute",
+					"target": [
+						"targetAcceso",
+						"targetAplicacion"
+					] 
+				},
+				{
+					"pattern": "acceso/aplicaciones/registrar",
+					"name": "AplicacionRegistroRoute",
+					"target": [
+						"targetAcceso",
+						"targetAplicacionRegistro"
+					] 
+				},
+				{
+					"pattern": "acceso/aplicaciones/{id}/editar",
+					"name": "AplicacionEditarRoute",
+					"target": [
+						"targetAcceso",
+						"targetAplicacionEditar"
+					] 
+				}
+					],
+			"targets": { 
 				"targetAcceso": {
+					"transition": "slide",
 					"viewName": "Accesos",
-					"viewLevel": 1,
-					"viewId": "idAccesos"
+					"controlAggregation": "masterPages",
+					"viewLevel": 0
+				},
+				"targetNotFound": {
+					"transition": "slide",
+					"viewName": "NotFound",
+					"controlAggregation": "detailPages",
+					"viewLevel": 1
+				},
+				"targetPermiso": {
+					"transition": "slide",
+					"viewName": "Permisos.MantPermisos",
+					"controlAggregation": "detailPages",
+					"viewLevel": 2
+				},
+				"targetGrupo": {
+					"transition": "slide",
+					"viewName": "Grupos.MantGrupos",
+					"controlAggregation": "detailPages",
+					"viewLevel": 3
+				},
+				"targetAplicacion": {
+					"transition": "slide",
+					"viewName": "Aplicacion.MantAplicacion",
+					"controlAggregation": "detailPages",
+					"viewLevel": 4
+				},
+				"targetAplicacionRegistro": {
+					"transition": "slide",
+					"viewName": "Aplicacion.AplicacionRegistro",
+					"controlAggregation": "detailPages",
+					"viewLevel": 5
+				},
+				"targetAplicacionEditar": {
+					"transition": "slide",
+					"viewName": "Aplicacion.AplicacionEditar",
+					"controlAggregation": "detailPages",
+					"viewLevel": 6
 				}
 			}
 		}

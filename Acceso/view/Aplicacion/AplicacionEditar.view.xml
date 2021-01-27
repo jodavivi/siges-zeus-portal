@@ -1,0 +1,83 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.Acceso.controller.Aplicacion.AplicacionEditar"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <Page 
+		id		=	"EditarAplicacion"
+		showNavButton="true" 
+		class	=	"sapUiStdPage">  
+		<customHeader>
+			<Toolbar> 
+				<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancelarEdicion" />
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"{modelAcceso>/oAplicacionEditar/CodigoTabla}" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content> 
+			 <VBox class="sapUiSmallMargin">
+		<f:SimpleForm  
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Editar Aplicación: {modelAcceso>/oAplicacionEditar/Codigo}"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content> 
+				<Label text="Id" />
+				<Text text="{modelAcceso>/oAplicacionEditar/Id}"/>  
+				<Label text="Nombre" />
+				<Input value="{modelAcceso>/oAplicacionEditar/Nombre}"/>  
+				<Label text="Descripción" />
+				<Input value="{modelAcceso>/oAplicacionEditar/Descripcion}"/>  
+				<Label text="Ico" />
+				<Input value="{modelAcceso>/oAplicacionEditar/Ico}"/>  
+				<Label text="Route" />
+				<Input value="{modelAcceso>/oAplicacionEditar/Url}"/>   
+				<Label text="Estado"/>
+				<Select  selectedKey="{modelAcceso>/oAplicacionEditar/CodEstadoAplicacion}">
+					<items>
+						<core:Item text="Activo" key="1"/>
+						<core:Item text="Desactivo" key="0"/> 
+					</items>
+				</Select>  
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+ 
+				<Button   
+				type		=	"Reject" 
+				text		=	"Regresar" 
+				press		=	"onPressCancelarEdicion" 
+				icon		=	"sap-icon://arrow-left"/>
+				<Button   
+				type		=	"Accept" 
+				text		=	"Actualizar" 
+				press		=	"onEditarAplicacion" 
+				icon		=	"sap-icon://save"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

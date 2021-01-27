@@ -25,7 +25,7 @@ sap.ui.define([
 
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
-
+			this.setModel(models.modelAcceso(), "modelAcceso");
 			var s = $(document).height() -48;
 			$(".prueba").height(s + 'px');
 		}
