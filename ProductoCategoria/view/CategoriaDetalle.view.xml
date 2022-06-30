@@ -1,0 +1,73 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.ProductoCategoria.controller.CategoriaDetalle"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <Page 
+		id		=	"DetalleCategoria"
+		showNavButton="true" 
+		class	=	"sapUiStdPage">  
+		<customHeader>
+			<Toolbar>
+				<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancelarEdicion" />
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"Mantenimiento de Categorias" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content> 
+			 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmDetalleCategoria"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="Detalle Categoria > {modelAcceso>/oCategoriaPadre/Nombre}" 
+					adjustLabelSpan="false" 
+					singleContainerFullSize="false" >
+					<f:content>  
+						<Label text="Codigo" />
+						<Input editable="false" value="{modelAcceso>/oCategoriaSeleccionado/Codigo}"/>
+						<Label text="Padre" />
+						<Input 
+						type="Text"
+						value="{modelAcceso>/oCategoriaPadre/Nombre}"
+						placeholder="Product" 
+						editable="false"
+						/> 
+						<Label text="Tipo"/>
+						<Input editable="false" value="{modelAcceso>/oCategoriaSeleccionado/Tipo}"/>   
+						<Label text="Nombre" />
+						<Input editable="false" value="{modelAcceso>/oCategoriaSeleccionado/Nombre}"/>  
+						<Label  text="Descripción" />
+						<Input editable="false" value="{modelAcceso>/oCategoriaSeleccionado/Descripcion}"/>   
+						<Label text="Imagen" />
+						<Input editable="false" value="{modelAcceso>/oCategoriaSeleccionado/Imagen}"/>   
+						<Label text="Orden" /> 
+						<StepInput editable="false" value="{modelAcceso>/oCategoriaSeleccionado/Orden}"  min="1" max="100"/>
+						<Label text="Estado"/> 
+						<Input editable="false" value="{modelAcceso>/oCategoriaSeleccionado/EstadoCategoria}"/>   
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+ 
+				<Button   
+				type		=	"Reject" 
+				text		=	"Regresar" 
+				press		=	"onPressCancelarEdicion" 
+				icon		=	"sap-icon://arrow-left"/>
+				 
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

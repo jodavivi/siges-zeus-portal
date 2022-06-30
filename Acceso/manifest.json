@@ -123,6 +123,14 @@
 						"targetAcceso",
 						"targetAplicacionEditar"
 					] 
+				},
+				{
+					"pattern": "acceso/aplicaciones/{id}/detalle",
+					"name": "AplicacionDetalleRoute",
+					"target": [
+						"targetAcceso",
+						"targetAplicacionDetalle"
+					] 
 				}
 					],
 			"targets": { 
@@ -167,6 +175,12 @@
 					"viewName": "Aplicacion.AplicacionEditar",
 					"controlAggregation": "detailPages",
 					"viewLevel": 6
+				},
+				"targetAplicacionDetalle": {
+					"transition": "slide",
+					"viewName": "Aplicacion.AplicacionDetalle",
+					"controlAggregation": "detailPages",
+					"viewLevel": 7
 				}
 			}
 		}

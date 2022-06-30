@@ -1,0 +1,74 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgActualizarImagen"
+		horizontalScrolling	=	"false"
+		title				=   "Actualizar Imagen"
+		contentWidth		=	"500px"
+		icon				=   "sap-icon://add-document" >
+		<content>
+			<f:SimpleForm 
+				id				=	"frmActualizarImagen"
+				editable		=	"true"
+				layout			=	"ResponsiveGridLayout" 
+				labelSpanXL		=	"3"
+				labelSpanL		=	"3"
+				labelSpanM		=	"3"
+				labelSpanS		=	"12"
+				adjustLabelSpan	=	"false"
+				emptySpanXL		=	"4"
+				emptySpanL		=	"4"
+				emptySpanM		=	"4"
+				emptySpanS		=	"0"
+				columnsXL		=	"1"
+				columnsL		=	"1"
+				columnsM		=	"1"
+				singleContainerFullSize	=	"false" >
+				<f:content> 
+					<Label text="Imagen" />
+					<u:FileUploader 
+					id="fileUploaderActualizarImagen"
+					name="file"
+					width="100%"
+					uploadUrl=""
+					tooltip="Subir archivo"
+					uploadComplete="handleUploadComplete"/>
+					<Label text="Orden" /> 
+					<StepInput value="{modelAcceso>/oImagenProductoSeleccionado/Orden}"  min="1" max="100"/>  
+					<Label 
+						text		=	"Estado" />
+					<Select id="cbxEstadoImagen" selectedKey="{modelAcceso>/oImagenProductoSeleccionado/CodEstadoImagen}" required="true">
+					<items>
+						<core:Item text="Seleccionar" key=""/>
+						<core:Item text="Activo" key="1"/>
+						<core:Item text="Desactivo" key="0"/> 
+					</items>
+					</Select>  
+				</f:content>
+			</f:SimpleForm>
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPressActualzarImagen" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseEditarImagen" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

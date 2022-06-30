@@ -30,3 +30,7 @@
 #inputTranscaccion-inner{
 	font-size: 0.65rem	!important;
 }
+.frmDetalle{
+	font-weight: bold !important;
+    margin-left: 12px !important;
+}

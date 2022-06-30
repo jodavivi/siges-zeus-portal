@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:ui="sap.ui.table" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f		=	"sap.ui.layout.form">
+	
+	<Dialog  
+		id					=	"DlgMarcaImagen" 
+		title				=   "{modelAcceso>/oMarcaVer/Nombre}" 
+		icon				=   "sap-icon://picture" > 
+		<content>
+			<Image ariaDetails="detailsActiveImage" src="http://localhost/Imagenes/Productos/{modelAcceso>/oMarcaVer/Imagen}"
+			decorative="false"  /> 
+		</content> 
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseCategoriaImagen" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

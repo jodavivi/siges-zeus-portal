@@ -1,0 +1,86 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgCrearMarca"
+		horizontalScrolling	=	"false"
+		title				=   "Crear Marca"
+		contentWidth		=	"500px"
+		icon				=   "sap-icon://add-document" >
+		<content>
+			<f:SimpleForm 
+				id				=	"frmCrearMarca"
+				editable		=	"true"
+				layout			=	"ResponsiveGridLayout" 
+				labelSpanXL		=	"3"
+				labelSpanL		=	"3"
+				labelSpanM		=	"3"
+				labelSpanS		=	"12"
+				adjustLabelSpan	=	"false"
+				emptySpanXL		=	"4"
+				emptySpanL		=	"4"
+				emptySpanM		=	"4"
+				emptySpanS		=	"0"
+				columnsXL		=	"1"
+				columnsL		=	"1"
+				columnsM		=	"1"
+				singleContainerFullSize	=	"false" >
+				<f:content>
+					<Label 
+						text		=	"Nombre"/>
+					<Input   
+						value		=	"{modelAcceso>/oMarcaNuevo/sNombre}"
+						maxLength	=	"31"
+						fieldGroupIds ="validarRolInput"
+						required	=	"true"/>
+						
+					<Label 
+						text		=	"Descripción" />
+					<Input  
+						value		=	"{modelAcceso>/oMarcaNuevo/sDescripcion}"
+						fieldGroupIds ="validarRolInput"
+						maxLength	=	"127" />
+					<Label text="Imagen" />
+						<u:FileUploader 
+						id="fileUploader"
+						name="file"
+						width="100%"
+						uploadUrl="http://localhost:3012/documento/upload"
+						tooltip="Subir archivo"
+						uploadComplete="handleUploadComplete"/>
+					<Label 
+						text		=	"Estado" />
+					<Select id="cbxEstado" selectedKey="{modelAcceso>/oMarcaNuevo/iCodEstadoMarca}" required="true">
+					<items>
+						<core:Item text="Seleccionar" key=""/>
+						<core:Item text="Activo" key="1"/>
+						<core:Item text="Desactivo" key="0"/> 
+					</items>
+				</Select>  
+				</f:content>
+			</f:SimpleForm>
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onfnCrearMarca" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseCrearMarca" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

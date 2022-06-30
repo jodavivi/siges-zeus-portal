@@ -1,0 +1,91 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.Usuario.controller.UsuarioRegistro"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <Page 
+		id		=	"AgregarUsuario"
+		showNavButton="true" 
+		class	=	"sapUiStdPage">  
+		<customHeader>
+			<Toolbar>
+				<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancelarRegistro" />
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"Mantenimiento de Usuarios" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content> 
+			 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmRegistroUsuario"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="Registrar Usuario" 
+					adjustLabelSpan="false" 
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Tipo Usuario" />
+						<Select  selectedKey="{modelAcceso>/oUsuarioNuevo/sCodTipoUsuario}"  
+						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-usuario' }]}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
+						</Select>
+						<Label text="Tipo Documento" />
+						<Select  selectedKey="{modelAcceso>/oUsuarioNuevo/sCodTipoDocumento}"  
+						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-documento-persona' }]}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
+						</Select> 
+						<Label text="Numero Documento" />
+						<Input value="{modelAcceso>/oUsuarioNuevo/sNumDocumento}" required="true"/>   
+						<Label text="Nombre" />
+						<Input value="{modelAcceso>/oUsuarioNuevo/sNombre}" required="true"/>   
+						<Label text="Apellido" />
+						<Input value="{modelAcceso>/oUsuarioNuevo/sApellido}" required="true"/>   
+						<Label text="Usuario" />
+						<Input value="{modelAcceso>/oUsuarioNuevo/sUsuario}" required="true"/> 
+						<Label text="Email" />
+						<Input value="{modelAcceso>/oUsuarioNuevo/sEmail}" required="true"/>   
+						<Label text="Rol" />
+						<Select  selectedKey="{modelAcceso>/oUsuarioNuevo/sCodRol}"  
+						required="true" items="{ path: 'modelAcceso>/aListaRoles', sorter: { path: 'Codigo' }}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Nombre}" />
+						</Select>   
+						<Label text="Estado"/>
+						<Select  selectedKey="{modelAcceso>/oUsuarioNuevo/iCodEstado}" required="true">
+							<items>
+								<core:Item text="--Seleccionar--" key=""/>
+								<core:Item text="Activo" key="1"/>
+								<core:Item text="Desactivo" key="0"/> 
+							</items>
+						</Select>  
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+ 
+				<Button   
+				type		=	"Reject" 
+				text		=	"Regresar" 
+				press		=	"onPressCancelarRegistro" 
+				icon		=	"sap-icon://arrow-left"/>
+				<Button   
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onRegistrarUsuario" 
+				icon		=	"sap-icon://save"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

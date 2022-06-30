@@ -20,6 +20,7 @@ sap.ui.define([
                                                                             {"nombre":"Reporte de Medicamentos", "descripcion":"Medicamentos", "url":"appRepoMedicamento"}]}
                               ];
         oUsuario.accesos    = [];
+        oUsuario.nuevaClave = {};
         var oModel = new JSONModel(oUsuario);
         return oModel;
       }

@@ -1,0 +1,117 @@
+<mvc:View
+	controllerName="com.telcomdataperu.app.ProductoCategoria.controller.Categoria"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f" 
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" 
+	xmlns:mvc="sap.ui.core.mvc">
+		<Page
+		title="Mantenimiento de Categorias"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+            <content>
+				
+				 <ui:TreeTable
+                    id="tblCategoria"
+                    rows="{path:'modelAcceso>/aCategoria', parameters: {arrayNames:['listaAccesos']}}"
+                    selectionMode="MultiToggle"
+                    enableSelectAll="true"
+                    visibleRowCount="15"  
+					class="tbTabla"
+					alternateRowColors="true"  
+					enableBusyIndicator="true"  
+					selectionBehavior="RowSelector" 
+					showOverlay="false" 
+					ariaLabelledBy="title">
+                <ui:extension>
+                    <OverflowToolbar> 
+					<Title text="Items({modelAcceso>/iNumItems})"/>
+					<ToolbarSpacer/>
+							 <Input id="txtCategoria" placeholder="Codigo | Nombre " width="20rem" />
+								<Button 
+				type		=	"Emphasized" 
+				text		=	"Buscar" 
+				press		=	"onPressFiltrarCategoria" 
+				icon		=	"sap-icon://search"/>
+				<Button 
+				type		=	"Reject" 
+				text		=	"Limpiar" 
+				press		=	"onPressLimpiarFiltro" 
+				icon		=	"sap-icon://clear-filter"/>
+
+				
+						<ToolbarSpacer/>
+						 
+						<Button 
+							icon		=	"sap-icon://delete" 
+							type		=	"Reject"
+							tooltip		=	"Eliminar Categoria" 
+							press		=	"onPressEliminarCategoria"  /> 
+						<Button 
+							icon		=	"sap-icon://add-document" 
+							tooltip		=	"Registrar Categoria" 
+							press		=	"onPressRegistrarCategoria"  />
+					</OverflowToolbar>
+                </ui:extension>
+                <ui:columns> 
+					<ui:Column filterProperty="Codigo" sortProperty="Codigo" width="12rem">
+						<Label text="Codigo" />
+						<ui:template>
+								<Link text="{modelAcceso>Codigo}" press="onPressDetalleCategoria" /> 
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Tipo" sortProperty="Tipo">
+						<Label text="Tipo" />
+						<ui:template>
+							<Text text="{	path		:	'modelAcceso>Tipo'}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
+						<Label text="Nombre" />
+						<ui:template>
+							<Text text="{modelAcceso>Nombre}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Descripcion" sortProperty="Descripcion">
+						<Label text="Descripción" />
+						<ui:template>
+							<Text text="{modelAcceso>Descripcion}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="7rem"  hAlign="Center">
+						<Label text="Imagen" />
+						<ui:template>  
+							<core:Icon press="onPressVerImagen" visible     = "{	path		:	'modelAcceso>Imagen', formatter	:	'.formatter.mostrarImagen'}" size="1.2rem"  src="sap-icon://picture"/>
+						</ui:template>
+					</ui:Column>  
+					<ui:Column width="9rem" filterProperty="orden" sortProperty="Orden">
+						<Label text="Orden" />
+						<ui:template>
+							<Text text="{modelAcceso>Orden}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="8rem">
+							<Label text="Estado" />
+							<ui:template>
+							<ObjectStatus 
+								text    =   "{modelAcceso>EstadoCategoria}"
+								state   =   "{	path		:	'modelAcceso>CodEstadoCategoria', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelAcceso>CodEstadoCategoria', formatter	:	'.formatter.iconEstado'}"/> 
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="2.5rem" hAlign="Center"> 
+						<ui:template>
+							<core:Icon press="onVerAuditoriaCategoria"  size="1.2rem"  src="sap-icon://show"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="2.5rem" hAlign="Center"> 
+						<ui:template>
+							<core:Icon press="onPressEditarCategoria"  size="1.2rem"  src="sap-icon://edit"/>
+						</ui:template>
+					</ui:Column>
+                </ui:columns>
+            </ui:TreeTable>
+            </content> 
+	</Page>
+</mvc:View>

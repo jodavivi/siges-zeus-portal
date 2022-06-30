@@ -1,0 +1,123 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.telcomdataperu.app.Producto",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "com.telcomdataperu.app.Producto.view.Home",
+			"type": "XML",
+			"async": true,
+			"id": "Home"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.telcomdataperu.app.Producto.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.telcomdataperu.app.Producto.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [ {
+				"pattern": "producto",
+				"name": "productoRoute",
+				"target": "targetProducto"
+			  },
+			  {
+				"pattern": "producto/registro",
+				"name": "ProductoRegistroRoute",
+				"target": "targetProductoRegistro"
+			  },
+			  {
+				"pattern": "producto/{id}/editar", 
+				"name": "ProductoEditarRoute",
+				"target": "targetProductoEditar"
+			  },
+			  {
+				"pattern": "producto/{id}/detalle", 
+				"name": "ProductoDetalleRoute",
+				"target": "targetProductoDetalle"
+			  }
+			],
+			"targets": {
+				"targetProducto": {
+					"viewName": "Producto",
+					"viewLevel": 1,
+					"viewId": "idProductos"
+				},
+				"targetProductoRegistro": {
+					"viewName": "ProductoRegistro",
+					"viewLevel": 2,
+					"viewId": "idProductoRegistro"
+				},
+				"targetProductoEditar": {
+					"viewName": "ProductoEditar",
+					"viewLevel": 3,
+					"viewId": "idProductoEditar"
+				},
+				"targetProductoDetalle": {
+					"viewName": "ProductoDetalle",
+					"viewLevel": 3,
+					"viewId": "idProductoDetalle"
+				}
+			}
+		}
+	}
+}

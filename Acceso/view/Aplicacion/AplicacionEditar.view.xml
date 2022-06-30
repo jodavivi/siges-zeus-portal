@@ -25,6 +25,7 @@
 		<content> 
 			 <VBox class="sapUiSmallMargin">
 		<f:SimpleForm  
+			id ="frmEditarApp"
 			editable="true"
 			layout="ResponsiveGridLayout"
 			title="Editar Aplicación: {modelAcceso>/oAplicacionEditar/Codigo}"
@@ -44,16 +45,27 @@
 			<f:content> 
 				<Label text="Id" />
 				<Text text="{modelAcceso>/oAplicacionEditar/Id}"/>  
+				<Label text="Codigo" />
+				<Input value="{modelAcceso>/oAplicacionEditar/Codigo}" enabled="false"/>
+				<Label text="Tipo" />
+				<Select  selectedKey="{modelAcceso>/oAplicacionEditar/Tipo}" required="true">
+					<items>
+						<core:Item text="Pagina" key="P"/>
+						<core:Item text="Control" key="C"/> 
+					</items>
+				</Select>
 				<Label text="Nombre" />
-				<Input value="{modelAcceso>/oAplicacionEditar/Nombre}"/>  
+				<Input value="{modelAcceso>/oAplicacionEditar/Nombre}" required="true"/>  
 				<Label text="Descripción" />
 				<Input value="{modelAcceso>/oAplicacionEditar/Descripcion}"/>  
 				<Label text="Ico" />
 				<Input value="{modelAcceso>/oAplicacionEditar/Ico}"/>  
 				<Label text="Route" />
-				<Input value="{modelAcceso>/oAplicacionEditar/Url}"/>   
+				<Input value="{modelAcceso>/oAplicacionEditar/Url}"/>  
+				<Label text="Padre" />
+				<Input value="{modelAcceso>/oAplicacionEditar/CodigoPadre}"/>   
 				<Label text="Estado"/>
-				<Select  selectedKey="{modelAcceso>/oAplicacionEditar/CodEstadoAplicacion}">
+				<Select  selectedKey="{modelAcceso>/oAplicacionEditar/CodEstadoAplicacion}" required="true">
 					<items>
 						<core:Item text="Activo" key="1"/>
 						<core:Item text="Desactivo" key="0"/> 

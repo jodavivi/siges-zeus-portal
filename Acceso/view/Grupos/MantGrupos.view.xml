@@ -25,14 +25,13 @@
 		<content> 
 			 <HBox class="mantGrupo">
 			 <ui:Table
-			  width="45.2rem" 
+			  width="47rem" 
 				id="tblGrupos"
 				rows="{ path : 'modelAcceso>/aListaGrupos' , sorter: { path: 'Id', descending: true }}" 
 				selectionMode="MultiToggle"  
 				class="tbTabla"
 				alternateRowColors="true" 
-				rowActionCount="2"   
-				visibleRowCount="15"
+				rowActionCount="2"  
 				enableBusyIndicator="true"  
 				selectionBehavior="RowSelector"
 				fixedColumnCount="2"
@@ -45,29 +44,29 @@
 						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
-							tooltip		=	"Eliminar Parametro" 
-							press		=	"onEliminarParametro"  />
+							tooltip		=	"Eliminar Grupo" 
+							press		=	"onPressEliminarGrupo"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
-							tooltip		=	"Registrar Parametro" 
-							press		=	"onRegistrarParametro"  />
+							tooltip		=	"Crear Grupo" 
+							press		=	"onPressCrearGrupo"  />
 					</OverflowToolbar>
 				</ui:extension>
 				<ui:columns> 
 					 <ui:Column width="2.5rem" hAlign="Center"> 
 						<ui:template>
-							<core:Icon press="onVerAuditoria"  size="1.2rem"  src="sap-icon://show"/>
+							<core:Icon press="onVerAuditoriaGrupo"  size="1.2rem"  src="sap-icon://show"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="2.5rem" hAlign="Center"> 
 						<ui:template>
-							<core:Icon press="onEditarAplicacion"  size="1.2rem"  src="sap-icon://edit"/>
+							<core:Icon press="onPressEditarGrupo"  size="1.2rem"  src="sap-icon://edit"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column filterProperty="Id" sortProperty="Id" width="4rem">
 						<Label text="Id" />
 						<ui:template>
-								<Link text="{modelAcceso>Id}" press="onParametroDetalle" /> 
+								<Link text="{modelAcceso>Id}" press="onPressVerGrupo" /> 
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
@@ -81,13 +80,16 @@
 						<ui:template>
 							<Text text="{modelAcceso>Descripcion}" wrapping="false" />
 						</ui:template>
-					</ui:Column> 
-					<ui:Column width="8rem" filterProperty="EstadoGrupo" sortProperty="EstadoGrupo">
+					</ui:Column>  
+					<ui:Column width="8rem" filterProperty="EstadoRol" sortProperty="EstadoRol">
 						<Label text="Estado" />
 						<ui:template>
-							<Text text="{modelAcceso>EstadoGrupo}" wrapping="false" />
+							<ObjectStatus 
+								text    =   "{modelAcceso>EstadoGrupo}"
+								state   =   "{	path		:	'modelAcceso>CodEstadoGrupo', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelAcceso>CodEstadoGrupo', formatter	:	'.formatter.iconEstado'}"/> 
 						</ui:template>
-					</ui:Column>
+					</ui:Column>  
 					<ui:Column 
 						width           =   "3rem" 
 						hAlign          =   "Center" 
@@ -109,13 +111,12 @@
 				</ui:columns> 
 			</ui:Table> 
 			<ui:Table
-				id="tblAplicaciones"
+				id="tblAppAsignadas"
 				rows="{ path : 'modelAcceso>/aListaGrupoAplicaciones' , sorter: { path: 'Id', descending: true }}"
 				selectionMode="MultiToggle"  
 				class="tbTabla"
 				alternateRowColors="true" 
-				rowActionCount="2" 
-				visibleRowCount="16" 
+				rowActionCount="2"  
 				enableBusyIndicator="true"  
 				selectionBehavior="RowSelector" 
 				showOverlay="false" 
@@ -127,12 +128,12 @@
 						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
-							tooltip		=	"Eliminar Parametro" 
-							press		=	"onEliminarParametro"  />
+							tooltip		=	"Eliminar Pagina" 
+							press		=	"onPressEliminarPagAsignada"  />
 						<Button 
-							icon		=	"sap-icon://add-document" 
-							tooltip		=	"Registrar Parametro" 
-							press		=	"onRegistrarParametro"  />
+							icon		=	"sap-icon://add-product" 
+							tooltip		=	"Agregar Aplicacion" 
+							press		=	"fnBuscarPaginasSinAgregar"  />
 					</OverflowToolbar>
 				</ui:extension>
 				<ui:columns>  

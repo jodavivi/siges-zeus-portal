@@ -1,0 +1,58 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form">
+	
+	<Dialog  
+		id					=	"DlgVerGrupo"
+		horizontalScrolling	=	"false"
+		title				=   "Detalle Grupo"
+		contentWidth		=	"500px"
+		icon				=   "sap-icon://paging" >
+		<content>
+			<f:SimpleForm 
+				id				=	"frmVerGrupo"
+				editable		=	"true"
+				layout			=	"ResponsiveGridLayout" 
+				labelSpanXL		=	"3"
+				labelSpanL		=	"3"
+				labelSpanM		=	"3"
+				labelSpanS		=	"12"
+				adjustLabelSpan	=	"false"
+				emptySpanXL		=	"4"
+				emptySpanL		=	"4"
+				emptySpanM		=	"4"
+				emptySpanS		=	"0"
+				columnsXL		=	"1"
+				columnsL		=	"1"
+				columnsM		=	"1"
+				singleContainerFullSize	=	"false" >
+				<f:content>
+					<Label 
+						text		=	"Nombre"/> 
+					<Text class="frmDetalle"  text="{modelAcceso>/oGrupoVer/Nombre}" />
+						
+					<Label 
+						text		=	"Descripción" /> 
+					<Text class="frmDetalle"  text="{modelAcceso>/oGrupoVer/Descripcion}" />
+					<Label 
+						text		=	"Estado" />  
+					<Text class="frmDetalle"  text="{modelAcceso>/oGrupoVer/EstadoGrupo}" /> 
+				</f:content>
+			</f:SimpleForm>
+			
+		</content>
+		<endButton>
+			 
+		</endButton>
+		<beginButton> 
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseVerGrupo" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

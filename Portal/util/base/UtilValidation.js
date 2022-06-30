@@ -188,6 +188,44 @@ sap.ui.define([
 					oControl.setValueState("None");
 				});
 			}
-		}
+		},
+		validaFormObligatorio: function(self, form)
+        {
+			var oForm = self.getView().byId(form).getContent();
+            var sError = false;
+
+			oForm.forEach(function(Field) {
+				try {
+					if (typeof Field.getValue === "function") {
+						 if(Field.getRequired() === true){
+							if (!Field.getValue() || Field.getValue().length < 1) {
+								Field.setValueState("Error"); 
+								sError = true;
+
+							} else {
+								Field.setValueState("None");
+							} 
+
+						}
+					}
+					if(typeof Field.getSelectedItem() === "object" && Field.getSelectedItem() !== null ){
+						if(Field.getRequired() === true ){
+							if(Field.getSelectedKey() === "" || Field.getSelectedKey() === 0 ){
+								Field.setValueState("Error"); 
+								sError = true;
+							}else{
+								Field.setValueState("None");
+							}
+						}
+						
+					}
+				} catch (error) {
+					console.log(error);
+				} 
+			});
+			
+			return sError;
+
+        }
 	};
 });

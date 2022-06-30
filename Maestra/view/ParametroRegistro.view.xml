@@ -78,6 +78,7 @@
 				<Label text="Estado"/>
 				<Select  selectedKey="{modelTablaGenerica>/oParametroNuevo/iIdEstado}">
 					<items>
+						<core:Item text="--Seleccionar Estado--" key=""/>
 						<core:Item text="Activo" key="1"/>
 						<core:Item text="Desactivo" key="0"/> 
 					</items>

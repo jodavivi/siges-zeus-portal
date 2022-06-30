@@ -3,9 +3,9 @@ sap.ui.define([], function() {
 	return {
         IdApp: 'Auditoria', 
 		services: {
-			consultarAplicacion: "http://localhost:5000/api-gateway/auditoria/aplicacion",
-			consultarProceso: "http://localhost:5000/api-gateway/auditoria/aplicacion/proceso",
-			consultarAuditoria: "http://localhost:5000/api-gateway/auditoria"
+			consultarAplicacion: "http://localhost:2001/api-gateway/auditoria/aplicacion",
+			consultarProceso: "http://localhost:2001/api-gateway/auditoria/aplicacion/proceso",
+			consultarAuditoria: "http://localhost:2001/api-gateway/auditoria"
 		}
 	};
 });

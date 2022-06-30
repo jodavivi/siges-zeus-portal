@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:ui="sap.ui.table" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f		=	"sap.ui.layout.form">
+	
+	<Dialog  
+		id					=	"DlgCategoriaImagen" 
+		title				=   "{modelAcceso>/oCategoriaSeleccionado/Nombre}" 
+		icon				=   "sap-icon://picture" > 
+		<content>
+			<Image ariaDetails="detailsActiveImage" src="http://localhost/Imagenes/Productos/{modelAcceso>/oCategoriaSeleccionado/Imagen}"
+			decorative="false"  /> 
+		</content> 
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseCategoriaImagen" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgListaImagen"
+		horizontalScrolling	=	"false"
+		title				=   "Imagenes del Producto"
+		contentWidth		=	"500px"
+		icon				=   "sap-icon://picture" >
+		<content>
+			<f:SimpleForm 
+				id				=	"frmListaImagen"
+				editable		=	"true"
+				layout			=	"ResponsiveGridLayout" 
+				labelSpanXL		=	"3"
+				labelSpanL		=	"3"
+				labelSpanM		=	"3"
+				labelSpanS		=	"12"
+				adjustLabelSpan	=	"false"
+				emptySpanXL		=	"4"
+				emptySpanL		=	"4"
+				emptySpanM		=	"4"
+				emptySpanS		=	"0"
+				columnsXL		=	"1"
+				columnsL		=	"1"
+				columnsM		=	"1"
+				singleContainerFullSize	=	"false" >
+				<f:content> 
+					 <Carousel  loop="true" pageChanged = "handleNextPage" pages="{modelAcceso>/oProductoSeleccionado/ProductoImagen}">
+						<Image src="http://localhost/Imagenes/Productos/{modelAcceso>Imagen}" alt="Example picture of speakers" />
+					</Carousel>
+				</f:content>
+			</f:SimpleForm>
+			
+		</content>
+		<endButton> 
+		</endButton>
+		<beginButton> 
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseVerImagen" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

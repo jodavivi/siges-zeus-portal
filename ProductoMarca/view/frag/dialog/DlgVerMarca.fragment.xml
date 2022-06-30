@@ -1,0 +1,99 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgVerMarca"
+		horizontalScrolling	=	"false"
+		title				=   "Ver Marca"
+		contentWidth		=	"600px"
+		icon				=   "sap-icon://edit" >
+		<content>
+			<f:SimpleForm 
+				id				=	"frmVerMarca"
+				editable		=	"true"
+				layout			=	"ResponsiveGridLayout" 
+				labelSpanXL		=	"3"
+				labelSpanL		=	"3"
+				labelSpanM		=	"3"
+				labelSpanS		=	"12"
+				adjustLabelSpan	=	"false"
+				emptySpanXL		=	"4"
+				emptySpanL		=	"4"
+				emptySpanM		=	"4"
+				emptySpanS		=	"0"
+				columnsXL		=	"1"
+				columnsL		=	"1"
+				columnsM		=	"1"
+				class			="clsFrmEditMarca"
+				singleContainerFullSize	=	"false" >
+				<f:content>
+					<Label 
+						text		=	"Codigo"/>
+					<Input   
+						value		=	"{modelAcceso>/oMarcaVer/Codigo}" 
+						fieldGroupIds ="validarRolInput"
+						required	=	"true"
+						editable="false"/>
+					<Label 
+						text		=	"Nombre"/>
+					<Input   
+						value		=	"{modelAcceso>/oMarcaVer/Nombre}"
+						editable="false" 
+						fieldGroupIds ="validarRolInput"
+						required	=	"true"/>
+						
+					<Label 
+						text		=	"Descripción" />
+					<Input  
+						value		=	"{modelAcceso>/oMarcaVer/Descripcion}"
+						fieldGroupIds ="validarRolInput"
+						editable="false" 
+						required	=	"true"/>
+					<Label 
+						text		=	"Imagen" />    
+						<Image
+					src="http://localhost/Imagenes/Productos/{modelAcceso>/oMarcaVer/Imagen}"
+					decorative="false"
+					width="200px"
+					densityAware="false">
+					<detailBox>
+						<LightBox>
+							<LightBoxItem
+								imageSrc="http://localhost/Imagenes/Productos/{modelAcceso>/oMarcaVer/Imagen}"
+								alt="Beamer"
+								title="This is a beamer"
+								subtitle="This is beamer's description" />
+						</LightBox>
+					</detailBox>
+					<!-- Fixes HBox layout on Android Stock Browser for Android 5.0 -->
+					<layoutData>
+						<FlexItemData growFactor="1" shrinkFactor="0" />
+					</layoutData>
+				</Image>
+					<Label 
+						text		=	"Estado" />
+					<Input   
+						value		=	"{modelAcceso>/oMarcaVer/EstadoMarca}"
+						editable="false" 
+						fieldGroupIds ="validarRolInput"
+						required	=	"true"/>
+				</f:content>
+			</f:SimpleForm>
+			
+		</content> 
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseVerMarca" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

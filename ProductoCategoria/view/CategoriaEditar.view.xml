@@ -1,0 +1,110 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.ProductoCategoria.controller.CategoriaEditar"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <Page 
+		id		=	"EditarCategoria"
+		showNavButton="true" 
+		class	=	"sapUiStdPage">  
+		<customHeader>
+			<Toolbar>
+				<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancelarEdicion" />
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"Mantenimiento de Categorias" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content>  
+			 <VBox class="sapUiSmallMargin"> 
+				<f:SimpleForm  
+					id ="frmEditarCategoria"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="Editar Categoria > {modelAcceso>/oCategoriaPadre/Nombre}" 
+					adjustLabelSpan="false" 
+					singleContainerFullSize="false" >
+					<f:content>  
+						<Label text="Padre" />
+						<Input 
+						type="Text"
+						value="{modelAcceso>/oCategoriaPadre/Nombre}"
+						placeholder="Product"
+						enabled="true"
+						editable="false"
+						/>
+						<Button icon="sap-icon://activities" type="Accept" tooltip="Seleccionar Categoria Superior" press="onPressCategoriaSuperior">
+						<layoutData>
+						<l:GridData span="L1 M1 S1" />
+						</layoutData>
+						</Button> 	
+						<Button icon="sap-icon://sys-cancel" type="Reject" tooltip="Limpiar" press="onLimpiarCategoriaSuperior">
+						<layoutData>
+						<l:GridData span="L1 M1 S1" />
+						</layoutData>
+						</Button>
+						<Label text="Tipo"/>
+						<Select id="cbxTipo" selectedKey="{modelAcceso>/oCategoriaSeleccionado/CodTipo}" required="true">
+							<items>
+								<core:Item text="--Seleccionar--" key=""/>
+								<core:Item text="Producto" key="PRD"/>
+								<core:Item text="Servicio" key="SER"/> 
+							</items>
+						</Select>  
+						<Label text="Nombre" />
+						<Input value="{modelAcceso>/oCategoriaSeleccionado/Nombre}" required="true"/>  
+						<Label text="Descripción" />
+						<Input value="{modelAcceso>/oCategoriaSeleccionado/Descripcion}" required="true"/>   
+						<Label text="Imagen" />
+						<u:FileUploader 
+						id="fileUploader"
+						name="file"
+						width="100%"
+						uploadUrl="http://localhost:3012/documento/upload"
+						tooltip="Subir archivo"
+						uploadComplete="handleUploadComplete"/>
+						<Button icon		=	"sap-icon://picture" press="onPressVerImagen"> 
+							<layoutData>
+							<l:GridData span="L2 M2 S2" />
+							</layoutData>
+						</Button>
+						<Label text="Orden" /> 
+						<StepInput value="{modelAcceso>/oCategoriaSeleccionado/Orden}"  min="1" max="100"/>
+						<Label text="Estado"/>
+						<Select  id="cbxEstado" selectedKey="{modelAcceso>/oCategoriaSeleccionado/CodEstadoCategoria}" required="true">
+							<items>
+								<core:Item text="--Seleccionar--" key=""/>
+								<core:Item text="Activo" key="1"/>
+								<core:Item text="Desactivo" key="0"/> 
+							</items>
+						</Select>  
+					</f:content>
+				</f:SimpleForm> 
+			</VBox> 
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+ 
+				<Button   
+				type		=	"Reject" 
+				text		=	"Regresar" 
+				press		=	"onPressCancelarEdicion" 
+				icon		=	"sap-icon://arrow-left"/>
+				<Button   
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPressEditarCategoria" 
+				icon		=	"sap-icon://save"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

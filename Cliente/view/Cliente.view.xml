@@ -1,0 +1,160 @@
+<mvc:View
+	controllerName="com.telcomdataperu.app.Cliente.controller.Cliente"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f" 
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" 
+	xmlns:mvc="sap.ui.core.mvc">
+		<Page
+		title="Mantenimiento de Clientes"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+            <content>
+				
+				<ui:Table
+					id="tblClientes"
+					selectionMode="MultiToggle"
+					rows="{ path : 'modelAcceso>/aClientes' , sorter: { path: 'Id', descending: true }}"
+					visibleRowCount="15"  
+					class="tbTabla"
+					alternateRowColors="true" 
+					rowActionCount="2"    
+					enableBusyIndicator="true"  
+					selectionBehavior="RowSelector"
+					fixedColumnCount="2"
+					showOverlay="false" 
+					ariaLabelledBy="title">
+					<ui:extension>
+						<OverflowToolbar style="Clear"> 
+						<Title text="Items({modelAcceso>/iNumItems})"/>
+						<ToolbarSpacer/>
+							 <Input id="txtUsuario" placeholder="Codigo | Documento | Usuario | Apellido " width="20rem" />
+								<Button 
+				type		=	"Emphasized" 
+				text		=	"Buscar" 
+				press		=	"onPressFiltrarUsuarios" 
+				icon		=	"sap-icon://search"/>
+							<ToolbarSpacer/>
+							<Button 
+							icon		=	"sap-icon://delete" 
+							type		=	"Reject"
+							tooltip		=	"Eliminar Usuario" 
+							press		=	"onPressEliminarUsuario"  />
+							<Button 
+							icon		=	"sap-icon://add-document" 
+							tooltip		=	"Crear Usuario" 
+							press		=	"onPressCrearUsuario"  />
+							
+						</OverflowToolbar>
+					</ui:extension>
+					<ui:columns>
+						<ui:Column width="2.5rem" hAlign="Center"> 
+							<ui:template>
+								<core:Icon press="onVerAuditoriaUsuario"  size="1.2rem"  src="sap-icon://show"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="2.5rem" hAlign="Center"> 
+							<ui:template>
+								<core:Icon press="onPressEditarUsuario"  size="1.2rem"  src="sap-icon://edit"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							visible="false"
+							width="6rem"
+							filterProperty="Id">
+							<Label text="Id" />
+							<ui:template>
+								<Link text="{modelAcceso>Id}" press="onPressDetalleUsuario" /> 
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							filterProperty="Codigo"
+							defaultFilterOperator="StartsWith">
+							<Label text="Codigo" />
+							<ui:template> 
+								<Link text="{modelAcceso>Codigo}" press="onPressDetalleUsuario" /> 
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							filterProperty="TipoDocumento"
+							defaultFilterOperator="StartsWith">
+							<Label text="Tipo Usuario" />
+							<ui:template>
+								<Text text="{modelAcceso>TipoUsuario}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							filterProperty="Numero Documento"
+							defaultFilterOperator="StartsWith">
+							<Label text="Usuario" />
+							<ui:template>
+								<Text text="{modelAcceso>Usuario}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="8rem">
+							<Label text="Nombre" />
+							<ui:template>
+								<Text text="{modelAcceso>TipoDocumento}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="9rem">
+							<Label text="Apellido" />
+							<ui:template>
+								<Text text="{modelAcceso>NumDocumento}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="10rem">
+							<Label text="Razón Social" />
+							<ui:template>
+								<Text text="{modelAcceso>Nombre}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="12rem">
+							<Label text="Departamento" />
+							<ui:template>
+								<Text text="{modelAcceso>Apellido}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="12rem">
+							<Label text="Provincia" />
+							<ui:template>
+								<Text text="{modelAcceso>Email}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="12rem">
+							<Label text="Distrito" />
+							<ui:template>
+								<Text text="{modelAcceso>Email}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem">
+							<Label text="Dirección" />
+							<ui:template>
+								<Text text="{modelAcceso>Email}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="12rem">
+							<Label text="Telefono" />
+							<ui:template>
+								<Text text="{modelAcceso>Email}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="8rem">
+							<Label text="Estado" />
+							<ui:template>
+							<ObjectStatus 
+								text    =   "{modelAcceso>EstadoUsuario}"
+								state   =   "{	path		:	'modelAcceso>CodEstadoUsuario', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelAcceso>CodEstadoUsuario', formatter	:	'.formatter.iconEstado'}"/> 
+						</ui:template>
+						</ui:Column> 
+						
+					</ui:columns> 
+				</ui:Table>
+            </content> 
+	</Page>
+</mvc:View>

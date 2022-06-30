@@ -79,12 +79,43 @@
 				"pattern": "usuario",
 				"name": "usuarioRoute",
 				"target": "targetUsuario"
-			  }],
+			  },
+			  {
+				"pattern": "usuario/registro",
+				"name": "usuarioRegistroRoute",
+				"target": "targetUsuarioRegistro"
+			  },
+			  {
+				"pattern": "usuario/{id}/editar", 
+				"name": "usuarioEditarRoute",
+				"target": "targetUsuarioEditar"
+			  },
+			  {
+				"pattern": "usuario/{id}/detalle", 
+				"name": "usuarioDetalleRoute",
+				"target": "targetUsuarioDetalle"
+			  }
+			],
 			"targets": {
 				"targetUsuario": {
 					"viewName": "Usuarios",
 					"viewLevel": 1,
 					"viewId": "idUsuarios"
+				},
+				"targetUsuarioRegistro": {
+					"viewName": "UsuarioRegistro",
+					"viewLevel": 2,
+					"viewId": "idUsuarioRegistro"
+				},
+				"targetUsuarioEditar": {
+					"viewName": "UsuarioEditar",
+					"viewLevel": 3,
+					"viewId": "idUsuarioEditar"
+				},
+				"targetUsuarioDetalle": {
+					"viewName": "UsuarioDetalle",
+					"viewLevel": 3,
+					"viewId": "idUsuarioDetalle"
 				}
 			}
 		}

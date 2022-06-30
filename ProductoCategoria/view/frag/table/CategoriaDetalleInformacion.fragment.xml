@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 
+			 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmDetalleUsuario"
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					adjustLabelSpan="false"
+					 
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Codigo" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/Codigo}" />   
+
+						<Label text="Tipo Usuario" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/TipoUsuario}" required="true"/>
+						 
+						<Label text="Tipo Documento" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/TipoDocumento}" required="true"/>
+						 
+						<Label text="Numero Documento" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/NumDocumento}" required="true"/>   
+						<Label text="Nombre" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/Nombre}" required="true"/>   
+						<Label text="Apellido" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/Apellido}" required="true"/>   
+						<Label text="Usuario" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/Usuario}" required="true"/> 
+						<Label text="Email" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/Email}" required="true"/>   
+						<Label text="Rol" />    
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/UsuarioRol/0/Rol}" required="true"/>
+						<Label text="Estado"/> 
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/EstadoUsuario}" required="true"/>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		 
+
+</core:FragmentDefinition>

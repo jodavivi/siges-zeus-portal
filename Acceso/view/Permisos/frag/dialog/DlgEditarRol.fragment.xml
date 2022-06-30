@@ -1,0 +1,78 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form">
+	
+	<Dialog  
+		id					=	"DlgEditarRol"
+		horizontalScrolling	=	"false"
+		title				=   "Editar Rol"
+		contentWidth		=	"500px"
+		icon				=   "sap-icon://edit" >
+		<content>
+			<f:SimpleForm 
+				id				=	"frmEditarRol"
+				editable		=	"true"
+				layout			=	"ResponsiveGridLayout" 
+				labelSpanXL		=	"3"
+				labelSpanL		=	"3"
+				labelSpanM		=	"3"
+				labelSpanS		=	"12"
+				adjustLabelSpan	=	"false"
+				emptySpanXL		=	"4"
+				emptySpanL		=	"4"
+				emptySpanM		=	"4"
+				emptySpanS		=	"0"
+				columnsXL		=	"1"
+				columnsL		=	"1"
+				columnsM		=	"1"
+				singleContainerFullSize	=	"false" >
+				<f:content>
+					<Label 
+						text		=	"Nombre"/>
+					<Input   
+						value		=	"{modelAcceso>/oRolEditar/Nombre}"
+						maxLength	=	"31"
+						fieldGroupIds ="validarRolInput"
+						required	=	"true"/>
+						
+					<Label 
+						text		=	"Descripción" />
+					<Input  
+						value		=	"{modelAcceso>/oRolEditar/Descripcion}"
+						fieldGroupIds ="validarRolInput"
+						maxLength	=	"127"
+						required	=	"true"/>
+					
+					<Label 
+						text		=	"Estado" />
+					<Select  selectedKey="{modelAcceso>/oRolEditar/EstadoRolCod}" required="true">
+					<items>
+						<core:Item text="Seleccionar" key=""/>
+						<core:Item text="Activo" key="1"/>
+						<core:Item text="Desactivo" key="0"/> 
+					</items>
+				</Select>  
+				</f:content>
+			</f:SimpleForm>
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onfnEditarRol" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseEditarRol" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

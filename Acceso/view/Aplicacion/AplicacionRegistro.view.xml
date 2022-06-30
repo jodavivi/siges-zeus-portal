@@ -25,6 +25,7 @@
 		<content> 
 			 <VBox class="sapUiSmallMargin">
 		<f:SimpleForm  
+			id ="frmRegistroApp"
 			editable="true"
 			layout="ResponsiveGridLayout"
 			title="Registrar Aplicación"
@@ -42,16 +43,26 @@
 			columnsM="1"
 			singleContainerFullSize="false" >
 			<f:content> 
+				<Label text="Tipo" />
+				<Select  selectedKey="{modelAcceso>/oAplicacionNuevo/sTipo}" required="true">
+					<items>
+						<core:Item text="Seleccionar" key=""/>
+						<core:Item text="Pagina" key="P"/>
+						<core:Item text="Control" key="C"/> 
+					</items>
+				</Select>
 				<Label text="Nombre" />
-				<Input value="{modelAcceso>/oAplicacionNuevo/sNombre}"/>  
+				<Input value="{modelAcceso>/oAplicacionNuevo/sNombre}" required="true"/> 
 				<Label text="Descripción" />
 				<Input value="{modelAcceso>/oAplicacionNuevo/sDescripcion}"/>  
 				<Label text="Icono" />
 				<Input value="{modelAcceso>/oAplicacionNuevo/sIco}"/>  
 				<Label text="Route" />
 				<Input value="{modelAcceso>/oAplicacionNuevo/sUrl}"/>   
+				<Label text="Padre" />
+				<Input value="{modelAcceso>/oAplicacionNuevo/sCodigoPadre}"/>   
 				<Label text="Estado"/>
-				<Select  selectedKey="{modelAcceso>/oAplicacionNuevo/iCodEstadoAplicacion}">
+				<Select  selectedKey="{modelAcceso>/oAplicacionNuevo/iCodEstadoAplicacion}" required="true">
 					<items>
 						<core:Item text="Seleccionar" key=""/>
 						<core:Item text="Activo" key="1"/>

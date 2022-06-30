@@ -1,0 +1,67 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmEditarProducto"
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					adjustLabelSpan="false" 
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Codigo" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/Codigo}" editable="false"/> 
+						<Label text="Nombre" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/Nombre}" editable="{modelAcceso>/bActivarEdicion}" required="true"/>   
+						<Label text="Descripción" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/Descripcion}" editable="{modelAcceso>/bActivarEdicion}" required="true"/>   
+						<Label text="Codigo Barra" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/CodigoBarra}" editable="{modelAcceso>/bActivarEdicion}" /> 
+						<Label text="Presentación" />
+						<Select id="cbxPresentacion" editable="{modelAcceso>/bActivarEdicion}" selectedKey="{modelAcceso>/oProductoSeleccionado/CodPresentacion}"  
+						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'producto-presentacion' }]}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
+						</Select>    
+						<Label text="Categoria" required="true"/> 
+						<Input 
+						editable="{modelAcceso>/bActivarEdicion}"
+						type="Text"
+						value="{modelAcceso>/oProductoSeleccionado/Categoria/Nombre}"
+						placeholder="Categoria"
+						enabled="true" 
+						/>
+						<Button icon="sap-icon://activities" enabled="{modelAcceso>/bActivarEdicion}" type="Accept" tooltip="Seleccionar Categoria" press="onPressCategoria">
+						<layoutData>
+						<l:GridData span="L1 M1 S1" />
+						</layoutData>
+						</Button> 	
+						<Button icon="sap-icon://sys-cancel" enabled="{modelAcceso>/bActivarEdicion}" type="Reject" tooltip="Limpiar" press="onLimpiarCategoria">
+						<layoutData>
+						<l:GridData span="L1 M1 S1" />
+						</layoutData>
+						</Button>
+						<Label text="Marca" />
+						<Select editable="{modelAcceso>/bActivarEdicion}"  selectedKey="{modelAcceso>/oProductoSeleccionado/MarcaId}"  
+						required="true" items="{ path: 'modelAcceso>/aMarca', sorter: { path: 'Id' }  }">
+							<core:Item key="{modelAcceso>Id}" text="{modelAcceso>Nombre}" />
+						</Select> 
+						
+						<Label text="Estado"/>
+						<Select editable="{modelAcceso>/bActivarEdicion}" id="cbxEstado"  selectedKey="{modelAcceso>/oProductoSeleccionado/CodEstadoProducto}" required="true">
+							<items>
+								<core:Item text="--Seleccionar--" key=""/>
+								<core:Item text="Activo" key="1"/>
+								<core:Item text="Desactivo" key="0"/> 
+							</items>
+						</Select>  
+					</f:content>
+				</f:SimpleForm>
+			</VBox> 
+</core:FragmentDefinition>

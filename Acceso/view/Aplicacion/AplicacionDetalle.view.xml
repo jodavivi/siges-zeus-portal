@@ -1,0 +1,94 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.Acceso.controller.Aplicacion.AplicacionDetalle"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <Page 
+		id		=	"DetalleAplicacion"
+		showNavButton="true" 
+		class	=	"sapUiStdPage">  
+		<customHeader>
+			<Toolbar> 
+				<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancelarEdicion" />
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"{modelAcceso>/oAplicacionDetalle/CodigoTabla}" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content> 
+			 <VBox class="sapUiSmallMargin">
+		<f:SimpleForm  
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Detalle Aplicación: {modelAcceso>/oAplicacionDetalle/Codigo}"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content> 
+				<Label text="Id" />
+				<Text text="{modelAcceso>/oAplicacionDetalle/Id}"/>  
+				<Label text="Codigo" />
+				<Input value="{modelAcceso>/oAplicacionDetalle/Codigo}" enabled="false"/>
+				<Label text="Tipo" />
+				<Select  selectedKey="{modelAcceso>/oAplicacionDetalle/Tipo}"  enabled="false">
+					<items>
+						<core:Item text="Pagina" key="P"/>
+						<core:Item text="Control" key="C"/> 
+					</items>
+				</Select>
+				<Label text="Nombre" />
+				<Input value="{modelAcceso>/oAplicacionDetalle/Nombre}"  enabled="false"/>  
+				<Label text="Descripción" />
+				<Input value="{modelAcceso>/oAplicacionDetalle/Descripcion}"  enabled="false"/>  
+				<Label text="Ico" />
+				<Input value="{modelAcceso>/oAplicacionDetalle/Ico}"  enabled="false"/>  
+				<Label text="Route" />
+				<Input value="{modelAcceso>/oAplicacionDetalle/Url}"  enabled="false"/>  
+				<Label text="Padre" />
+				<Input value="{modelAcceso>/oAplicacionDetalle/CodigoPadre}"  enabled="false"/>   
+				<Label text="Estado"/>
+				<Select  selectedKey="{modelAcceso>/oAplicacionDetalle/CodEstadoAplicacion}"  enabled="false">
+					<items>
+						<core:Item text="Activo" key="1"/>
+						<core:Item text="Desactivo" key="0"/> 
+					</items>
+				</Select>  
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+ 
+				<Button   
+				type		=	"Reject" 
+				text		=	"Regresar" 
+				press		=	"onPressCancelarEdicion" 
+				icon		=	"sap-icon://arrow-left"/>
+				<Button   
+				type		=	"Accept" 
+				text		=	"Actualizar" 
+				press		=	"onDetalleAplicacion" 
+				icon		=	"sap-icon://save"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

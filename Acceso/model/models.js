@@ -46,6 +46,18 @@ sap.ui.define([
 			oParam.aListaRolAplicacion		= [];
 			oParam.oAplicacionNuevo			= {}; 
 			oParam.oAplicacionEditar		= {}; 
+			oParam.oAplicacionDetalle		= {};
+			oParam.oGrupoNuevo 				= {};
+			oParam.oGrupoEditar 			= {};
+			oParam.oGrupoVer 				= {};
+			oParam.oGrupoAuditoria			= {};
+			oParam.aListaPaginas			= {};
+			oParam.aListaAplicacionSinAsignar = [];
+			oParam.oRolNuevo 				= {};
+			oParam.oRolEditar 				= {};
+			oParam.oRolVer 					= {};
+			oParam.oRolAuditoria			= {};
+			oParam.aListaAplicacionesSeleccion = [];
 			var oModel            = new JSONModel(oParam);
 			return oModel;
 		  }

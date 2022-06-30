@@ -1,0 +1,96 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form" 
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgAgregarCategoria"
+		horizontalScrolling	=	"false"
+		title				=   "Agregar Categoria"
+		contentWidth		=	"700px"
+		icon				=   "sap-icon://add-product" > 
+		<content>
+				<ui:TreeTable
+                    id="tblAgregarCategoria"
+                    rows="{path:'modelAcceso>/aCategoria', parameters: {arrayNames:['listaAccesos']}}"
+                    selectionMode="MultiToggle"
+                    enableSelectAll="true"
+                    visibleRowCount="15"  
+					class="tbTabla"
+					alternateRowColors="true"  
+					enableBusyIndicator="true"  
+					selectionBehavior="RowSelector" 
+					showOverlay="false" 
+					ariaLabelledBy="title">
+                <ui:extension>
+                    <OverflowToolbar> 
+					<Title text="Items({modelAcceso>/iNumItemsCat})"/>
+					<ToolbarSpacer/>
+							 <Input id="txtInputCategoria" placeholder="Codigo | Nombre " width="20rem" />
+								<Button 
+					type		=	"Emphasized" 
+					text		=	"Buscar" 
+					press		=	"onPressFiltrarCategoria" 
+					icon		=	"sap-icon://search"/>
+					<Button 
+					type		=	"Reject" 
+					text		=	"Limpiar" 
+					press		=	"onPressLimpiarFiltro" 
+					icon		=	"sap-icon://clear-filter"/>
+
+				
+						<ToolbarSpacer/>
+						 
+					</OverflowToolbar>
+                </ui:extension>
+                <ui:columns> 
+					<ui:Column filterProperty="Codigo" sortProperty="Codigo" width="12rem">
+						<Label text="Codigo" />
+						<ui:template>
+								<Link text="{modelAcceso>Codigo}" press="onPressDetalleCategoria" /> 
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Tipo" sortProperty="Tipo">
+						<Label text="Tipo" />
+						<ui:template>
+							<Text text="{	path		:	'modelAcceso>Tipo'}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
+						<Label text="Nombre" />
+						<ui:template>
+							<Text text="{modelAcceso>Nombre}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Descripcion" sortProperty="Descripcion">
+						<Label text="Descripción" />
+						<ui:template>
+							<Text text="{modelAcceso>Descripcion}" wrapping="false" />
+						</ui:template>
+					</ui:Column>   
+                </ui:columns>
+            </ui:TreeTable>
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Agregar" 
+				press		=	"onPressRegistrarCategoria" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseAgregarCategoria" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

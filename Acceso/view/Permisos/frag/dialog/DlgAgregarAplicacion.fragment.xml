@@ -1,0 +1,106 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form" 
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgAgregarAplicacionRol"
+		horizontalScrolling	=	"false"
+		title				=   "Agregar Aplicación"
+		contentWidth		=	"700px"
+		icon				=   "sap-icon://add-product" >
+		<subHeader>
+			<OverflowToolbar>
+				<Select
+					id="cbxAplicacion"
+					forceSelection="true" 
+					items="{
+						path: 'modelAcceso>/aListaAplicacionesSeleccion',
+						sorter: { path: 'Codigo' }
+					}">
+					<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Nombre}" />
+				</Select>
+				<Button 
+				type		=	"Emphasized" 
+				text		=	"Buscar" 
+				press		=	"onPressFiltrarAplicacionesxRol" 
+				icon		=	"sap-icon://search"/>
+			</OverflowToolbar>
+		</subHeader>
+		<content>
+				
+				<ui:Table
+			    width="120.2rem" 
+				id="tblAppSinAsignar"
+				rows="{ path : 'modelAcceso>/aListaAplicacionSinAsignar' , sorter: { path: 'Id', descending: true }}" 
+				selectionMode="MultiToggle"  
+				class="tbTabla"
+				alternateRowColors="true"  
+				visibleRowCount="15"
+				enableBusyIndicator="true"  
+				selectionBehavior="RowSelector" 
+				showOverlay="false" 
+				ariaLabelledBy="title">
+				<ui:extension>  
+					<OverflowToolbar visible="false" id="idInfoToolbar">
+						<Label id="idFilterLabel" />
+					</OverflowToolbar> 
+				</ui:extension>
+				<ui:columns> 
+				<ui:Column width="5rem" filterProperty="Id" sortProperty="Id">
+						<Label text="Id" />
+						<ui:template>
+							<Text text="{modelAcceso>Id}" wrapping="false" />
+						</ui:template>
+					</ui:Column>  
+				 <ui:Column width="7rem" filterProperty="Tipo" sortProperty="Tipo">
+						<Label text="Tipo" />
+						<ui:template>
+							<Text text="{	path		:	'modelAcceso>Tipo', formatter	:	'.formatter.tipoControl'}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="NombrePadre" sortProperty="NombrePadre">
+						<Label text="Aplicación Padre" />
+						<ui:template>
+							<Text text="{modelAcceso>NombrePadre}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
+						<Label text="Aplicación/Control" />
+						<ui:template>
+							<Text text="{modelAcceso>Nombre}" wrapping="false" />
+						</ui:template>
+					</ui:Column>  
+					<ui:Column width="14rem" filterProperty="Descripcion" sortProperty="Descripcion">
+						<Label text="Descripcion" />
+						<ui:template>
+							<Text text="{modelAcceso>Descripcion}" wrapping="false" />
+						</ui:template>
+					</ui:Column>   
+
+				</ui:columns> 
+			</ui:Table> 
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPressRegistrarAplicacionesxRol" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseAgregarAplicacionRol" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

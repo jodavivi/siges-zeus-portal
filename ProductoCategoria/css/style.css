@@ -1,0 +1,61 @@
+/* Enter your custom styles here *//* Enter your custom styles here */
+.mantGrupo > div {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+} 
+#idVertical{
+	text-align: center !important;
+}
+#dglExitoso{
+	text-align: center !important;
+}
+
+#txtMensaje{
+	font-size: 1.1rem !important;
+}
+
+#inputTranscaccion{
+	width: 10rem		!important; 
+}
+
+.tamaniotexto{
+	font-size: 0.65rem	!important;
+}
+
+.tamanioTextoFiltros{
+    font-size: 1.2rem  !important;
+    font-weight: bold !important;
+}
+
+#inputTranscaccion-inner{
+	font-size: 0.65rem	!important;
+}
+
+.centrarTexto{
+	padding-top: 1rem !important;
+}
+
+/* Estilos fijos por estandar para las ui:table en Seidor */
+.sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText{
+    font-size: large  !important; 
+    font-weight: bold  !important;
+}
+.tbTabla .sapMLabel .sapMLabelTextWrapper{
+    text-overflow: ellipsis  !important; 
+    overflow: hidden  !important; 
+    font-weight: bold  !important; 
+}
+.popover .sapMPopoverHeader .sapMTitle{
+	font-weight: bold  !important; 
+}
+.dlg .sapMTitle{
+	font-weight: bold  !important; 
+}
+
+.appMaestra .sapMTitle{
+	font-weight: bold  !important; 
+}
+.mantGrupo > div {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+} 

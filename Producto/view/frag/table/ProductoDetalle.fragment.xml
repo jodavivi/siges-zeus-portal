@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmEditarProducto"
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					adjustLabelSpan="false" 
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Codigo" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/Codigo}" editable="false"/> 
+						<Label text="Nombre" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/Nombre}" editable="false" required="true"/>   
+						<Label text="Descripción" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/Descripcion}" editable="false" required="true"/>   
+						<Label text="Codigo Barra" />
+						<Input value="{modelAcceso>/oProductoSeleccionado/CodigoBarra}" editable="false" /> 
+						<Label text="Presentación" /> 
+						<Input value="{modelAcceso>/oProductoSeleccionado/Presentacion}" editable="false" /> 
+						<Label text="Categoria"/> 
+						<Input value="{modelAcceso>/oProductoSeleccionado/Categoria/Nombre}" editable="false" />  
+						<Label text="Marca" /> 
+						<Input value="{modelAcceso>/oProductoSeleccionado/Marca/Nombre}" editable="false" /> 
+						<Label text="Estado"/>
+						<Input value="{modelAcceso>/oProductoSeleccionado/EstadoProducto}" editable="false" /> 
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		 
+
+</core:FragmentDefinition>

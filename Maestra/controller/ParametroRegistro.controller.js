@@ -43,7 +43,7 @@ sap.ui.define([
 						oParam.sCampo7 = oParametroNuevo.sCampo7;
 						oParam.iPadreId = oParametroPadreNuevo.iPadreId;
 						oParam.sPadreCod = oParametroPadreNuevo.sPadreCod; 
-						oParam.iEstadoCampoId =  oParametroNuevo.iIdEstado; 
+						oParam.iEstadoCampoId =  parseInt(oParametroNuevo.iIdEstado, 10); 
 						CampoGenericaService.registrarParametroTabla(oParam, function(result) { 
 							sap.ui.core.BusyIndicator.hide();
 							UtilPopUps.validarRespuestaServicio(result,'El Parametro se registró correctamente',function(e){});

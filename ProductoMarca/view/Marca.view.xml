@@ -1,0 +1,206 @@
+<mvc:View
+	controllerName="com.telcomdataperu.app.ProductoMarca.controller.Marca"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f" 
+	xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" 
+	xmlns:mvc="sap.ui.core.mvc">
+		<Page
+		title="Mantenimiento de Marcas"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+            <content>
+				<HBox class="mantGrupo">
+					<ui:Table
+						id="tblMarcas"
+						selectionMode="MultiToggle"
+						rows="{ path : 'modelAcceso>/aMarca' , sorter: { path: 'Id', descending: true }}"
+						visibleRowCount="15"  
+						class="tbTabla"
+						alternateRowColors="true" 
+						rowActionCount="2"    
+						enableBusyIndicator="true"  
+						selectionBehavior="RowSelector"
+						fixedColumnCount="2"
+						showOverlay="false" 
+						width="65rem" 
+						ariaLabelledBy="title">
+						<ui:extension>
+							<OverflowToolbar style="Clear"> 
+							<Title text="Items({modelAcceso>/iNumItems})"/>
+							<ToolbarSpacer/>
+								<Input id="txtBuscar" placeholder="Codigo | Nombre " width="20rem" />
+									<Button 
+					type		=	"Emphasized" 
+					text		=	"Buscar" 
+					press		=	"onPressFiltrarMarca" 
+					icon		=	"sap-icon://search"/>
+					<Button 
+					type		=	"Reject" 
+					text		=	"Limpiar" 
+					press		=	"onPressLimpiarFiltro" 
+					icon		=	"sap-icon://clear-filter"/>
+								<ToolbarSpacer/>
+								<Button 
+								icon		=	"sap-icon://delete" 
+								type		=	"Reject"
+								tooltip		=	"Eliminar Marca" 
+								press		=	"onPressEliminarMarca"  />
+								<Button 
+								icon		=	"sap-icon://add-document" 
+								tooltip		=	"Crear Marca" 
+								press		=	"onPressCrearMarca"  />
+								
+							</OverflowToolbar>
+						</ui:extension>
+						<ui:columns>
+							<ui:Column width="2.5rem" hAlign="Center"> 
+								<ui:template>
+									<core:Icon press="onVerAuditoriaMarca"  size="1.2rem"  src="sap-icon://show"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="2.5rem" hAlign="Center"> 
+								<ui:template>
+									<core:Icon press="onPressEditarMarca"  size="1.2rem"  src="sap-icon://edit"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column
+								visible="false"
+								width="6rem"
+								filterProperty="Id">
+								<Label text="Id" />
+								<ui:template>
+									<Link text="{modelAcceso>Id}" press="onPressVerMarca" /> 
+								</ui:template>
+							</ui:Column>
+							<ui:Column
+								width="8rem"
+								filterProperty="Codigo"
+								defaultFilterOperator="StartsWith">
+								<Label text="Codigo" />
+								<ui:template> 
+									<Link text="{modelAcceso>Codigo}" press="onPressVerMarca" /> 
+								</ui:template>
+							</ui:Column>
+							<ui:Column
+								width="12rem"
+								filterProperty="Nombre"
+								defaultFilterOperator="StartsWith">
+								<Label text="Nombre" />
+								<ui:template>
+									<Text text="{modelAcceso>Nombre}" wrapping="false" />
+								</ui:template>
+							</ui:Column>
+							<ui:Column
+								width="16rem"
+								filterProperty="Descripcion"
+								defaultFilterOperator="StartsWith">
+								<Label text="Descripcion" />
+								<ui:template>
+									<Text text="{modelAcceso>Descripcion}" wrapping="false" />
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="7rem"  hAlign="Center">
+							<Label text="Imagen" />
+							<ui:template>  
+								<core:Icon press="onPressVerImagen" visible     = "{	path		:	'modelAcceso>Imagen', formatter	:	'.formatter.mostrarImagen'}" size="1.2rem"  src="sap-icon://picture"/>
+							</ui:template>
+						</ui:Column>  
+							
+							<ui:Column width="8rem">
+								<Label text="Estado" />
+								<ui:template>
+								<ObjectStatus 
+									text    =   "{modelAcceso>EstadoMarca}"
+									state   =   "{	path		:	'modelAcceso>CodEstadoMarca', formatter	:	'.formatter.stateEstado'}"   
+									icon    =   "{	path		:	'modelAcceso>CodEstadoMarca', formatter	:	'.formatter.iconEstado'}"/> 
+							</ui:template>
+							</ui:Column> 
+							<ui:Column 
+							width           =   "3rem" 
+							hAlign          =   "Center" 
+							label           =   "" 
+							sortProperty    =   "" 
+							filterProperty  =   ""
+							autoResizable   =   "true">
+							<ui:template>  
+								<HBox> 
+									<Button 
+										type    =   "Transparent" 
+										press   =   "onPressGoMarcaCategoria"  
+										tooltip =   "Buscar Categorias"
+										icon    =   "sap-icon://navigation-right-arrow"/>
+								</HBox>
+							</ui:template>
+						</ui:Column>   
+						</ui:columns> 
+					</ui:Table> 
+					<ui:Table
+						id="tblMarcaCategoria"
+						selectionMode="MultiToggle"
+						rows="{ path : 'modelAcceso>/aMarcaCategoria' , sorter: { path: 'Id', descending: true }}"
+						visibleRowCount="15"  
+						class="tbTabla"
+						alternateRowColors="true" 
+						rowActionCount="2"    
+						enableBusyIndicator="true"  
+						selectionBehavior="RowSelector"
+						fixedColumnCount="2"
+						showOverlay="false" 
+						width="35.2rem" 
+						ariaLabelledBy="title">
+						<ui:extension>
+							<OverflowToolbar style="Clear"> 
+							<Title text="Categorias Asignadas {modelAcceso>/sMarcacategoriaSel}"/> 
+							<ToolbarSpacer/>
+							<Button 
+								icon		=	"sap-icon://delete" 
+								type		=	"Reject"
+								tooltip		=	"Eliminar Categoria" 
+								press		=	"onPressEliminarCategoria"  />
+							<Button 
+								icon		=	"sap-icon://add-document" 
+								tooltip		=	"Registrar Categoria" 
+								press		=	"onPressConsultarCategoria"  />
+							</OverflowToolbar>
+						</ui:extension>
+						<ui:columns>
+							<ui:Column width="2.5rem" hAlign="Center"> 
+								<ui:template>
+									<core:Icon press="onVerAuditoriaMarca"  size="1.2rem"  src="sap-icon://show"/>
+								</ui:template>
+							</ui:Column> 
+							<ui:Column
+								visible="false"
+								width="6rem"
+								filterProperty="Id">
+								<Label text="Id" />
+								<ui:template>
+									<Link text="{modelAcceso>Id}" press="onPressDetalleUsuario" /> 
+								</ui:template>
+							</ui:Column>
+							<ui:Column
+								width="8rem"
+								filterProperty="Codigo"
+								defaultFilterOperator="StartsWith">
+								<Label text="Codigo" />
+								<ui:template> 
+									<Link text="{modelAcceso>Categoria/Codigo}" press="onPressDetalleMarca" /> 
+								</ui:template>
+							</ui:Column>
+							<ui:Column
+								width="100%"
+								filterProperty="Nombre"
+								defaultFilterOperator="StartsWith">
+								<Label text="Nombre" />
+								<ui:template>
+									<Text text="{modelAcceso>Categoria/Nombre}" wrapping="false" />
+								</ui:template>
+							</ui:Column>  
+						</ui:columns> 
+					</ui:Table>
+				</HBox>
+            </content> 
+	</Page>
+</mvc:View>

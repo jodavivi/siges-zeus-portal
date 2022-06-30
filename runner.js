@@ -24,7 +24,9 @@ sap.ui.require(
     var sUrlActual = "";
     if(aListaUrl.length > 1){
       var aUrl = aListaUrl[1].split("/");
-      sUrlActual = aUrl[1];
+      var aUrl2 = aListaUrl[1].slice(1, aListaUrl[1].length);
+      sUrlActual = aUrl2;
+       
     }
     //Set initial view to sub1Component/view1
     HashChanger.getInstance().setHash(sUrlActual);

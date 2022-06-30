@@ -76,7 +76,7 @@
 				"clearControlAggregation": false
 			},
 			"routes": [ {
-					"pattern": "maestra",
+					"pattern": "maestra:?query:",
 					"name": "maestraRoute",
 					"target": [
 						"TargetHome",
@@ -84,21 +84,21 @@
 					] 
 			  },{
 					"name": "RouteHomeDetalle",
-					"pattern": "maestra/detalle/{maestroId}",
+					"pattern": "maestra/detalle/{maestroId}:?query:",
 					"target": [
 						"TargetHome",
 						"targetDetail"
 					]
 				},{
 					"name": "RouteHomeAddParameter",
-					"pattern": "maestra/detalle/{maestroId}/parametro",
+					"pattern": "maestra/detalle/{maestroId}/parametro:?query:",
 					"target": [
 						"TargetHome",
 						"targetAddParametro"
 					]
 				},{
 					"name": "RouteHomeEditParameter",
-					"pattern": "maestra/detalle/{maestroId}/parametro/{parametroId}",
+					"pattern": "maestra/detalle/{maestroId}/parametro/{parametroId}:?query:",
 					"target": [
 						"TargetHome",
 						"targetEditParametro"

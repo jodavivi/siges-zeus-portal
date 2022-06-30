@@ -67,7 +67,19 @@
 					<ui:Column filterProperty="Id" sortProperty="Id" width="6rem">
 						<Label text="Id" />
 						<ui:template>
-								<Link text="{modelAcceso>Id}" press="onParametroDetalle" /> 
+								<Link text="{modelAcceso>Id}" press="onDetalleAplicacion" /> 
+						</ui:template>
+					</ui:Column>
+					<ui:Column filterProperty="Codigo" sortProperty="Codigo" width="6rem">
+						<Label text="Codigo" />
+						<ui:template>
+								<Text text="{modelAcceso>Codigo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column filterProperty="Tipo" sortProperty="Tipo" width="6rem">
+						<Label text="Tipo" />
+						<ui:template>
+								<Text text="{	path		:	'modelAcceso>Tipo', formatter	:	'.formatter.tipoControl'}" wrapping="false" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
@@ -101,12 +113,22 @@
 							<Text text="{modelAcceso>Url}" wrapping="false" />
 						</ui:template>
 					</ui:Column>
-					<ui:Column width="15rem" filterProperty="EstadoAplicacion" sortProperty="EstadoAplicacion">
-						<Label text="Estado" />
+					<ui:Column width="15rem" filterProperty="CodigoPadre" sortProperty="CodigoPadre">
+						<Label text="Padre" />
 						<ui:template>
-							<Text text="{modelAcceso>EstadoAplicacion}" wrapping="false" />
+							<Text text="{modelAcceso>CodigoPadre}" wrapping="false" />
 						</ui:template>
 					</ui:Column>
+ 
+					<ui:Column width="8rem">
+						<Label text="Estado" />
+						<ui:template>
+							<ObjectStatus 
+								text    =   "{modelAcceso>EstadoAplicacion}"
+								state   =   "{	path		:	'modelAcceso>CodEstadoAplicacion', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelAcceso>CodEstadoAplicacion', formatter	:	'.formatter.iconEstado'}"/> 
+						</ui:template>
+					</ui:Column>  
 				</ui:columns> 
 			</ui:Table> 
 		</content> 

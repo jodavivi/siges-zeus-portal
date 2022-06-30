@@ -1,0 +1,123 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.telcomdataperu.app.ProductoCategoria",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "com.telcomdataperu.app.ProductoCategoria.view.Home",
+			"type": "XML",
+			"async": true,
+			"id": "Home"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.telcomdataperu.app.ProductoCategoria.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.telcomdataperu.app.ProductoCategoria.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [ {
+				"pattern": "producto-categoria",
+				"name": "categoriaRoute",
+				"target": "targetCategoria"
+			  },
+			  {
+				"pattern": "producto-categoria/registro",
+				"name": "categoriaRegistroRoute",
+				"target": "targetCategoriaRegistro"
+			  },
+			  {
+				"pattern": "producto-categoria/{id}/editar", 
+				"name": "categoriaEditarRoute",
+				"target": "targetCategoriaEditar"
+			  },
+			  {
+				"pattern": "producto-categoria/{id}/detalle", 
+				"name": "categoriaDetalleRoute",
+				"target": "targetCategoriaDetalle"
+			  }
+			],
+			"targets": {
+				"targetCategoria": {
+					"viewName": "Categoria",
+					"viewLevel": 1,
+					"viewId": "idCategoria"
+				},
+				"targetCategoriaRegistro": {
+					"viewName": "CategoriaRegistro",
+					"viewLevel": 2,
+					"viewId": "idCategoriaRegistro"
+				},
+				"targetCategoriaEditar": {
+					"viewName": "CategoriaEditar",
+					"viewLevel": 3,
+					"viewId": "idCategoriaoEditar"
+				},
+				"targetCategoriaDetalle": {
+					"viewName": "CategoriaDetalle",
+					"viewLevel": 3,
+					"viewId": "idCategoriaDetalle"
+				}
+			}
+		}
+	}
+}

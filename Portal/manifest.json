@@ -87,7 +87,7 @@
 			"target": "usuario"
 		},
 		{
-			"pattern": "maestra",
+			"pattern": "maestra:?query:",
 			"name": "appMaestra",
 			"target": "maestra"
 		},
@@ -97,14 +97,34 @@
 			"target": "maestra"
 		},
 		{
-			"pattern": "acceso",
+			"pattern": "acceso:?query:",
 			"name": "appAcceso",
 			"target": "targetAcceso"
 		},
 		{
-			"pattern": "auditoria",
+			"pattern": "auditoria:?query:",
 			"name": "appAuditoria",
 			"target": "targetAuditoria"
+		},
+		{
+			"pattern": "producto-categoria:?query:",
+			"name": "appProductoCategoria",
+			"target": "targetProductoCategoria"
+		},
+		{
+			"pattern": "producto-marca:?query:",
+			"name": "appProductoMarca",
+			"target": "targetProductoMarca"
+		},
+		{
+			"pattern": "producto:?query:",
+			"name": "appProducto",
+			"target": "targetProducto"
+		},
+		{
+			"pattern": "cliente:?query:",
+			"name": "appCliente",
+			"target": "targetCliente"
 		}],
 			"targets": {
 				"home": {
@@ -135,6 +155,30 @@
 					"viewName": "AuditoriaComponent",
 					"viewId": "AuditoriaComponent",
 					"viewLevel": 4
+				  },
+				  "targetProductoCategoria": {
+					"transition": "slide",
+					"viewName": "ProductoCategoriaComponent",
+					"viewId": "ProductoCategoriaComponent",
+					"viewLevel": 5
+				  },
+				  "targetProductoMarca": {
+					"transition": "slide",
+					"viewName": "ProductoMarcaComponent",
+					"viewId": "ProductoMarcaComponent",
+					"viewLevel": 6
+				  },
+				  "targetProducto": {
+					"transition": "slide",
+					"viewName": "ProductoComponent",
+					"viewId": "ProductoComponent",
+					"viewLevel": 7
+				  },
+				  "targetCliente": {
+					"transition": "slide",
+					"viewName": "ClienteComponent",
+					"viewId": "ClienteComponent",
+					"viewLevel": 8
 				  }
 			}
 		}

@@ -58,8 +58,9 @@ sap.ui.define([
 							sap.ui.core.BusyIndicator.hide();
 							AplicacionService.eliminarAplicacion(oParamEliminar, function(result) { 
 								sap.ui.core.BusyIndicator.hide();
-								UtilPopUps.validarRespuestaServicio(result,'Aplicaciones eliminadas correctamente',function(e){});
+								
 								if(result.iCode ===1){
+									UtilPopUps.validarRespuestaServicio(result,'Aplicaciones eliminadas correctamente',function(e){});
 									//Recargamos las aplicaciones
 									self.fnCargarAplicaciones(self);  
 									var oTable1 = self.getView().byId("tblAplicaciones");
@@ -112,6 +113,17 @@ sap.ui.define([
 				oPopover.openBy(oButton);
 			});
 		}
-		
+		,
+		onDetalleAplicacion:function(evt){
+			try {
+				var sPathAplicacionSeleccionado = evt.getSource().getBindingContext("modelAcceso").getPath()
+				var oAplicacionSeleccionado  =  this.getView().getModel("modelAcceso").getProperty(sPathAplicacionSeleccionado);     
+				var oParam = {};
+				oParam.id = oAplicacionSeleccionado.Id;
+				this.navigation(this, "AplicacionDetalleRoute",oParam);  
+			} catch (error) {
+				
+			}
+		}
 	});
 });

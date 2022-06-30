@@ -20,6 +20,44 @@ sap.ui.define([
       }
       
 			return sFiltro;
-		}
+		},
+    generarTree: function(arr, nivelObjetivo) {
+      var tree = [],
+        mappedArr = {},
+        arrElem,
+        mappedElem;
+
+      // En primer lugar mapear los nodos de la matriz a un objeto -> crear
+      // una tabla
+      var i = 0;
+      var len = [];
+      for (i = 0, len = arr.length; i < len; i++) {
+        arrElem = arr[i];
+        mappedArr[arrElem.Codigo] = arrElem;
+        mappedArr[arrElem.Codigo].listaAccesos = [];
+      }
+      var id = {};
+      for (id in mappedArr) {
+        if (mappedArr.hasOwnProperty(id)) {
+          mappedElem = mappedArr[id];
+          // Si el elemento no está en el nivel raíz, se agrega a su matriz de
+          // hijos.
+          if (mappedElem.CodigoPadre !== null && mappedElem.CodigoPadre !== "") {
+            try {
+              mappedArr[mappedElem.CodigoPadre].listaAccesos.push(mappedElem);
+            } catch (e) {
+
+            }
+
+          }
+          // Si el elemento está en el nivel raíz, se agrega al array de
+          // elementos de primer nivel.
+          else {
+            tree.push(mappedElem);
+          }
+        }
+      }
+      return tree;
+    }
   };
 });

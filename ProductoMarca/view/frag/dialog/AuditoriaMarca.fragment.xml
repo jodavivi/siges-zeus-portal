@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover 
+		title="Auditoria" 
+        titleAlignment="Center"
+        class="popover"
+		placement="Bottom">
+        <content>
+            <VBox >
+		<f:Form  
+			editable="false"> 
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Usuario Creador">
+							<f:fields>
+								<Text text="{modelAcceso>/oMarcaAuditoria/UsuarioCreador}"   />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Fecha Creación">
+							<f:fields>
+								<Text text="{	path :	'modelAcceso>/oMarcaAuditoria/FechaCreacion', formatter	:	'.formatter.formatDate'}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Usuario Modificador">
+							<f:fields>
+								<Text text="{modelAcceso>/oMarcaAuditoria/UsuarioModificador}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Fecha Modificación">
+							<f:fields>
+								<Text text="{	path :	'modelAcceso>/oMarcaAuditoria/FechaModificacion', formatter	:	'.formatter.formatDate'}"  />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+        </content>
+		 
+	</Popover>
+</core:FragmentDefinition>

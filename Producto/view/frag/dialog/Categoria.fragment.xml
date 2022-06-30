@@ -1,0 +1,78 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:ui="sap.ui.table" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f		=	"sap.ui.layout.form">
+	
+	<Dialog  
+		id					=	"DlgSeleccionarCategoria"
+		horizontalScrolling	=	"false"
+		title				=   "Seleccionar Categoria"
+		contentWidth		=	"550px"
+		icon				=   "sap-icon://add-product" >
+		<subHeader>
+			<OverflowToolbar>
+				<SearchField id="buscarCategoria" placeholder="Codigo | Nombre" showSearchButton="false" width="24rem" />
+				<Button 
+				type		=	"Emphasized" 
+				text		=	"Buscar" 
+				press		=	"onBuscarCategoria" 
+				icon		=	"sap-icon://search"/>
+			</OverflowToolbar>
+		</subHeader>
+		<content>
+				<ui:TreeTable
+                    id="tblSelecionCategoria"
+                    rows="{path:'modelAcceso>/aCategoria', parameters: {arrayNames:['listaAccesos']}}"
+                    selectionMode="Single"
+                    enableSelectAll="false"
+                    visibleRowCount="15"  
+					class="tbTabla"
+					alternateRowColors="true"  
+					enableBusyIndicator="true"  
+					selectionBehavior="RowSelector" 
+					showOverlay="false" 
+					ariaLabelledBy="title"> 
+                <ui:columns> 
+					<ui:Column filterProperty="Codigo" sortProperty="Codigo" width="13rem">
+						<Label text="Codigo" />
+						<ui:template>
+								<Link text="{modelAcceso>Codigo}" press="onPressSelectCategoria" /> 
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Tipo" sortProperty="Tipo">
+						<Label text="Tipo" />
+						<ui:template>
+							<Text text="{	path		:	'modelAcceso>Tipo'}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
+					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
+						<Label text="Nombre" />
+						<ui:template>
+							<Text text="{modelAcceso>Nombre}" wrapping="false" />
+						</ui:template>
+					</ui:Column>  
+                </ui:columns>
+            </ui:TreeTable>
+				 
+		</content>
+		<!--<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPressSeleccionarCategoria" 
+				icon		=	"sap-icon://save"/>
+		</endButton>-->
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseSelectCategoria" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

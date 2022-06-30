@@ -1,0 +1,106 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified"
+	xmlns:ui="sap.ui.table"> 
+	 
+			 <VBox class="sapUiSmallMargin">
+				<ui:Table
+					id="tbImagenes"
+					width="60rem"
+					selectionMode="MultiToggle"
+					rows="{ path : 'modelAcceso>/aProductoImagen' , sorter: { path: 'Orden', ascending: true }}"
+					visibleRowCount="15"  
+					class="tbTabla"
+					alternateRowColors="true" 
+					rowActionCount="2"    
+					enableBusyIndicator="true"  
+					selectionBehavior="RowSelector"
+					fixedColumnCount="2"
+					showOverlay="false" 
+					ariaLabelledBy="title">
+					<ui:extension>
+						<OverflowToolbar style="Clear"> 
+						<Title text="Items({modelAcceso>/iNumImagenItems})"/>
+						 
+							<ToolbarSpacer/>
+							<Button 
+							icon		=	"sap-icon://delete" 
+							type		=	"Reject"
+							tooltip		=	"Eliminar Archivo" 
+							press		=	"onPressEliminarProductoImagen"  /> 
+							<Button 
+							icon		=	"sap-icon://add-document" 
+							type		=	"Accept"
+							tooltip		=	"Subir Archivo" 
+							press		=	"onPressSubirArchivo"  /> 
+						</OverflowToolbar>
+					</ui:extension>
+					<ui:columns>
+						<ui:Column width="2.5rem" hAlign="Center"> 
+							<ui:template>
+								<core:Icon press="onVerAuditoriaProducto"  size="1.2rem"  src="sap-icon://show"/>
+							</ui:template>
+						</ui:Column>
+						 <ui:Column width="2.5rem" hAlign="Center"> 
+							<ui:template>
+								<core:Icon press="onPressEditarImagen"  size="1.2rem"  src="sap-icon://edit"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column 
+							width="6rem"
+							filterProperty="Id">
+							<Label text="Id" />
+							<ui:template>
+								<Link text="{modelAcceso>Id}" press="onPressDetalleUsuario" /> 
+							</ui:template>
+						</ui:Column>
+						 
+						<ui:Column width="30rem">
+							<Label text="Imagen" />
+							<ui:template>
+								<Image
+									src="http://localhost/Imagenes/Productos/{modelAcceso>Imagen}"
+									decorative="false"
+									width="100px"
+									densityAware="false">
+									<detailBox>
+										<LightBox>
+											<LightBoxItem
+												imageSrc="http://localhost/Imagenes/Productos/{modelAcceso>Imagen}"
+												alt="Imagen Producto"  />
+										</LightBox>
+									</detailBox> 
+									<layoutData>
+										<FlexItemData growFactor="1" shrinkFactor="0" />
+									</layoutData>
+								</Image>
+							</ui:template>
+						</ui:Column> 
+						 <ui:Column width="8rem">
+							<Label text="Orden" />
+							<ui:template> 
+								<Text text="{modelAcceso>Orden}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="8rem">
+							<Label text="Estado" />
+							<ui:template>
+							<ObjectStatus 
+								text    =   "{modelAcceso>EstadoImagen}"
+								state   =   "{	path		:	'modelAcceso>CodEstadoImagen', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelAcceso>CodEstadoImagen', formatter	:	'.formatter.iconEstado'}"/> 
+						</ui:template>
+						</ui:Column> 
+						
+					</ui:columns> 
+				</ui:Table>
+			</VBox>
+		 
+
+</core:FragmentDefinition>

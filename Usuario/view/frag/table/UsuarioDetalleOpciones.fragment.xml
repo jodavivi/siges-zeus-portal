@@ -1,0 +1,30 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 
+			 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm   
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					adjustLabelSpan="false"
+					 
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Estado Clave" />
+						<Text text="{modelAcceso>/oEstadoClave/sTipoEstadoClave}"/>
+
+						<Label text="Resetear Clave" />
+						<Button  icon="sap-icon://refresh" width="7rem" tooltip="Resetear Clave"  type="Accept" press="onFnResetearClave"/>
+ 						  
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		 
+
+</core:FragmentDefinition>

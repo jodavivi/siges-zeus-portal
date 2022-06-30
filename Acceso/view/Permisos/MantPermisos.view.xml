@@ -6,6 +6,7 @@
 	displayBlock="true"
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified"
 	xmlns:ui="sap.ui.table">
 			 <Page  
 		title	=	"Detail 1" 
@@ -31,8 +32,7 @@
 				selectionMode="MultiToggle"  
 				class="tbTabla"
 				alternateRowColors="true" 
-				rowActionCount="2"   
-				visibleRowCount="15"
+				rowActionCount="2"    
 				enableBusyIndicator="true"  
 				selectionBehavior="RowSelector"
 				fixedColumnCount="2"
@@ -46,28 +46,28 @@
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Parametro" 
-							press		=	"onEliminarParametro"  />
+							press		=	"onPressEliminarRol"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
 							tooltip		=	"Registrar Parametro" 
-							press		=	"onRegistrarParametro"  />
+							press		=	"onPressCrearRol"  />
 					</OverflowToolbar>
 				</ui:extension>
 				<ui:columns> 
 					 <ui:Column width="2.5rem" hAlign="Center"> 
 						<ui:template>
-							<core:Icon press="onVerAuditoria"  size="1.2rem"  src="sap-icon://show"/>
+							<core:Icon press="onVerAuditoriaRol"  size="1.2rem"  src="sap-icon://show"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="2.5rem" hAlign="Center"> 
 						<ui:template>
-							<core:Icon press="onEditarAplicacion"  size="1.2rem"  src="sap-icon://edit"/>
+							<core:Icon press="onPressEditarRol"  size="1.2rem"  src="sap-icon://edit"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column filterProperty="Id" sortProperty="Id" width="4rem">
 						<Label text="Id" />
 						<ui:template>
-								<Link text="{modelAcceso>Id}" press="onParametroDetalle" /> 
+								<Link text="{modelAcceso>Id}" press="onPressVerRol" /> 
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
@@ -81,13 +81,16 @@
 						<ui:template>
 							<Text text="{modelAcceso>Descripcion}" wrapping="false" />
 						</ui:template>
-					</ui:Column> 
+					</ui:Column>  
 					<ui:Column width="8rem" filterProperty="EstadoRol" sortProperty="EstadoRol">
 						<Label text="Estado" />
 						<ui:template>
-							<Text text="{modelAcceso>EstadoRol}" wrapping="false" />
+							<ObjectStatus 
+								text    =   "{modelAcceso>EstadoRol}"
+								state   =   "{	path		:	'modelAcceso>EstadoRolCod', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelAcceso>EstadoRolCod', formatter	:	'.formatter.iconEstado'}"/> 
 						</ui:template>
-					</ui:Column>
+					</ui:Column>  
 					<ui:Column 
 						width           =   "3rem" 
 						hAlign          =   "Center" 
@@ -108,54 +111,54 @@
 
 				</ui:columns> 
 			</ui:Table> 
-			<ui:Table
-				id="tblRolAplicaciones"
-				rows="{ path : 'modelAcceso>/aListaRolAplicacion' , sorter: { path: 'Id', descending: true }}"
-				selectionMode="MultiToggle"  
-				class="tbTabla"
-				alternateRowColors="true" 
-				rowActionCount="2" 
-				visibleRowCount="16" 
-				enableBusyIndicator="true"  
-				selectionBehavior="RowSelector" 
-				showOverlay="false" 
-				ariaLabelledBy="title">
-				<ui:extension>
-					<OverflowToolbar>
+			<ui:TreeTable
+                    id="tblRolAplicaciones"
+                    rows="{path:'modelAcceso>/aListaRolAplicacion', parameters: {arrayNames:['listaAccesos']}}"
+                    selectionMode="MultiToggle"
+                    enableSelectAll="false"
+                    ariaLabelledBy="title">
+                <ui:extension>
+                    <OverflowToolbar>
 						<Title  text="Aplicaciones {modelAcceso>/oRolSeleccionado/NombreRol}"/>
 						<ToolbarSpacer/>
 						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
-							tooltip		=	"Eliminar Parametro" 
-							press		=	"onEliminarParametro"  />
+							tooltip		=	"Eliminar Aplicaciones" 
+							press		=	"onPressEliminarAplicacionxRol"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
-							tooltip		=	"Registrar Parametro" 
-							press		=	"onRegistrarParametro"  />
+							tooltip		=	"Registrar Aplicación" 
+							press		=	"onConsultarAplicacionSinAsignar"  />
 					</OverflowToolbar>
-				</ui:extension>
-				<ui:columns>  
-					<ui:Column filterProperty="Id" sortProperty="Id" width="6rem">
+                </ui:extension>
+                <ui:columns> 
+				<ui:Column filterProperty="Id" sortProperty="Id" width="6rem">
 						<Label text="Id" />
 						<ui:template>
 								<Link text="{modelAcceso>Id}" press="onParametroDetalle" /> 
 						</ui:template>
 					</ui:Column>
+					<ui:Column width="9rem" filterProperty="Tipo" sortProperty="Tipo">
+						<Label text="Tipo" />
+						<ui:template>
+							<Text text="{	path		:	'modelAcceso>Tipo', formatter	:	'.formatter.tipoControl'}" wrapping="false" />
+						</ui:template>
+					</ui:Column> 
 					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
 						<Label text="Nombre" />
 						<ui:template>
-							<Text text="{modelAcceso>Aplicacion/Nombre}" wrapping="false" />
+							<Text text="{modelAcceso>Nombre}" wrapping="false" />
 						</ui:template>
 					</ui:Column> 
 					<ui:Column width="9rem" filterProperty="Descripcion" sortProperty="Descripcion">
 						<Label text="Descripción" />
 						<ui:template>
-							<Text text="{modelAcceso>Aplicacion/Descripcion}" wrapping="false" />
+							<Text text="{modelAcceso>Descripcion}" wrapping="false" />
 						</ui:template>
 					</ui:Column> 
-				</ui:columns> 
-			</ui:Table> 
+                </ui:columns>
+            </ui:TreeTable>
 			</HBox>
 		</content> 
 	</Page>

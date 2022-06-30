@@ -1,0 +1,72 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.Producto.controller.ProductoRegistro"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <Page 
+		id		=	"AgregarProducto"
+		showNavButton="true" 
+		class	=	"sapUiStdPage">  
+		<customHeader>
+			<Toolbar>
+				<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancelarRegistro" />
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"Mantenimiento de Productos" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content> 
+			<IconTabBar 
+				id		=	"iconTabDetalle" 
+				class	=	"sapUiResponsiveContentPadding" 
+				select	=	"onPressTabDetalle">
+				<items> 
+					<!-- Pestaña Detalles -->
+					<IconTabFilter 
+						icon	=	"sap-icon://hint" 
+						text	=	"Producto" 
+						class	=	"colortabs" 
+						key		=	"1">
+						<core:Fragment fragmentName="com.telcomdataperu.app.Producto.view.frag.table.ProductoRegistro" type="XML"></core:Fragment>
+					</IconTabFilter>
+					
+					<!-- Pestaña Parametros -->
+					<IconTabFilter icon="sap-icon://list" enabled="{modelAcceso>/bTabActivar}" text="Imagenes" class="colortabs" key="2">
+						<core:Fragment fragmentName="com.telcomdataperu.app.Producto.view.frag.table.ProductoImagen" type="XML"></core:Fragment>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			 
+		</content>
+		<footer>
+			<Toolbar>
+				<Button   
+				type		=	"Emphasized" 
+				text		=	"Nuevo" 
+				press		=	"onPressNuevoRegistro" 
+				icon		=	"sap-icon://add-document"/>
+				<ToolbarSpacer/>
+ 
+				<Button   
+				type		=	"Reject" 
+				text		=	"Regresar" 
+				press		=	"onPressCancelarRegistro" 
+				icon		=	"sap-icon://arrow-left"/>
+				<Button   
+				type		=	"Accept" 
+				enabled		=	"{modelAcceso>/bActivarEdicion}"
+				visible		= 	"{modelAcceso>/bGuardar}"
+				text		=	"Guardar" 
+				press		=	"onRegistrarProducto" 
+				icon		=	"sap-icon://save"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

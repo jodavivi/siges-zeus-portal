@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgEditarMarca"
+		horizontalScrolling	=	"false"
+		title				=   "Editar Marca"
+		contentWidth		=	"600px"
+		icon				=   "sap-icon://edit" >
+		<content>
+			<f:SimpleForm 
+				id				=	"frmEditarMarca"
+				editable		=	"true"
+				layout			=	"ResponsiveGridLayout" 
+				labelSpanXL		=	"3"
+				labelSpanL		=	"3"
+				labelSpanM		=	"3"
+				labelSpanS		=	"12"
+				adjustLabelSpan	=	"false"
+				emptySpanXL		=	"4"
+				emptySpanL		=	"4"
+				emptySpanM		=	"4"
+				emptySpanS		=	"0"
+				columnsXL		=	"1"
+				columnsL		=	"1"
+				columnsM		=	"1"
+				class			="clsFrmEditMarca"
+				singleContainerFullSize	=	"false" >
+				<f:content>
+					<Label 
+						text		=	"Codigo"/>
+					<Input   
+						value		=	"{modelAcceso>/oMarcaEditar/Codigo}"
+						maxLength	=	"31"
+						fieldGroupIds ="validarRolInput"
+						required	=	"true"
+						editable="false"/>
+					<Label 
+						text		=	"Nombre"/>
+					<Input   
+						value		=	"{modelAcceso>/oMarcaEditar/Nombre}"
+						maxLength	=	"31"
+						fieldGroupIds ="validarRolInput"
+						required	=	"true"/>
+						
+					<Label 
+						text		=	"Descripción" />
+					<Input  
+						value		=	"{modelAcceso>/oMarcaEditar/Descripcion}"
+						fieldGroupIds ="validarRolInput"
+						maxLength	=	"127"
+						required	=	"true"/>
+					<Label 
+						text		=	"Imagen" />
+					<u:FileUploader 
+						id="fileUploader2"
+						name="file"
+						width="100%"
+						class="clsUpload" 
+						uploadUrl="http://localhost:3012/documento/upload"
+						tooltip="Subir archivo"
+						uploadComplete="handleUploadComplete"/> 
+					<Label 
+						text		=	"Estado" />
+					<Select id="cbxEstado2" selectedKey="{modelAcceso>/oMarcaEditar/CodEstadoMarca}" required="true">
+					<items>
+						<core:Item text="Seleccionar" key=""/>
+						<core:Item text="Activo" key="1"/>
+						<core:Item text="Desactivo" key="0"/> 
+					</items>
+				</Select>  
+				</f:content>
+			</f:SimpleForm>
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPressfnEditarMarca" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseEditarMarca" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

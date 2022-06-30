@@ -1,0 +1,59 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form">
+	
+	<Dialog  
+		id					=	"DlgAgregarAplicacion"
+		horizontalScrolling	=	"false"
+		title				=   "Agregar Aplicación"
+		contentWidth		=	"500px"
+		icon				=   "sap-icon://add-product" >
+		<subHeader>
+			<OverflowToolbar>
+				<SearchField liveChange=".onBuscarAplicacion" width="100%" />
+			</OverflowToolbar>
+		</subHeader>
+		<content>
+				
+				<List
+				id="idListAplicaciones"
+				items="{ path : 'modelAcceso>/aListaPaginas' , sorter: { path: 'Id', descending: true }}"
+				selectionChange=".onSelectionChange"
+				mode="MultiSelect"
+				growing="true"
+				growingThreshold="50"
+				includeItemInSelection="true">
+				<infoToolbar>
+					<OverflowToolbar visible="false" id="idInfoToolbar">
+						<Label id="idFilterLabel" />
+					</OverflowToolbar>
+				</infoToolbar>
+				<StandardListItem
+					title="{modelAcceso>Nombre}"
+					description="{modelAcceso>Descripcion}"
+					icon="{modelAcceso>Ico}"
+					iconDensityAware="false"
+					iconInset="false" />
+			</List>
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPressRegistrarSelectAplicacion" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseAgregarAplicacion" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>
