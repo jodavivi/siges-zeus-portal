@@ -20,7 +20,20 @@
 						<Text text="{modelAcceso>/oEstadoClave/sTipoEstadoClave}"/>
 
 						<Label text="Resetear Clave" />
-						<Button  icon="sap-icon://refresh" width="7rem" tooltip="Resetear Clave"  type="Accept" press="onFnResetearClave"/>
+						<Button  
+						icon="sap-icon://refresh" 
+						width="7rem" 
+						tooltip="Resetear Clave"  
+						type="Accept" 
+						press="onFnResetearClave"
+						enabled = "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnUsuarioClaveReset'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+						/>
  						  
 					</f:content>
 				</f:SimpleForm>

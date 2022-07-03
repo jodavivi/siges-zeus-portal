@@ -20,6 +20,11 @@
 					text	=	"Maestra de Configuración" 
 					level	=	"H2"/>
 				<ToolbarSpacer/>
+				<Button 
+					icon		=	"sap-icon://synchronize" 
+					tooltip		=	"Actualizar Maestro" 
+					type		="Emphasized"
+					press		=	"onPressActualizarMaestra"/>
 			</Toolbar>
 		</customHeader>
 		
@@ -56,13 +61,29 @@
 				<Button 
 					icon		=	"sap-icon://add" 
 					tooltip		=	"Agregar Maestro" 
+					enabled     =   "{
+						parts: [
+      {path: 'modelPermisosApp>/sPermisosApp'},
+      {path: 'modelPermisosApp>/sBtnMaestroRegistrar'}
+    ], 
+    formatter: '.formatter.validarPermisoControl'
+ 
+  }"
 					type="Emphasized"
 					press		=	"onAgregarTabla"/>
 				<Button 
 					icon		=	"sap-icon://less" 
 					tooltip		=	"Eliminar Maestro" 
 					type="Reject"
-					press		=	"onEliminarTabla"  />
+					press		=	"onEliminarTabla"
+					enabled     =   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnMaestroEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+    />
 				<ToolbarSpacer/>
 				<Button icon="sap-icon://sort" tooltip="Ordenar" type="Emphasized" press="onPressSortMaestro"/>
 			</Toolbar>

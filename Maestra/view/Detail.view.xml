@@ -56,7 +56,15 @@
 				type		=	"Accept" 
 				text		=	"Actualizar" 
 				press		=	"onPressEditarDetalle" 
-				icon		=	"sap-icon://save"/>
+				icon		=	"sap-icon://save"
+				enabled     =   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnMaestroActualizar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+								  }"
+				/>
 			</Toolbar>
 		</footer>
 	</Page>

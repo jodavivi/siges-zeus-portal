@@ -7,11 +7,11 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	'sap/ui/model/Sorter',
-	"../model/models"
+	"../model/models" 
 ], function (Controller, BaseController, TablaGenericaService, UIComponent, UtilPopUps, Filter, FilterOperator, Sorter, models) {
 	"use strict";
 
-	return BaseController.extend("com.telcomdataperu.app.Maestra.controller.Maestra", {
+	return BaseController.extend("com.telcomdataperu.app.Maestra.controller.Maestra", { 
 		onInit: function () {  
 			var self = this; 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -169,6 +169,12 @@ sap.ui.define([
 				sap.ui.core.BusyIndicator.hide();
 			}  
 
+		},
+		onPressActualizarMaestra:function(){
+			this.fnCargarTabla(this);
+		},
+		onValidar:function(e){
+			CSSCounterStyleRule.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwwwwwww");
 		}
  
 	});

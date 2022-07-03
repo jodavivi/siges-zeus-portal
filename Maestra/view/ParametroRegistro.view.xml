@@ -100,7 +100,8 @@
 				type		=	"Accept" 
 				text		=	"Guardar" 
 				press		=	"onPressGuardarParametro" 
-				icon		=	"sap-icon://save"/>
+				icon		=	"sap-icon://save"
+				/>
 			</Toolbar>
 		</footer>
 	</Page>

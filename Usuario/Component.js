@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"com/telcomdataperu/app/Usuario/model/models"
-], function (UIComponent, Device, models) {
+	"com/telcomdataperu/app/Usuario/model/models",
+	"com/telcomdataperu/app/Usuario/util/UtilUi"
+], function (UIComponent, Device, models, UtilUi) {
 	"use strict";
 
 	return UIComponent.extend("com.telcomdataperu.app.Usuario.Component", {
@@ -18,17 +19,17 @@ sap.ui.define([
 		 */
 		init: function () {
 			// call the base component's init function
-			UIComponent.prototype.init.apply(this, arguments);
-
+			UIComponent.prototype.init.apply(this, arguments); 
 			// enable routing
-			this.getRouter().initialize();
-
+			this.getRouter().initialize(); 
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.modelAcceso(), "modelAcceso");
+			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
+			this.setModel(models.modelPermisosApp(), "modelPermisosApp"); 
+			this.getModel("modelPermisosApp").setProperty("/sPermisosApp",oInfoUsuario.UsuarioPermisos); 
 			var s = $(document).height() -48;
-			$(".prueba").height(s + 'px');
-			console.log("INGRESAAAAAAAAAAAAAAA " + s);
+			$(".prueba").height(s + 'px'); 
 		}
 	});
 });

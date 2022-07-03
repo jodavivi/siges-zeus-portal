@@ -69,8 +69,14 @@ sap.ui.define([], function() {
       }
     },
     stateEstadoUsuario : function (value){
-			var jsonValor = JSON.parse(value);
-			return JSON.stringify(jsonValor, undefined, 2);
+      try {
+        var jsonValor = JSON.parse(value);
+        return JSON.stringify(jsonValor, undefined, 2);
+      } catch (error) {
+        
+			  return '';
+      }
+		
 		} 
   };
 });

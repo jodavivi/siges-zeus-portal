@@ -42,6 +42,10 @@
 						<Title id="title" text="Grupos"/>
 						<ToolbarSpacer/>
 						<Button 
+							icon		=	"sap-icon://synchronize"  
+							tooltip		=	"Actualizar Grupos" 
+							press		=	"onPressActualizarGrupo"  />
+						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Grupo" 
@@ -126,9 +130,13 @@
 						<Title  text="Aplicaciones {modelAcceso>/oGrupoSeleccionado/NombreGrupo}"/>
 						<ToolbarSpacer/>
 						<Button 
+							icon		=	"sap-icon://synchronize"  
+							tooltip		=	"Actualizar Aplicacion" 
+							press		=	"onPressActualizarAplicacion"  />
+						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
-							tooltip		=	"Eliminar Pagina" 
+							tooltip		=	"Eliminar Aplicacion" 
 							press		=	"onPressEliminarPagAsignada"  />
 						<Button 
 							icon		=	"sap-icon://add-product" 

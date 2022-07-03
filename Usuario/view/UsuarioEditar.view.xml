@@ -44,7 +44,7 @@
 						<Label text="Tipo Documento" />
 						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodTipoDocumento}"  
 						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
-        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-documento-persona' }]}">
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-doc-persona' }]}">
 							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
 						</Select> 
 						<Label text="Numero Documento" />
@@ -87,7 +87,15 @@
 				type		=	"Accept" 
 				text		=	"Guardar" 
 				press		=	"onEditarUsuario" 
-				icon		=	"sap-icon://save"/>
+				icon		=	"sap-icon://save"
+				enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnUsuarioEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+				/>
 			</Toolbar>
 		</footer>
 	</Page>

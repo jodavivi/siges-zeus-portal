@@ -273,8 +273,7 @@ sap.ui.define([
 			var oLabel = this.byId("idFilterLabel");
 			var oInfoToolbar = this.byId("idInfoToolbar");
  
-			var aContexts = oList.getSelectedContexts(true);
-			console.log(aContexts);
+			var aContexts = oList.getSelectedContexts(true); 
 			var bSelected = (aContexts && aContexts.length > 0);
 			var sText = (bSelected) ? aContexts.length + " Seleccionado" : null;
 			oInfoToolbar.setVisible(bSelected);
@@ -364,6 +363,13 @@ sap.ui.define([
 				console.log(error);
 				sap.ui.core.BusyIndicator.hide();	
 			}
+		},
+		onPressActualizarGrupo: function(){
+			this.fnCargarGrupos();
+		},
+		onPressActualizarAplicacion: function(){
+			var oSeleccion = this.getView().getModel("modelAcceso").getProperty("/oGrupoSeleccionado");
+			this.fnCargarAplicacionGrupo(oSeleccion.Id);
 		} 
 	});
 });

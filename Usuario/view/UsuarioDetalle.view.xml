@@ -46,7 +46,8 @@
 				type		=	"Reject" 
 				text		=	"Regresar" 
 				press		=	"onPressCancelarEdicion" 
-				icon		=	"sap-icon://arrow-left"/> 
+				icon		=	"sap-icon://arrow-left"
+				/> 
 			</Toolbar>
 		</footer>
 	</Page>

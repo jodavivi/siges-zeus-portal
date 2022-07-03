@@ -43,6 +43,10 @@
 						<Title id="title" text="Aplicaciones"/>
 						<ToolbarSpacer/>
 						<Button 
+							icon		=	"sap-icon://synchronize"  
+							tooltip		=	"Actualizar Aplicacion" 
+							press		=	"onPressActualizarAplicacion"  />
+						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Aplicacion" 
@@ -107,13 +111,13 @@
 							</core:Icon>
 						</ui:template>
 					</ui:Column>
-					<ui:Column width="15rem" filterProperty="Url" sortProperty="Url">
+					<ui:Column width="12rem" filterProperty="Url" sortProperty="Url">
 						<Label text="Route" />
 						<ui:template>
 							<Text text="{modelAcceso>Url}" wrapping="false" />
 						</ui:template>
 					</ui:Column>
-					<ui:Column width="15rem" filterProperty="CodigoPadre" sortProperty="CodigoPadre">
+					<ui:Column width="10rem" filterProperty="CodigoPadre" sortProperty="CodigoPadre">
 						<Label text="Padre" />
 						<ui:template>
 							<Text text="{modelAcceso>CodigoPadre}" wrapping="false" />

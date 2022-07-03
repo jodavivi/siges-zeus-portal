@@ -13,7 +13,7 @@ sap.ui.define([], function () {
 			var request = {};
 			request.sIdTransaccion = this.generarIdTransaccion();
 			request.sAplicacion = appId;
-			request.sToken = "Bearer " + JSON.parse(localStorage.login);
+			request.sToken = "Bearer " + JSON.parse(localStorage.login).Token;
 			request.sTerminal = "127.0.0.1";
 			return request;
 		},

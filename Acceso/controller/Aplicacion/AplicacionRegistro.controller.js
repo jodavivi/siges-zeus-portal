@@ -40,6 +40,12 @@ sap.ui.define([
 								oParam.sUrl 				= oAplicacionNueva.sUrl;
 								oParam.sCodigoPadre 		= oAplicacionNueva.sCodigoPadre;
 								oParam.iCodEstadoAplicacion = parseInt(oAplicacionNueva.iCodEstadoAplicacion, 10); 
+								if(oParam.iCodEstadoAplicacion === 1){
+									oParam.sEstadoAplicacion = "Activo";
+								}else{
+									oParam.sEstadoAplicacion = "DesaActivo";
+								}
+								
 								AplicacionService.crearAplicacion(oParam, function(result) {  
 								sap.ui.core.BusyIndicator.hide();
 								UtilPopUps.validarRespuestaServicio(result,'La Aplicación se registró correctamente',function(e){});

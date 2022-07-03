@@ -380,6 +380,13 @@ sap.ui.define([
 			//var oBinding = this.getView().byId("tblAppSinAsignar").getBinding("items");
 			//oBinding.filter(allFilter);
 			this.byId("tblAppSinAsignar").getBinding().filter(allFilter, "Application");
+		},
+		onPressActualizarRol: function(){
+			this.fnCargarRoles();
+		}, 
+		onPressActualizarAplicacion: function(){
+			var oRolAplicacion = this.getView().getModel("modelAcceso").getProperty("/oRolSeleccionado");
+			this.fnCargarAplicacionRol(oRolAplicacion.Codigo);
 		}
 	});
 });

@@ -28,10 +28,24 @@
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Parametro" 
+							enabled     =   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnParametroEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onEliminarParametro"  />
 						<m:Button 
 							icon		=	"sap-icon://add-document" 
 							tooltip		=	"Registrar Parametro" 
+							enabled     =   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnParametroRegistrar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onRegistrarParametro"  />
 					</m:OverflowToolbar>
 				</extension>
@@ -43,7 +57,17 @@
 					</Column>
 					<Column width="2.5rem" hAlign="Center"> 
 						<template>
-							<c:Icon press="onEditarParametro"  size="1.2rem"  src="sap-icon://edit"/>
+							<c:Icon 
+								press="onEditarParametro"  
+								size="1.2rem"  
+								visible = "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnParametroEditar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+								src="sap-icon://edit"/>
 						</template>
 					</Column>
 					<Column filterProperty="Codigo" sortProperty="Codigo" width="6rem">

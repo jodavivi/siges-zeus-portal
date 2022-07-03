@@ -27,6 +27,9 @@ sap.ui.define([
         } else {
           this.getRouter(this).navTo("auditoriaRoute", {}, true /*no history*/);
         }
+      },
+      onNavBack2: function (oEvent) { 
+          this.getRouter(this).navTo("auditoriaRoute", {}, true /*no history*/); 
       }
   
        

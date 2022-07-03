@@ -22,7 +22,17 @@ sap.ui.define([
 			oParam.oEstadoClave			= {};
 			var oModel       = new JSONModel(oParam);
 			return oModel;
-		  }
+		  },
+		  modelPermisosApp:function(){
+			  var oParam           = {};
+			  oParam.sPermisosApp  = ""; 
+			  oParam.sBtnUsuarioRegistrar 	 = 'C0000011';
+			  oParam.sBtnUsuarioActualizar 	 = 'C0000012';
+			  oParam.sBtnUsuarioEliminar 	 = 'C0000013'; 
+			  oParam.sBtnUsuarioClaveReset 	 = 'C0000014'; 
+			  var oModel           = new JSONModel(oParam);
+			  return oModel;
+			}
 
 	};
 });

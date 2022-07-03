@@ -26,7 +26,7 @@
 			 
 			  <HBox class="mantGrupo">
 			 <ui:Table
-			  width="45.2rem" 
+			  width="38rem" 
 				id="tblRoles"
 				rows="{ path : 'modelAcceso>/aListaRoles' , sorter: { path: 'Id', descending: true }}" 
 				selectionMode="MultiToggle"  
@@ -43,13 +43,17 @@
 						<Title id="title" text="Roles"/>
 						<ToolbarSpacer/>
 						<Button 
+							icon		=	"sap-icon://synchronize"  
+							tooltip		=	"Actualizar Rol" 
+							press		=	"onPressActualizarRol"  />
+						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
-							tooltip		=	"Eliminar Parametro" 
+							tooltip		=	"Eliminar Rol" 
 							press		=	"onPressEliminarRol"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
-							tooltip		=	"Registrar Parametro" 
+							tooltip		=	"Agregar Rol" 
 							press		=	"onPressCrearRol"  />
 					</OverflowToolbar>
 				</ui:extension>
@@ -64,25 +68,25 @@
 							<core:Icon press="onPressEditarRol"  size="1.2rem"  src="sap-icon://edit"/>
 						</ui:template>
 					</ui:Column>
-					<ui:Column filterProperty="Id" sortProperty="Id" width="4rem">
+					<ui:Column filterProperty="Id" sortProperty="Id" width="3rem">
 						<Label text="Id" />
 						<ui:template>
 								<Link text="{modelAcceso>Id}" press="onPressVerRol" /> 
 						</ui:template>
 					</ui:Column>
-					<ui:Column width="9rem" filterProperty="Nombre" sortProperty="Nombre">
+					<ui:Column width="8rem" filterProperty="Nombre" sortProperty="Nombre">
 						<Label text="Nombre" />
 						<ui:template>
 							<Text text="{modelAcceso>Nombre}" wrapping="false" />
 						</ui:template>
 					</ui:Column> 
-					<ui:Column width="14rem" filterProperty="Descripcion" sortProperty="Descripcion">
+					<ui:Column width="10rem" filterProperty="Descripcion" sortProperty="Descripcion">
 						<Label text="Descripcion" />
 						<ui:template>
 							<Text text="{modelAcceso>Descripcion}" wrapping="false" />
 						</ui:template>
 					</ui:Column>  
-					<ui:Column width="8rem" filterProperty="EstadoRol" sortProperty="EstadoRol">
+					<ui:Column width="6rem" filterProperty="EstadoRol" sortProperty="EstadoRol">
 						<Label text="Estado" />
 						<ui:template>
 							<ObjectStatus 
@@ -121,6 +125,10 @@
                     <OverflowToolbar>
 						<Title  text="Aplicaciones {modelAcceso>/oRolSeleccionado/NombreRol}"/>
 						<ToolbarSpacer/>
+						<Button 
+							icon		=	"sap-icon://synchronize"  
+							tooltip		=	"Actualizar Aplicación" 
+							press		=	"onPressActualizarAplicacion"  />
 						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"

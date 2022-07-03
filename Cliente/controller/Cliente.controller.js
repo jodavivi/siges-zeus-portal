@@ -194,8 +194,7 @@ sap.ui.define([
         },
         onPressFiltrarUsuarios:function(){
           try {
-            var sFiltroUsuario = this.getView().byId("txtUsuario").getValue();
-            console.log(sFiltroUsuario);
+            var sFiltroUsuario = this.getView().byId("txtUsuario").getValue(); 
             this.onFnConsultarUsuario(sFiltroUsuario);
           } catch (error) {
             sap.ui.core.BusyIndicator.hide();

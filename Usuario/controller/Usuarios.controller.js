@@ -62,12 +62,12 @@ sap.ui.define([
          
             var that        = this;
             var oParam 		= {}; 
-            oParam.sListaCodigoTabla = "tipo-usuario,tipo-documento-persona";
+            oParam.sListaCodigoTabla = "tipo-usuario,tipo-doc-persona";
             oParam.iEstadoCampoId    = 1;
             MaestraService.consultarParametros(oParam, function(result) {   
               if(result.iCode ===1){ 
                 result.oResults.push({"Codigo":"", "CodigoTabla":"tipo-usuario","Campo1":"--Seleccionar--"}); 
-                result.oResults.push({"Codigo":"", "CodigoTabla":"tipo-documento-persona","Campo1":"--Seleccionar--"}); 
+                result.oResults.push({"Codigo":"", "CodigoTabla":"tipo-doc-persona","Campo1":"--Seleccionar--"}); 
                 that.getView().getModel("modelAcceso").setProperty("/aListaParametros", result.oResults);
               }else{
                 that.getView().getModel("modelAcceso").setProperty("/aListaParametros", []);

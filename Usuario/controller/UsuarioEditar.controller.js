@@ -49,7 +49,7 @@ sap.ui.define([
             var that = this;
             var sError = UtilValidation.validaFormObligatorio(this,"frmEditarUsuario"); 
             if(!sError){
-              UtilPopUps.messageBox("¿Desea crear el usuario?", 'c', function(bConfirmacion) {
+              UtilPopUps.messageBox("¿Desea actualizar el usuario?", 'c', function(bConfirmacion) {
               if (bConfirmacion) {
 				//sap.ui.core.BusyIndicator.show(0); 
 				var aParametros = that.getView().getModel("modelAcceso").getProperty("/aListaParametros");
@@ -78,6 +78,12 @@ sap.ui.define([
 				}); 
 				oParam.aRol.push({"sCodRol":aRol[0].Codigo, "sRol":aRol[0].Nombre});
 				oParam.iCodEstadoUsuario	= parseInt(oUsuarioEditar.CodEstadoUsuario, 10);   
+				if(oParam.iCodEstadoUsuario === 1){
+					oParam.sEstadoUsuario = "Activo";
+				}else{
+					oParam.sEstadoUsuario = "Desactivo";
+				}
+				oParam.sEstadoUsuario
 				UsuarioService.actualizarUsuario(oParam, function(result) {  
 					sap.ui.core.BusyIndicator.hide();
 					UtilPopUps.validarRespuestaServicio(result,'El Usuario se actualizó correctamente',function(e){});

@@ -62,6 +62,11 @@ sap.ui.define([
 								oParam.sUrl 				= oAplicacionEditar.Url;
 								oParam.sCodigoPadre 		= oAplicacionEditar.CodigoPadre;
 								oParam.iCodEstadoAplicacion = parseInt(oAplicacionEditar.CodEstadoAplicacion, 10); 
+								if(oParam.iCodEstadoAplicacion === 1){
+									oParam.sEstadoAplicacion = "Activo";
+								}else{
+									oParam.sEstadoAplicacion = "DesaActivo";
+								}
 								AplicacionService.actualizarAplicacion(oParam, function(result) {  
 								sap.ui.core.BusyIndicator.hide();
 								UtilPopUps.validarRespuestaServicio(result,'La Aplicación se actualizó correctamente',function(e){});

@@ -124,6 +124,9 @@ sap.ui.define([
 			} catch (error) {
 				
 			}
+		},
+		onPressActualizarAplicacion: function(evt){
+			this.fnCargarAplicaciones();
 		}
 	});
 });

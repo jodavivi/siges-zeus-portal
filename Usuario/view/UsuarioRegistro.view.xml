@@ -41,7 +41,7 @@
 						<Label text="Tipo Documento" />
 						<Select  selectedKey="{modelAcceso>/oUsuarioNuevo/sCodTipoDocumento}"  
 						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
-        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-documento-persona' }]}">
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-doc-persona' }]}">
 							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
 						</Select> 
 						<Label text="Numero Documento" />

@@ -87,6 +87,16 @@
 			"target": "usuario"
 		},
 		{
+			"pattern": "usuario/:id:/editar",
+			"name": "appUsuario2",
+			"target": "usuario"
+		},
+		{
+			"pattern": "usuario/:id:/detalle",
+			"name": "appUsuario3",
+			"target": "usuario"
+		},
+		{
 			"pattern": "maestra:?query:",
 			"name": "appMaestra",
 			"target": "maestra"
@@ -97,15 +107,35 @@
 			"target": "maestra"
 		},
 		{
+			"pattern": "maestra/detalle/:id:/parametro/:id:",
+			"name": "appMaestra3",
+			"target": "maestra"
+		},
+		{
 			"pattern": "acceso:?query:",
 			"name": "appAcceso",
+			"target": "targetAcceso"
+		},
+		{
+			"pattern": "acceso/aplicaciones:?query:",
+			"name": "appAcceso2",
+			"target": "targetAcceso"
+		},
+		{
+			"pattern": "acceso/grupos:?query:",
+			"name": "appAcceso3",
+			"target": "targetAcceso"
+		},
+		{
+			"pattern": "acceso/permisos:?query:",
+			"name": "appAcceso4",
 			"target": "targetAcceso"
 		},
 		{
 			"pattern": "auditoria:?query:",
 			"name": "appAuditoria",
 			"target": "targetAuditoria"
-		},
+		} ,
 		{
 			"pattern": "producto-categoria:?query:",
 			"name": "appProductoCategoria",

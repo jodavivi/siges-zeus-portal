@@ -74,8 +74,7 @@ sap.ui.define([
           var oParam 		= {}; 
           oParam.sAplicacion = sAplicacion;
           AuditoriaService.consultarProceso(oParam, function(result) {  
-            sap.ui.core.BusyIndicator.hide(); 
-            console.log(result);
+            sap.ui.core.BusyIndicator.hide();  
             if(result.iCode ===1){ 
               self.getView().getModel("modelAuditoria").setProperty("/aListaProceso",result.oResults);  
               self.fnActivarProceso(self);

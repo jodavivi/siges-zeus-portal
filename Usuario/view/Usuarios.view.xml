@@ -40,11 +40,27 @@
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Usuario" 
-							press		=	"onPressEliminarUsuario"  />
+							press		=	"onPressEliminarUsuario" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnUsuarioEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+							 />
 							<Button 
 							icon		=	"sap-icon://add-document" 
 							tooltip		=	"Crear Usuario" 
-							press		=	"onPressCrearUsuario"  />
+							press		=	"onPressCrearUsuario"  
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnUsuarioRegistrar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+							/>
 							
 						</OverflowToolbar>
 					</ui:extension>
@@ -56,7 +72,18 @@
 						</ui:Column>
 						<ui:Column width="2.5rem" hAlign="Center"> 
 							<ui:template>
-								<core:Icon press="onPressEditarUsuario"  size="1.2rem"  src="sap-icon://edit"/>
+								<core:Icon 
+								press="onPressEditarUsuario"  
+								size="1.2rem" 
+								 src="sap-icon://edit"
+								 visible = "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnUsuarioActualizar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+								 />
 							</ui:template>
 						</ui:Column>
 						<ui:Column

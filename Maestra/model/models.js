@@ -29,7 +29,19 @@ sap.ui.define([
 			oParam.oMaestraAuditoria	     = {};
 			var oModel                       = new JSONModel(oParam);
 			return oModel;
-		  }
+		  },
+		  modelPermisosApp:function(){
+			  var oParam           = {};
+			  oParam.sPermisosApp  = ""; 
+			  oParam.sBtnMaestroRegistrar 	 = 'C0000005';
+			  oParam.sBtnMaestroEliminar  	 = 'C0000006';
+			  oParam.sBtnMaestroActualizar 	 = 'C0000007';
+			  oParam.sBtnParametroRegistrar  = 'C0000008';
+			  oParam.sBtnParametroEditar  	 = 'C0000009';
+			  oParam.sBtnParametroEliminar   = 'C0000010';
+			  var oModel           = new JSONModel(oParam);
+			  return oModel;
+			}
 
 	};
 });

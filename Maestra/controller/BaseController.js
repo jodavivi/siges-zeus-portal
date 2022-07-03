@@ -3,13 +3,15 @@ sap.ui.define([
     "sap/ui/core/routing/History",
     "sap/ui/core/UIComponent", 
     '../util/formatter',
-    "../servicio/TablaGenericaService" 
-  ], function(Controller, History, UIComponent, formatter, TablaGenericaService) {
+    "../servicio/TablaGenericaService" ,
+    "../util/utilPopUps",
+  ], function(Controller, History, UIComponent, formatter, TablaGenericaService, UtilPopUps) {
     "use strict";
   
     return Controller.extend("com.telcomdataperu.app.Maestra.controller.BaseController", { 
       formatter: formatter,
       onInit:function(){ 
+        //console.log(decompilerJwt);
       },
       getRouter: function (ctx) {
         return UIComponent.getRouterFor(ctx);
@@ -37,8 +39,12 @@ sap.ui.define([
               } catch (error) {
                 console.log(error);
               } 
-             
-              aListaMaestro.removeSelections();
+              try {
+                aListaMaestro.removeSelections();
+              } catch (error) {
+                console.log(error);
+              }
+              
               
               for (let index = 0; index < aListaMaestro.getItems().length; index++) {
                 const p = aListaMaestro.getItems()[index];
@@ -64,6 +70,16 @@ sap.ui.define([
             console.log(e);
           }
       }, 
+      decompilerJwt: function() {
+        var token = localStorage.login;
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+      
+        return JSON.parse(JSON.parse(jsonPayload).data);
+      },
        
     });
   

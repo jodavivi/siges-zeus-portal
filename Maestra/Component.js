@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"com/telcomdataperu/app/Maestra/model/models"
-], function (UIComponent, Device, models) {
+	"com/telcomdataperu/app/Maestra/model/models",
+	"com/telcomdataperu/app/Maestra/util/UtilUi"
+], function (UIComponent, Device, models, UtilUi) {
 	"use strict";
 
 	return UIComponent.extend("com.telcomdataperu.app.Maestra.Component", {
@@ -26,7 +27,10 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.modelTablaGenerica(), "modelTablaGenerica");
-
+			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
+			this.setModel(models.modelPermisosApp(), "modelPermisosApp"); 
+			this.getModel("modelPermisosApp").setProperty("/sPermisosApp",oInfoUsuario.UsuarioPermisos); 
+			
 			var s = $(document).height() -48;
 			$(".prueba").height(s + 'px'); 
 		}
