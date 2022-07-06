@@ -21,6 +21,7 @@ sap.ui.define([
                               ];
         oUsuario.accesos    = [];
         oUsuario.nuevaClave = {};
+        oUsuario.empresa    = 'DDDDD';
         var oModel = new JSONModel(oUsuario);
         return oModel;
       }

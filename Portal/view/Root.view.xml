@@ -8,7 +8,7 @@
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
 			<f:ShellBar title="ZEUS"
-				secondTitle="| Sistema de Gestión" 
+				secondTitle="| {usuarioLogeadoModel>/oEmpresa/RazonSocial}" 
 				homeIcon="./resources/sap/ui/documentation/sdk/images/logo_ui5.png"
 				showCopilot="true"
 				showNotifications="false"

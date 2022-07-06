@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"../servicio/UsuarioService",
 	'../util/base/UtilPopUps',
-	'../util/base/UtilValidation' 
-], function (Controller, Constantes, InterfaceUtil, Filter, UsuarioService, UtilPopUps, UtilValidation) {
+	'../util/base/UtilValidation',
+	"com/telcomdataperu/app/Portal/util/base/UtilUi" 
+], function (Controller, Constantes, InterfaceUtil, Filter, UsuarioService, UtilPopUps, UtilValidation, UtilUi) {
 	"use strict";
 
 	return Controller.extend("com.telcomdataperu.app.Portal.controller.Root", {
@@ -20,8 +21,10 @@ sap.ui.define([
 			 
 		},
 		onAfterRendering:function(){
-			this.onValidarEstadoClave();
-			var aListaAplicaciones = [];
+			
+			this.onValidarSeleccionEmpresa();
+			
+			/*var aListaAplicaciones = [];
 			var aLista = this.getView().getModel("usuarioLogeadoModel").getData();
 			aLista.Accesos.forEach(function(e){
 				e.Aplicaciones.forEach(function(x){
@@ -29,6 +32,45 @@ sap.ui.define([
 				});
 			}); 
 			this.getView().getModel("usuarioLogeadoModel").setProperty("/aplicaciones", aListaAplicaciones);
+			*/
+		},
+		onValidarSeleccionEmpresa:function(){
+			if(localStorage.empresa !== undefined){
+				this.getView().getModel("usuarioLogeadoModel").setProperty("/empresaseleccionada",JSON.parse(localStorage.empresa));
+				this.onCargarAplicaciones(JSON.parse(localStorage.empresa));
+				return;
+			}
+
+			var aEmpresa = [];
+			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
+			oInfoUsuario.UsuarioEmpresa.forEach(function(e){ 
+				 if(e.CodTipo == 100){
+					aEmpresa.push(e);
+				 };
+				} 
+			 ); 
+			
+			 if(aEmpresa.length > 1){  
+					this.getView().getModel("usuarioLogeadoModel").setProperty("/empresa", aEmpresa); 
+					this.onLoadSelecionarEmpresa(); 
+			 }else{
+				this.getView().getModel("usuarioLogeadoModel").setProperty("/empresaseleccionada", aEmpresa[0]);
+				localStorage.setItem("empresa", JSON.stringify(aEmpresa[0]));
+				this.onCargarAplicaciones();
+			 }  
+
+		}, 
+		onLoadSelecionarEmpresa: function(){
+			var oDialog 	=	this.getView().byId("DlgSeleccionarEmpresa"); 
+			if (!oDialog) {
+				oDialog = sap.ui.xmlfragment(this.getView().getId(), "com.telcomdataperu.app.Portal.view.frag.DlgSeleccionarEmpresa", this);
+				this.getView().addDependent(oDialog);
+			} 
+			oDialog.open();
+		},
+		onPresSeleccionarEmpresa:function(oEvent){  
+			this.onCargarAplicaciones();
+			this.getView().byId("DlgSeleccionarEmpresa").destroy(); 
 		},
 		onPressProfile:function(oEvent){ 
 			var oUsaurioToken =  InterfaceUtil.utilUi.decodeJwt(localStorage.login) ; 
@@ -105,6 +147,9 @@ sap.ui.define([
 				var oParam 		= {};  
 				UsuarioService.validarEstadoClave(oParam, function(result) {  
 				  sap.ui.core.BusyIndicator.hide();
+				  //if(result.iCode === 1){
+					//that.onValidarSeleccionEmpresa();
+				 // }
 				  if(result.iCode ===2){
 					 that.onPressCambiarClave();
 				  } 
@@ -158,7 +203,31 @@ sap.ui.define([
 			}
 		},
 		onPressCloseCambiarClave:function(){
-			this.getView().byId("DlgCambiarClave").destroy();  
-		}	
+			this.getView().byId("DlgCambiarClave").destroy(); 
+			this.onCargarAplicaciones(); 
+		} ,
+		onCargarAplicaciones:function(oEmpresa){ 
+			if(oEmpresa === undefined){
+				var sCodEmpresaSeleccionada = this.getView().getModel("usuarioLogeadoModel").getProperty("/empresa/CodEmpresa");
+			 
+				var aEmpresa = this.getView().getModel("usuarioLogeadoModel").getProperty("/empresa");
+				for (let index = 0; index < aEmpresa.length; index++) {
+					const element = aEmpresa[index];
+					if(element.CodEmpresa === sCodEmpresaSeleccionada){
+						//this.getView().getModel("usuarioLogeadoModel").setProperty("/empresaseleccionada", element);
+						oEmpresa = element;
+						localStorage.setItem("empresa", JSON.stringify(element));
+						break;
+					} 
+				} 
+			}
+			//this.getView().getModel("usuarioLogeadoModel").setProperty("/empresa", 'element');
+			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
+			oInfoUsuario.Accesos =   JSON.parse(localStorage.login).Accesos;
+			oInfoUsuario.sUsuarioIniciales = oInfoUsuario.Nombre.substring(0,1) + oInfoUsuario.Apellido.substring(0,1);
+			oInfoUsuario.oEmpresa = oEmpresa;
+			this.getView().getModel("usuarioLogeadoModel").setProperty("/", oInfoUsuario);
+			this.onValidarEstadoClave();
+		}
 	});
 });

@@ -35,12 +35,12 @@ sap.ui.define([
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.usuarioLogeadoModel(), "usuarioLogeadoModel");
 			//console.log(JSON.parse(UtilUi.decodeJwt(localStorage.login).data));
-			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
-			oInfoUsuario.Accesos =   JSON.parse(localStorage.login).Accesos;
-			oInfoUsuario.sUsuarioIniciales = oInfoUsuario.Nombre.substring(0,1) + oInfoUsuario.Apellido.substring(0,1);
+			//var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
+			//oInfoUsuario.Accesos =   JSON.parse(localStorage.login).Accesos;
+			//oInfoUsuario.sUsuarioIniciales = oInfoUsuario.Nombre.substring(0,1) + oInfoUsuario.Apellido.substring(0,1);
  
-			this.getModel("usuarioLogeadoModel").setProperty("/", oInfoUsuario);
-		 
+			//this.getModel("usuarioLogeadoModel").setProperty("/", oInfoUsuario);
+			this.getModel("usuarioLogeadoModel").setProperty("/", {});
 			//console.log(this.getModel("usuarioLogeadoModel").getProperty("/grupos"));
 		}
 	});

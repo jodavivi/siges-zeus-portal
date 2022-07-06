@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form"> 
+	<Dialog  
+		id					=	"DlgSeleccionarEmpresa"
+		horizontalScrolling	=	"false"
+		title				=   "Seleccionar Empresa"
+		contentWidth		=	"500px"
+		icon				=   "sap-icon://shield" >
+		<subHeader> 
+		</subHeader>
+		<content>
+			 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmSelecionarEmpresa"
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Selecionar Empresa" />
+						<Select  selectedKey="{usuarioLogeadoModel>/empresa/CodEmpresa}"  
+						required="true" items="{ path: 'usuarioLogeadoModel>/empresa'}">
+							<core:Item key="{usuarioLogeadoModel>CodEmpresa}" text="{usuarioLogeadoModel>RazonSocial}" />
+						</Select>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>	  
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPresSeleccionarEmpresa" 
+				icon		=	"sap-icon://save"/>
+		</endButton> 
+		
+	</Dialog>
+</core:FragmentDefinition>
