@@ -3,7 +3,11 @@ sap.ui.define([], function() {
   return {
     validarPermisoControl: function(permisos, control){
       try {
-        return permisos.includes(control);
+        if(permisos[control]){
+          return permisos[control];
+        }else{
+          return false;
+        } 
       } catch (error) {
         return false;
       } 

@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"com/telcomdataperu/app/Acceso/model/models"
-], function (UIComponent, Device, models) {
+	"com/telcomdataperu/app/Acceso/model/models", 
+	"com/telcomdataperu/app/Acceso/util/UtilUi"
+], function (UIComponent, Device, models, UtilUi) {
 	"use strict";
 
 	return UIComponent.extend("com.telcomdataperu.app.Acceso.Component", {
@@ -26,6 +27,11 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.modelAcceso(), "modelAcceso");
+			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data).UsuarioEmpresa;
+			var oEmpresaSeleccionada = JSON.parse(localStorage.empresa);  
+			this.setModel(models.modelPermisosApp(), "modelPermisosApp"); 
+			this.getModel("modelPermisosApp").setProperty("/sPermisosApp",oInfoUsuario[oEmpresaSeleccionada.CodEmpresa]["Control"]); 
+
 			var s = $(document).height() -48;
 			$(".prueba").height(s + 'px');
 		}

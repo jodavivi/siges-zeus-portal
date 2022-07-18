@@ -226,6 +226,33 @@ sap.ui.define([
 			
 			return sError;
 
+        },
+		limipiarFormObligatorio: function(self, form)
+        {
+			var oForm = self.getView().byId(form).getContent();
+            var sError = false;
+
+			oForm.forEach(function(Field) {
+				try {
+					if (typeof Field.getValue === "function") {
+						 if(Field.getRequired() === true){ 
+								Field.setValueState("None"); 
+						}
+					}
+					if(typeof Field.getSelectedItem() === "object" && Field.getSelectedItem() !== null ){
+						if(Field.getRequired() === true ){
+							 
+								Field.setValueState("None"); 
+						}
+						
+					}
+				} catch (error) {
+					console.log(error);
+				} 
+			});
+			
+			return sError;
+
         }
 	};
 });

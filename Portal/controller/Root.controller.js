@@ -42,8 +42,8 @@ sap.ui.define([
 			}
 
 			var aEmpresa = [];
-			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
-			oInfoUsuario.UsuarioEmpresa.forEach(function(e){ 
+			var aEmpresasPermitidas = JSON.parse(localStorage.login).Empresa;
+			aEmpresasPermitidas.forEach(function(e){ 
 				 if(e.CodTipo == 100){
 					aEmpresa.push(e);
 				 };
@@ -56,7 +56,7 @@ sap.ui.define([
 			 }else{
 				this.getView().getModel("usuarioLogeadoModel").setProperty("/empresaseleccionada", aEmpresa[0]);
 				localStorage.setItem("empresa", JSON.stringify(aEmpresa[0]));
-				this.onCargarAplicaciones();
+				this.onCargarAplicaciones(aEmpresa[0]);
 			 }  
 
 		}, 
@@ -204,7 +204,7 @@ sap.ui.define([
 		},
 		onPressCloseCambiarClave:function(){
 			this.getView().byId("DlgCambiarClave").destroy(); 
-			this.onCargarAplicaciones(); 
+			//this.onCargarAplicaciones(); 
 		} ,
 		onCargarAplicaciones:function(oEmpresa){ 
 			if(oEmpresa === undefined){
@@ -223,7 +223,7 @@ sap.ui.define([
 			}
 			//this.getView().getModel("usuarioLogeadoModel").setProperty("/empresa", 'element');
 			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
-			oInfoUsuario.Accesos =   JSON.parse(localStorage.login).Accesos;
+			oInfoUsuario.Accesos =   JSON.parse(localStorage.login)["Accesos"][oEmpresa.CodEmpresa];
 			oInfoUsuario.sUsuarioIniciales = oInfoUsuario.Nombre.substring(0,1) + oInfoUsuario.Apellido.substring(0,1);
 			oInfoUsuario.oEmpresa = oEmpresa;
 			this.getView().getModel("usuarioLogeadoModel").setProperty("/", oInfoUsuario);

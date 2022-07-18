@@ -30,6 +30,11 @@
 				singleContainerFullSize	=	"false" >
 				<f:content>
 					<Label 
+						text		=	"Codigo"/>
+					<Input   
+						value		=	"{modelAcceso>/oRolNuevo/sCodigo}"
+						maxLength	=	"10" />
+					<Label 
 						text		=	"Nombre"/>
 					<Input   
 						value		=	"{modelAcceso>/oRolNuevo/sNombre}"

@@ -102,6 +102,7 @@ sap.ui.define([
 						sap.ui.core.BusyIndicator.show(0); 
 						var oRolNuevo = that.getView().getModel("modelAcceso").getProperty("/oRolNuevo");
 						var oParam 		= {}; 
+						oParam.sCodigo			= oRolNuevo.sCodigo;
 						oParam.sNombre			= oRolNuevo.sNombre;
 						oParam.sDescripcion		= oRolNuevo.sDescripcion;
 						oParam.iEstadoRolCod			= parseInt(oRolNuevo.iEstadoRolCod, 10); ;

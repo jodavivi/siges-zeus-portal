@@ -1,0 +1,49 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form" 
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:ui="sap.ui.table">
+	
+	<Dialog  
+		id					=	"DlgAgregarRol"
+		horizontalScrolling	=	"false"
+		title				=   "Agregar Rol"
+		contentWidth		=	"40rem"
+		icon				=   "sap-icon://add-product" > 
+		<content>
+				
+				<List
+		id="aListRoles"
+		mode="MultiSelect" 
+		items="{ path : 'modelAcceso>/aListaRoles' , sorter: { path: 'Id', descending: true }}">
+		<items>
+			<StandardListItem
+				title="{modelAcceso>Nombre}"
+				description="{modelAcceso>Codigo}"   
+					iconDensityAware="false"
+				adaptTitleSize="false" />
+		</items>
+	</List> 
+			
+		</content>
+		<endButton>
+			<Button 
+				type		=	"Accept" 
+				text		=	"Agregar"  
+				press		=	"onPressAgregarRolUsuario" 
+				icon		=	"sap-icon://save"/>
+		</endButton>
+		<beginButton>
+			
+				<Button 
+				type		=	"Reject" 
+				text		=	"Cerrar" 
+				icon		=	"sap-icon://decline"
+				press		=	"onPressCloseBuscarRol" />
+		</beginButton>
+		
+	</Dialog>
+</core:FragmentDefinition>

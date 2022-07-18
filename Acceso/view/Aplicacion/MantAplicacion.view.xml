@@ -45,15 +45,30 @@
 						<Button 
 							icon		=	"sap-icon://synchronize"  
 							tooltip		=	"Actualizar Aplicacion" 
+							
 							press		=	"onPressActualizarAplicacion"  />
 						<Button 
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Aplicacion" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnAplicacionEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onEliminarAplicacion"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
 							tooltip		=	"Registrar Aplicación" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnAplicacionRegistrar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onRegistrarAplicacion"  />
 					</OverflowToolbar>
 				</ui:extension>
@@ -65,10 +80,20 @@
 					</ui:Column>
 					<ui:Column width="2.5rem" hAlign="Center"> 
 						<ui:template>
-							<core:Icon press="onEditarAplicacion"  size="1.2rem"  src="sap-icon://edit"/>
+							<core:Icon 
+								visible = "{
+											parts: [
+														{path: 'modelPermisosApp>/sPermisosApp'},
+														{path: 'modelPermisosApp>/sBtnAplicacionActualizar'}
+													], 
+											formatter: '.formatter.validarPermisoControl' 
+										}"
+							press="onEditarAplicacion" 
+							 size="1.2rem"  
+							 src="sap-icon://edit"/>
 						</ui:template>
 					</ui:Column>
-					<ui:Column filterProperty="Id" sortProperty="Id" width="6rem">
+					<ui:Column filterProperty="Id" sortProperty="Id" width="4rem">
 						<Label text="Id" />
 						<ui:template>
 								<Link text="{modelAcceso>Id}" press="onDetalleAplicacion" /> 

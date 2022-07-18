@@ -18,7 +18,8 @@ sap.ui.define([
 			this.iUsuarioId   = iUsuarioId;
 			this.onFnConsultarUsuarioxFiltro(iUsuarioId);
 			this.onFnConsultarEstadoClave(iUsuarioId);
-
+			this.onFnConsultarRolUsuario(iUsuarioId);
+			
 		},
         onFnConsultarUsuarioxFiltro:function(iUsuarioId){
           try{
@@ -31,6 +32,26 @@ sap.ui.define([
 					that.getView().getModel("modelAcceso").setProperty("/oUsuarioSeleccionado", result.oResults[0]);
 				}else{
 					that.getView().getModel("modelAcceso").setProperty("/oUsuarioSeleccionado", []);
+				} 
+				sap.ui.core.BusyIndicator.hide();
+				}, that);
+         
+            }catch(e){
+              sap.ui.core.BusyIndicator.hide();
+              console.log(e);
+            }
+        },
+        onFnConsultarRolUsuario:function(iUsuarioId){
+          try{
+				sap.ui.core.BusyIndicator.show(0);
+				var that        = this;
+				var oParam 		= {}; 
+				oParam.iUsuarioId		= iUsuarioId;
+				UsuarioService.consultarUsuarioRol(oParam, function(result) {   
+				if(result.iCode ===1){ 
+					that.getView().getModel("modelAcceso").setProperty("/aListaRolesUsuarioActual", result.oResults);
+				}else{
+					that.getView().getModel("modelAcceso").setProperty("/aListaRolesUsuarioActual", []);
 				} 
 				sap.ui.core.BusyIndicator.hide();
 				}, that);

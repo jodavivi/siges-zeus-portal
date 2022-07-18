@@ -90,6 +90,13 @@
 			<Button 
 				type		=	"Accept" 
 				text		=	"Guardar" 
+				enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnAsignarControl'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 				press		=	"onPressRegistrarAplicacionesxRol" 
 				icon		=	"sap-icon://save"/>
 		</endButton>

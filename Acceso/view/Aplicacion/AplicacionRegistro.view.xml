@@ -51,6 +51,8 @@
 						<core:Item text="Control" key="C"/> 
 					</items>
 				</Select>
+				<Label text="Codigo" />
+				<Input value="{modelAcceso>/oAplicacionNuevo/sCodigo}"/>
 				<Label text="Nombre" />
 				<Input value="{modelAcceso>/oAplicacionNuevo/sNombre}" required="true"/> 
 				<Label text="Descripción" />

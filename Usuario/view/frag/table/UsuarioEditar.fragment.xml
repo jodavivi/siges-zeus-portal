@@ -1,0 +1,54 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	  <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmEditarUsuario"
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					adjustLabelSpan="false" 
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Codigo" />
+						<Text text="{modelAcceso>/oUsuarioSeleccionado/Codigo}" />   
+
+						<Label text="Tipo Usuario" />
+						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodTipoUsuario}"  
+						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-usuario' }]}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
+						</Select>
+						<Label text="Tipo Documento" />
+						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodTipoDocumento}"  
+						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-doc-persona' }]}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
+						</Select> 
+						<Label text="Numero Documento" />
+						<Input value="{modelAcceso>/oUsuarioSeleccionado/NumDocumento}" required="true"/>   
+						<Label text="Nombre" />
+						<Input value="{modelAcceso>/oUsuarioSeleccionado/Nombre}" required="true"/>   
+						<Label text="Apellido" />
+						<Input value="{modelAcceso>/oUsuarioSeleccionado/Apellido}" required="true"/>   
+						<Label text="Usuario" />
+						<Input enabled="false" value="{modelAcceso>/oUsuarioSeleccionado/Usuario}" required="true"/> 
+						<Label text="Email" />
+						<Input value="{modelAcceso>/oUsuarioSeleccionado/Email}" required="true"/>     
+						<Label text="Estado"/>
+						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodEstadoUsuario}" required="true">
+							<items>
+								<core:Item text="--Seleccionar--" key=""/>
+								<core:Item text="Activo" key="1"/>
+								<core:Item text="Desactivo" key="0"/> 
+							</items>
+						</Select>  
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+</core:FragmentDefinition>

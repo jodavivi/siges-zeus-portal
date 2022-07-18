@@ -97,6 +97,11 @@
 			"target": "usuario"
 		},
 		{
+			"pattern": "usuario/registro",
+			"name": "appUsuario4",
+			"target": "usuario"
+		},
+		{
 			"pattern": "maestra:?query:",
 			"name": "appMaestra",
 			"target": "maestra"

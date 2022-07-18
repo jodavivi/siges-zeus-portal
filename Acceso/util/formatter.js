@@ -1,6 +1,17 @@
 sap.ui.define([], function() {
   "use strict";
   return {
+    validarPermisoControl: function(permisos, control){
+    try {
+      if(permisos[control]){
+        return permisos[control];
+      }else{
+        return false;
+      } 
+    } catch (error) {
+      return false;
+    } 
+  },
     stateEstado: function(estado){
       var retorno; 
 

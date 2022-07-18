@@ -33,6 +33,7 @@ sap.ui.define([
 								sap.ui.core.BusyIndicator.show(0); 
 								var oAplicacionNueva = that.getView().getModel("modelAcceso").getProperty("/oAplicacionNuevo");
 								var oParam 					= {}; 
+								oParam.sCodigo 				= oAplicacionNueva.sCodigo;
 								oParam.sTipo 				= oAplicacionNueva.sTipo;
 								oParam.sNombre 				= oAplicacionNueva.sNombre;
 								oParam.sDescripcion 		= oAplicacionNueva.sDescripcion;

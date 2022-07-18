@@ -17,9 +17,13 @@ sap.ui.define([
 			oParam.oUsuarioNuevo 		= {};
 			oParam.aListaParametros 	= [];
 			oParam.aListaRoles			= [];
+			oParam.aListaRolesUsuario	= [];
+			oParam.aListaRolesUsuarioActual	= [];
+			oParam.aListaRolesUsuarioEditar = [];
 			oParam.oUsuarioSeleccionado = {};
 			oParam.iNumItems			= 0;
 			oParam.oEstadoClave			= {};
+			oParam.bActivar				= false;
 			var oModel       = new JSONModel(oParam);
 			return oModel;
 		  },

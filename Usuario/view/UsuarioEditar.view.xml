@@ -23,56 +23,28 @@
 			</Toolbar>
 		</customHeader>
 		<content> 
-			 <VBox class="sapUiSmallMargin">
-				<f:SimpleForm  
-					id ="frmEditarUsuario"
-					editable="true"
-					layout="ResponsiveGridLayout"
-					title="Editar Usuario" 
-					adjustLabelSpan="false" 
-					singleContainerFullSize="false" >
-					<f:content> 
-						<Label text="Codigo" />
-						<Text text="{modelAcceso>/oUsuarioSeleccionado/Codigo}" />   
-
-						<Label text="Tipo Usuario" />
-						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodTipoUsuario}"  
-						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
-        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-usuario' }]}">
-							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
-						</Select>
-						<Label text="Tipo Documento" />
-						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodTipoDocumento}"  
-						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
-        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-doc-persona' }]}">
-							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
-						</Select> 
-						<Label text="Numero Documento" />
-						<Input value="{modelAcceso>/oUsuarioSeleccionado/NumDocumento}" required="true"/>   
-						<Label text="Nombre" />
-						<Input value="{modelAcceso>/oUsuarioSeleccionado/Nombre}" required="true"/>   
-						<Label text="Apellido" />
-						<Input value="{modelAcceso>/oUsuarioSeleccionado/Apellido}" required="true"/>   
-						<Label text="Usuario" />
-						<Input enabled="false" value="{modelAcceso>/oUsuarioSeleccionado/Usuario}" required="true"/> 
-						<Label text="Email" />
-						<Input value="{modelAcceso>/oUsuarioSeleccionado/Email}" required="true"/>   
-						<Label text="Rol" />
-						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/UsuarioRol/0/CodRol}"  
-						required="true" items="{ path: 'modelAcceso>/aListaRoles', sorter: { path: 'Codigo' }}">
-							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Nombre}" />
-						</Select>   
-						<Label text="Estado"/>
-						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodEstadoUsuario}" required="true">
-							<items>
-								<core:Item text="--Seleccionar--" key=""/>
-								<core:Item text="Activo" key="1"/>
-								<core:Item text="Desactivo" key="0"/> 
-							</items>
-						</Select>  
-					</f:content>
-				</f:SimpleForm>
-			</VBox>
+			
+<IconTabBar 
+				id		=	"iconTabUsuarioRegistro" 
+				class	=	"sapUiResponsiveContentPadding"  
+				select	=	"onPressTabUsuarioRegistro">
+				<items> 
+					<!-- Pestaña Datos usario -->
+					<IconTabFilter 
+						icon	=	"sap-icon://hint" 
+						text	=	"Usuario" 
+						class	=	"colortabs"  
+						key		=	"1">
+						<core:Fragment fragmentName="com.telcomdataperu.app.Usuario.view.frag.table.UsuarioEditar" type="XML"></core:Fragment>
+					</IconTabFilter>
+					
+					<!-- Pestaña Roles -->
+					<IconTabFilter icon="sap-icon://list" enabled="{modelAcceso>/bTabActivar}" text="Rol" class="colortabs" key="2">
+						<core:Fragment fragmentName="com.telcomdataperu.app.Usuario.view.frag.table.UsuarioRolEditar" type="XML"></core:Fragment>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			
 		</content>
 		<footer>
 			<Toolbar>

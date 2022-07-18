@@ -27,9 +27,10 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.modelTablaGenerica(), "modelTablaGenerica");
-			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data);
+			var oInfoUsuario = JSON.parse(UtilUi.decodeJwt(JSON.parse(localStorage.login).Token).data).UsuarioEmpresa;
+			var oEmpresaSeleccionada = JSON.parse(localStorage.empresa);  
 			this.setModel(models.modelPermisosApp(), "modelPermisosApp"); 
-			this.getModel("modelPermisosApp").setProperty("/sPermisosApp",oInfoUsuario.UsuarioPermisos); 
+			this.getModel("modelPermisosApp").setProperty("/sPermisosApp",oInfoUsuario[oEmpresaSeleccionada.CodEmpresa]["Control"]); 
 			
 			var s = $(document).height() -48;
 			$(".prueba").height(s + 'px'); 

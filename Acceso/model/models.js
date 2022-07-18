@@ -60,7 +60,28 @@ sap.ui.define([
 			oParam.aListaAplicacionesSeleccion = [];
 			var oModel            = new JSONModel(oParam);
 			return oModel;
-		  }
+		  },
+		  modelPermisosApp:function(){
+			var oParam           = {};
+			oParam.sPermisosApp  = {}; 
+			oParam.sBtnAplicacionRegistrar 	 = 'C0000015';
+			oParam.sBtnAplicacionActualizar 	 = 'C0000016';
+			oParam.sBtnAplicacionEliminar 	 = 'C0000017';
+			oParam.sBtnGrupoRegistrar	 		 = 'C0000018'; 
+			oParam.sBtnGrupoActualizar	 	 = 'C0000019'; 
+			oParam.sBtnGrupoEiminar	 		 = 'C0000020'; 
+			oParam.sBtnAsignarAplicacion 	 	 = 'C0000021'; 
+			oParam.sBtnEliminarAplicacion 	 = 'C0000022';  
+			oParam.sBtnRolRegistrar 	 = 'C0000023';
+			oParam.sBtnRolActualizar 	 = 'C0000024';
+			oParam.sBtnRolEliminar 	 	= 'C0000025';
+			oParam.sBtnAsignarControl 	 = 'C0000026';
+			oParam.sBtnAsinarEliminar 	 = 'C0000027';
+
+			var oModel           = new JSONModel(oParam);
+			  var oModel           = new JSONModel(oParam);
+			  return oModel;
+			}
 
 	};
 });

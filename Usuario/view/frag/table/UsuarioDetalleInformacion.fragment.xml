@@ -36,8 +36,6 @@
 						<Text text="{modelAcceso>/oUsuarioSeleccionado/Usuario}" required="true"/> 
 						<Label text="Email" />
 						<Text text="{modelAcceso>/oUsuarioSeleccionado/Email}" required="true"/>   
-						<Label text="Rol" />    
-						<Text text="{modelAcceso>/oUsuarioSeleccionado/UsuarioRol/0/Rol}" required="true"/>
 						<Label text="Estado"/> 
 						<Text text="{modelAcceso>/oUsuarioSeleccionado/EstadoUsuario}" required="true"/>
 					</f:content>

@@ -49,10 +49,24 @@
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Grupo" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnGrupoEiminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onPressEliminarGrupo"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
 							tooltip		=	"Crear Grupo" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnGrupoRegistrar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onPressCrearGrupo"  />
 					</OverflowToolbar>
 				</ui:extension>
@@ -64,7 +78,15 @@
 					</ui:Column>
 					<ui:Column width="2.5rem" hAlign="Center"> 
 						<ui:template>
-							<core:Icon press="onPressEditarGrupo"  size="1.2rem"  src="sap-icon://edit"/>
+							<core:Icon press="onPressEditarGrupo" 
+							visible		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnGrupoActualizar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+							 size="1.2rem"  src="sap-icon://edit"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column filterProperty="Id" sortProperty="Id" width="4rem">
@@ -137,10 +159,24 @@
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Aplicacion" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnEliminarAplicacion'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onPressEliminarPagAsignada"  />
 						<Button 
 							icon		=	"sap-icon://add-product" 
 							tooltip		=	"Agregar Aplicacion" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnAsignarAplicacion'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"fnBuscarPaginasSinAgregar"  />
 					</OverflowToolbar>
 				</ui:extension>

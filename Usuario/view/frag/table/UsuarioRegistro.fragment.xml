@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmRegistroUsuario"
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					adjustLabelSpan="false" 
+					singleContainerFullSize="false" >
+					<f:content> 
+						<Label text="Tipo Usuario" />
+						<Select  selectedKey="{modelAcceso>/oUsuarioNuevo/sCodTipoUsuario}"  
+						required="true"  items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-usuario' }]}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
+						</Select> 
+						<Label text="Usuario" />
+						<Input required="true"  
+								valueLiveUpdate="true"   placeholder="Ingresar Usuario"
+								liveChange="onLiveChangeUsuario"  value="{modelAcceso>/oUsuarioNuevo/sUsuario}" 
+								id="txtBuscarUsuario"  />
+						<Button id="idBtnBuscarUsuario" icon="sap-icon://search" press="buscarUsuario" >
+							<layoutData>
+								<l:GridData span="XL1 L2 M2 S4" />
+							</layoutData>
+						</Button>	   
+						<Label text="Tipo Documento" />
+						<Select enabled = "{modelAcceso>/bActivar}"  selectedKey="{modelAcceso>/oUsuarioNuevo/sCodTipoDocumento}"  
+						required="true" items="{ path: 'modelAcceso>/aListaParametros', sorter: { path: 'Codigo' }  ,
+        filters: [{ path: 'CodigoTabla', operator: 'EQ', value1: 'tipo-doc-persona' }]}">
+							<core:Item key="{modelAcceso>Codigo}" text="{modelAcceso>Campo1}" />
+						</Select> 
+						<Label text="Numero Documento" />
+						<Input enabled = "{modelAcceso>/bActivar}" value="{modelAcceso>/oUsuarioNuevo/sNumDocumento}" required="true"/>   
+						<Label text="Nombre" />
+						<Input enabled = "{modelAcceso>/bActivar}" value="{modelAcceso>/oUsuarioNuevo/sNombre}" required="true"/>   
+						<Label text="Apellido" />
+						<Input enabled = "{modelAcceso>/bActivar}" value="{modelAcceso>/oUsuarioNuevo/sApellido}" required="true"/>   
+						
+						<Label text="Email" />
+						<Input enabled = "{modelAcceso>/bActivar}" value="{modelAcceso>/oUsuarioNuevo/sEmail}" required="true"/>   
+						  
+						<Label text="Estado"/>
+						<Select  enabled = "{modelAcceso>/bActivar}" selectedKey="{modelAcceso>/oUsuarioNuevo/iCodEstado}" required="true">
+							<items>
+								<core:Item text="--Seleccionar--" key=""/>
+								<core:Item text="Activo" key="1"/>
+								<core:Item text="Desactivo" key="0"/> 
+							</items>
+						</Select>  
+					</f:content>
+				</f:SimpleForm>
+			</VBox> 
+</core:FragmentDefinition>

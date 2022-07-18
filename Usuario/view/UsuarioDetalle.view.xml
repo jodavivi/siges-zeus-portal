@@ -29,8 +29,11 @@
 				expanded="{device>/isNoPhone}"
 				class="sapUiResponsiveContentPadding">
 				<items>
-					<IconTabFilter icon="sap-icon://hint" text="Detalle" key="info">
+					<IconTabFilter icon="sap-icon://hint" text="Usuario" key="info">
 						<core:Fragment fragmentName="com.telcomdataperu.app.Usuario.view.frag.table.UsuarioDetalleInformacion" type="XML"></core:Fragment>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://hint" text="Rol" key="info">
+						<core:Fragment fragmentName="com.telcomdataperu.app.Usuario.view.frag.table.UsuarioRolConsulta" type="XML"></core:Fragment>
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://action-settings" text="Opciones" key="attachments">
 						<core:Fragment fragmentName="com.telcomdataperu.app.Usuario.view.frag.table.UsuarioDetalleOpciones" type="XML"></core:Fragment>

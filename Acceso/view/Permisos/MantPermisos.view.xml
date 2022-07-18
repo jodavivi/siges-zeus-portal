@@ -50,10 +50,24 @@
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Rol" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnRolEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onPressEliminarRol"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
 							tooltip		=	"Agregar Rol" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnRolRegistrar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onPressCrearRol"  />
 					</OverflowToolbar>
 				</ui:extension>
@@ -65,7 +79,14 @@
 					</ui:Column>
 					<ui:Column width="2.5rem" hAlign="Center"> 
 						<ui:template>
-							<core:Icon press="onPressEditarRol"  size="1.2rem"  src="sap-icon://edit"/>
+							<core:Icon press="onPressEditarRol" 
+							visible		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnRolActualizar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}" size="1.2rem"  src="sap-icon://edit"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column filterProperty="Id" sortProperty="Id" width="3rem">
@@ -133,10 +154,24 @@
 							icon		=	"sap-icon://delete" 
 							type		=	"Reject"
 							tooltip		=	"Eliminar Aplicaciones" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnAsinarEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onPressEliminarAplicacionxRol"  />
 						<Button 
 							icon		=	"sap-icon://add-document" 
 							tooltip		=	"Registrar Aplicación" 
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnAsignarControl'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
 							press		=	"onConsultarAplicacionSinAsignar"  />
 					</OverflowToolbar>
                 </ui:extension>
