@@ -174,7 +174,7 @@ sap.ui.define([
                     if(result.iCode ===1){
                       UtilPopUps.validarRespuestaServicio(result,'Usuarios eliminados correctamente',function(e){});
                       //Recargamos los usuarios
-                      self.onFnConsultarUsuario(self);  
+                      self.onFnConsultarUsuario();  
                       var oTable1 = self.getView().byId("tblUsuarios");
                       oTable1.clearSelection(); 
                       self.getView().getModel("modelAcceso").refresh();

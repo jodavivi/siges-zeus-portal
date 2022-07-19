@@ -152,18 +152,18 @@
 								<Text text="{modelAcceso>Email}" wrapping="false" />
 							</ui:template>
 						</ui:Column> 
-						<ui:Column width="9rem"    label="Rol"   > 
+						<!--<ui:Column width="9rem"    label="Rol"   > 
 							<ui:template>
 								<Text text="{modelAcceso>UsuarioRol/0/Rol}" wrapping="false" />
 							</ui:template>
-						</ui:Column> 
+						</ui:Column> -->
 						<ui:Column width="8rem">
 							<Label text="Estado" />
 							<ui:template>
 							<ObjectStatus 
-								text    =   "{modelAcceso>EstadoUsuario}"
-								state   =   "{	path		:	'modelAcceso>CodEstadoUsuario', formatter	:	'.formatter.stateEstado'}"   
-								icon    =   "{	path		:	'modelAcceso>CodEstadoUsuario', formatter	:	'.formatter.iconEstado'}"/> 
+								text    =   "{modelAcceso>UsuarioEmpresa/0/EstadoItem}"
+								state   =   "{	path		:	'modelAcceso>UsuarioEmpresa/0/CodEstadoItem', formatter	:	'.formatter.stateEstado'}"   
+								icon    =   "{	path		:	'modelAcceso>UsuarioEmpresa/0/CodEstadoItem', formatter	:	'.formatter.iconEstado'}"/> 
 						</ui:template>
 						</ui:Column> 
 						

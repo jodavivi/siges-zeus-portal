@@ -56,7 +56,7 @@ sap.ui.define([
             if(!sError){
               UtilPopUps.messageBox("¿Desea actualizar el usuario?", 'c', function(bConfirmacion) {
               if (bConfirmacion) {
-				//sap.ui.core.BusyIndicator.show(0); 
+				sap.ui.core.BusyIndicator.show(0); 
 				var aParametros = that.getView().getModel("modelAcceso").getProperty("/aListaParametros");
 				var aListaRoles = that.getView().getModel("modelAcceso").getProperty("/aListaRoles");
 				var oUsuarioEditar = that.getView().getModel("modelAcceso").getProperty("/oUsuarioSeleccionado");
@@ -102,12 +102,12 @@ sap.ui.define([
 					);
 				 });
 
-				oParam.iCodEstadoUsuario	= parseInt(oUsuarioEditar.CodEstadoUsuario, 10);   
+				oParam.iCodEstadoUsuario	= parseInt(oUsuarioEditar.UsuarioEmpresa[0].CodEstadoItem, 10);   
 				if(oParam.iCodEstadoUsuario === 1){
 					oParam.sEstadoUsuario = "Activo";
 				}else{
 					oParam.sEstadoUsuario = "Desactivo";
-				}  
+				}   
 				UsuarioService.actualizarUsuario(oParam, function(result) {  
 					sap.ui.core.BusyIndicator.hide();
 					UtilPopUps.validarRespuestaServicio(result,'El Usuario se actualizó correctamente',function(e){});

@@ -41,7 +41,7 @@
 						<Label text="Email" />
 						<Input value="{modelAcceso>/oUsuarioSeleccionado/Email}" required="true"/>     
 						<Label text="Estado"/>
-						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/CodEstadoUsuario}" required="true">
+						<Select  selectedKey="{modelAcceso>/oUsuarioSeleccionado/UsuarioEmpresa/0/CodEstadoItem}" required="true">
 							<items>
 								<core:Item text="--Seleccionar--" key=""/>
 								<core:Item text="Activo" key="1"/>
