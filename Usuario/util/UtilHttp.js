@@ -18,6 +18,12 @@ sap.ui.define([], function () {
 			request.sTerminal = "127.0.0.1";
 			return request;
 		},
+		actualizarToken: function (refreshToken) {
+			var oTokenActual = JSON.parse(localStorage.login);
+			oTokenActual.Token = refreshToken;
+			localStorage.setItem("login", JSON.stringify(oTokenActual));
+			return;
+		},
 	 
 		httpGet: function (path, appId, callback, context) {
 			var that = this;
@@ -30,8 +36,8 @@ sap.ui.define([], function () {
 				beforeSend: function () {
 					//sap.ui.core.BusyIndicator.show(0);
 				},
-				success: function (result, status, xhr) {
-					//that.actualizarToken(xhr.getResponseHeader("tokens"));
+				success: function (result, status, xhr) { 
+					that.actualizarToken(xhr.getResponseHeader("RefreshToken"));
 					return callback(result);
 				},
 				error: function (error) {
@@ -47,8 +53,8 @@ sap.ui.define([], function () {
 						}
 					});
 				},
-				complete: function () {
-					//sap.ui.core.BusyIndicator.hide();
+				complete: function (XMLHttpRequest, textStatus) {
+					//sap.ui.core.BusyIndicator.hide(); 
 				}
 			});
 
@@ -66,7 +72,7 @@ sap.ui.define([], function () {
 					//sap.ui.core.BusyIndicator.show(0);
 				},
 				success: function (result, status, xhr) {
-				//	that.actualizarToken(xhr.getResponseHeader("tokens"));
+					that.actualizarToken(xhr.getResponseHeader("RefreshToken"));
 					return callback(result);
 				},
 				error: function (error) {
@@ -99,7 +105,7 @@ sap.ui.define([], function () {
 				data: JSON.stringify(data),
 				contentType: "application/json",
 				success: function (result, status, xhr) {
-				//	that.actualizarToken(xhr.getResponseHeader("tokens"));
+					that.actualizarToken(xhr.getResponseHeader("RefreshToken"));
 					return callback(result);
 				},
 				error: function (error) {
@@ -131,7 +137,7 @@ sap.ui.define([], function () {
 				data: JSON.stringify(data),
 				contentType: "application/json",
 				success: function (result, status, xhr) {
-				//	that.actualizarToken(xhr.getResponseHeader("tokens"));
+					that.actualizarToken(xhr.getResponseHeader("RefreshToken"));
 					return callback(result);
 				},
 				error: function (error) {
