@@ -160,6 +160,16 @@
 			"pattern": "cliente:?query:",
 			"name": "appCliente",
 			"target": "targetCliente"
+		},
+		{
+			"pattern": "cajarapida:?query:",
+			"name": "appCajaRapida",
+			"target": "targetCajaRapida"
+		},
+		{
+			"pattern": "cajarapida/venta",
+			"name": "appCajaRapida2",
+			"target": "targetCajaRapida"
 		}],
 			"targets": {
 				"home": {
@@ -214,6 +224,12 @@
 					"viewName": "ClienteComponent",
 					"viewId": "ClienteComponent",
 					"viewLevel": 8
+				  },
+				  "targetCajaRapida": {
+					"transition": "slide",
+					"viewName": "CajaRapidaComponent",
+					"viewId": "CajaRapidaComponent",
+					"viewLevel": 9
 				  }
 			}
 		}

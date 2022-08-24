@@ -1,0 +1,82 @@
+<mvc:View 
+	controllerName	=	"com.telcomdataperu.app.CajaRapida.controller.CajaRapida"  
+	xmlns:html		=	"http://www.w3.org/1999/xhtml"
+	xmlns:mvc		=	"sap.ui.core.mvc" 
+	displayBlock	=	"true" 
+	xmlns			=	"sap.m" 
+	xmlns:f			=	"sap.ui.layout.form" 
+	xmlns:core		=	"sap.ui.core" 
+	xmlns:l			=	"sap.ui.layout"
+	xmlns:ui		=	"sap.ui.table">
+	<Page 
+		id			=	"masterCajaRapida"   
+		class		= "appMaestra"
+		showHeader	=	"true">
+		
+		<customHeader>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"VENTA RAPIDA" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+				
+			</Toolbar>
+		</customHeader>
+		
+		<!-- Barra de busqueda -->
+		<subHeader>
+			<Toolbar>
+				<SearchField 
+				    id					= "txtBuscarProducto"
+					width				=	"100%" 
+					placeholder			= "{ path : 'modelCajaRapida>/oDatosDefault/sFiltroProductoDesc'}"
+					search				=	"onBtnBuscarProducto" 
+					showSearchButton	=	"true"/>
+					<ToolbarSpacer/>
+				<Button icon="sap-icon://filter" tooltip="Ordenar" type="Ghost" press="onPressFiltroBuscarProducto"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content> 
+			<ScrollContainer height="100%" vertical="true">
+								<List id="listTablaMaestraProducto" updateStarted="MasterSegmented" updateFinished="selectFirstItem" items="{ path : 'modelCajaRapida>/aProductoDisponible' , sorter: { path: 'Id', descending: false }}" mode="SingleSelectMaster" select="onSelectProducto" class="marcoimagenheader" enableBusyIndicator="true">
+									<items>
+										<ObjectListItem 
+										icon = "sap-icon://add-product"
+										title="{modelCajaRapida>Descripcion}" 
+										type="Active"
+										number="{
+											parts:[{path:'modelCajaRapida>ProductoPrecio/PrecioVenta'},{path:'modelCajaRapida>ProductoPrecio/Moneda'}],
+											type: 'sap.ui.model.type.Currency',
+											formatOptions: {showMeasure: false, groupingSeparator: ',', decimalSeparator : '.', minFractionDigits: 2, minIntegerDigits: 2}
+										}"
+										numberUnit="{modelCajaRapida>ProductoPrecio/Moneda}"
+										>
+										<firstStatus>
+											<ObjectStatus
+											text    =   "{	path		:	'modelCajaRapida>CantidadDisponible', formatter	:	'.formatter.textEstadoStock'}"
+											state   =   "{	path		:	'modelCajaRapida>CantidadDisponible', formatter	:	'.formatter.stateEstadoStock'}" />
+										</firstStatus>
+											<attributes>
+												<ObjectAttribute text="{modelCajaRapida>Nombre} - {modelCajaRapida>Codigo}"/> 
+											</attributes>
+										</ObjectListItem>
+									</items>
+								</List>
+			</ScrollContainer>
+		</content>
+		
+		<footer>
+			<Toolbar>
+				<Button 
+					icon		=	"sap-icon://document" 
+					tooltip		=	"Nueva Venta" 
+					type		="Emphasized"
+					press		=	"onBtnAReiniciarCajaRapida"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://sort" visible="false" tooltip="Ordenar" type="Emphasized" press="onPressSortMaestro"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

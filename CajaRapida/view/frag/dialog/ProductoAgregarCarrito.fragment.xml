@@ -1,0 +1,87 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog  
+	 id = "dlgAgregarProductoCarrito"
+	 initialFocus    =   "txtCantidadProducto"
+	 contentWidth="25rem" 
+	 draggable       =   "true"
+	 verticalScrolling="false" 
+	 state="Information"> 
+	<customHeader>
+		<Bar> 
+		<contentMiddle>
+		 <Title text="AGREGAR PRODUCTO" />
+		</contentMiddle> 
+		<contentRight>
+			<Button 
+				text="Eliminar" 
+				icon="sap-icon://delete" 
+				visible = "{modelCajaRapida>/oControles/btnMostrarEliminarCarrito}" 
+				type="Negative"
+				press="onBtnEliminarProductoCarrito"
+				></Button>
+		</contentRight>		
+		</Bar>
+		</customHeader>
+		<content>
+		<f:Form  
+			editable="false"> 
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+					 
+						<f:FormElement label="Producto">
+							<f:fields>
+								<Text text="{modelCajaRapida>/oProductoSeleccionado/Nombre}"   />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Descripción">
+							<f:fields>
+								<Text text="{modelCajaRapida>/oProductoSeleccionado/Descripcion}"   />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Precio">
+							<f:fields>
+								<Text text="{modelCajaRapida>/oProductoSeleccionado/ProductoPrecio/Moneda} {modelCajaRapida>/oProductoSeleccionado/ProductoPrecio/PrecioVenta}"   />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Stock">
+							<f:fields>
+								<Text text="{modelCajaRapida>/oProductoSeleccionado/CantidadDisponible}"   />
+							</f:fields>
+						</f:FormElement> 
+						<f:FormElement label="Cantidad">
+							<f:fields> 
+								<StepInput id="txtCantidadProducto" placeholder="Ingresar Cantidad" min="1" max="{modelCajaRapida>/oProductoSeleccionado/CantidadDisponible}" value="{modelCajaRapida>/oProductoSeleccionado/Cantidad}" ></StepInput>
+							</f:fields>
+						</f:FormElement> 
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form> 
+		</content> 
+		<buttons>
+			<Button text="Cerrar" press="onBtnCerrarAgregarProductoCarrito" icon="sap-icon://decline" type="Reject" />
+			<Button text="{modelCajaRapida>/oControles/btnAgregarCarrito}" icon = "sap-icon://add-product" press="onBtnAgregarProductoCarrito" type="Emphasized"/>
+			 
+		</buttons> 
+	</Dialog>
+</core:FragmentDefinition>

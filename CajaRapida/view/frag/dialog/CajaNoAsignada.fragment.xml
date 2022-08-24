@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Caja no aperturada" contentWidth="20rem" verticalScrolling="false" state="Warning">
+		<buttons>
+			<!--<Button text="Close" press="onDialogClose"/>-->
+		</buttons>
+		<IllustratedMessage title="No cuenta con caja asignada para este horario" description="Por favor consulte con su supervisor." illustrationType="sapIllus-EmptyCalendar" />
+	</Dialog>
+</core:FragmentDefinition>

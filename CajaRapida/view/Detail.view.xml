@@ -1,0 +1,81 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.CajaRapida.controller.Detail"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	 <Page 
+		id		=	"detailCajaRapida"  
+		showHeader	=	"false"
+		class	=	"sapUiStdPage"> 
+		<content> 
+		<ObjectHeader
+				title="Cliente" 
+				backgroundDesign="Solid"
+				number="{ path : 'modelCajaRapida>/oCarritoVenta/fTotalVenta', formatter	:	'.formatter.redondear2Decimal'}"
+				numberUnit="{ path : 'modelCajaRapida>/oCarritoVenta/sMoneda'}" >
+				<attributes>
+					<ObjectAttribute title="T.C" text="{ path : 'modelCajaRapida>/oTipoCambio/Campo1'}" /> 
+				</attributes>
+				<statuses>
+					<ObjectStatus title="Status" text="OK" state="Success" />
+				</statuses>
+			</ObjectHeader>
+			<IconTabBar 
+				id		=	"tabDetalleCarrito" 
+				class	=	"sapUiResponsiveContentPadding" 
+				selectedKey = "1"
+				select	=	"onPressTabDetalle">
+				<items> 
+					<!-- Pestaña Pedido -->
+					<IconTabFilter  
+						text	=	"PEDIDO" 
+						class	=	"colortabs" 
+						key		=	"1">
+						<content>
+						<ScrollContainer height="100%" vertical="true">
+						<core:Fragment fragmentName="com.telcomdataperu.app.CajaRapida.view.frag.table.carritoCompra" type="XML"></core:Fragment>
+						</ScrollContainer>
+						</content>
+					</IconTabFilter>
+					<IconTabSeparator icon="sap-icon://process" />
+					<!-- Pestaña Cliente -->
+					<IconTabFilter  text="CLIENTE" class="colortabs" key="2">
+						<content>
+							<ScrollContainer height="100%" vertical="true">
+								<core:Fragment fragmentName="com.telcomdataperu.app.CajaRapida.view.frag.table.datosCliente" type="XML"></core:Fragment>
+							</ScrollContainer>
+						</content>
+					</IconTabFilter> 
+					<IconTabSeparator icon="sap-icon://process" />
+					<!-- Pestaña Pago -->
+					<IconTabFilter  text="PAGO" class="colortabs" key="3"> 
+					<content>
+							<ScrollContainer height="100%" vertical="true">
+								<core:Fragment fragmentName="com.telcomdataperu.app.CajaRapida.view.frag.table.pagoCliente" type="XML"></core:Fragment>
+							</ScrollContainer>
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>  
+				 <Button 
+busyIndicatorDelay	=	"0"
+icon	=	"sap-icon://print"
+text    = "Imprimir"
+type	=	"Success"
+press	=	"onImpresion"
+enabled =   "{path: 'modelCajaRapida>/oControles/btnImprimir'}"/>
+
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
