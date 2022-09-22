@@ -16,9 +16,11 @@ sap.ui.define([
 	"../util/UtilHttp",
 	"../servicio/ClienteService",
 	"sap/ui/core/Fragment", 
+	"../servicio/VentaService",
+	'../util/plantillaDocumento',
 ], function (Controller, BaseController, Filter, FilterOperator, 
 	JSONModel, Models, Dialog, Button, Text, MessageBox, MessageToast,Sorter, 
-	UtilValidation, UtilPopUps, UtilHttp, ClienteService, Fragment ) {
+	UtilValidation, UtilPopUps, UtilHttp, ClienteService, Fragment, VentaService, plantillaDocumento ) {
 	"use strict";
 	return BaseController.extend("com.telcomdataperu.app.CajaRapida.controller.Detail", {
 		onInit: function () { 
@@ -28,28 +30,12 @@ sap.ui.define([
 		_onRouteMatched: function(event) { 
 			if(this.getView().byId("tabDetalleCarrito")){
 				this.getView().byId("tabDetalleCarrito").setSelectedKey("1");
-			} 
-		},
-		onAfterRendering: function(){
-			this.getView().getModel("modelCajaRapida").setProperty("/oDatosDefault/bPantallDetalle", true); 
+			}  
 			sap.ui.core.BusyIndicator.hide();
-			var oDatosDefault = this.getView().getModel("modelCajaRapida").getProperty("/oDatosDefault"); 
-			var oDocVentaDefault = this.getView().getModel("modelCajaRapida").getProperty("/oDocVenta");
-			if(!oDocVentaDefault.sCodTipoIdentificacion){
-				var oTipoIdentificacionDefault = {};
-				var aTipoIdentificacion = this.getView().getModel("modelCajaRapida").getProperty("/aTipoIdentificacion");
-				for (let index = 0; index < aTipoIdentificacion.length; index++) {
-					const element = aTipoIdentificacion[index];
-					if(element.Campo2 === oDatosDefault.sTipoDocIdent){
-						oTipoIdentificacionDefault = element;
-						break;
-					}
-				}
-				this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/sCodTipoIdentificacion", oTipoIdentificacionDefault.Codigo);
-			}
-			if(oDocVentaDefault.sCodTipoDocVenta){
-				this.onFnBuscarTipoDocxDocVenta();
-			} 
+		},
+		onAfterRendering: function(){ 
+			sap.ui.getCore().byId(this.createId("listTablaCarrito"));
+			this.onValidarAperturaCaja();
 		},
 		onPressTabDetalle: function(oEvent){
 			var self        = this; 
@@ -446,6 +432,182 @@ sap.ui.define([
 				 this.getView().getModel("modelCajaRapida").setProperty("/oPagoTarjeta/sDigitosTarjeta", txtNumTarjetaCliente);
 			} 
 			this.getView().getModel("modelCajaRapida").refresh(true); 
+		},
+		onImpresion: function(){
+			try {
+				var self = this;
+				
+				UtilPopUps.messageBox("¿Desea generar el documento de venta?", 'c', function(bConfirmacion) {
+					if (bConfirmacion) { 
+						self.onFnGenerarDocumento();
+					}else{ 
+					}
+				});  
+			} catch (error) {
+				console.log(error);
+				sap.ui.core.BusyIndicator.hide();
+			}
+		},
+		onFnGenerarDocumento: function(){
+			try{  
+				var that        = this; 
+				var oDocVenta = that.getView().getModel("modelCajaRapida").getProperty("/oDocVenta");
+				var oClienteVenta = that.getView().getModel("modelCajaRapida").getProperty("/oClienteVenta");
+				var oTipoCambio = that.getView().getModel("modelCajaRapida").getProperty("/oTipoCambio");
+				var oPagoEfectivo = that.getView().getModel("modelCajaRapida").getProperty("/oPagoEfectivo");
+				var aPagoCarrito = that.getView().getModel("modelCajaRapida").getProperty("/aPagoCarrito");
+				var aCarritoCompra =  that.getView().getModel("modelCajaRapida").getProperty("/aCarritoCompra");
+				var oCarritoVenta = that.getView().getModel("modelCajaRapida").getProperty("/oCarritoVenta");
+
+				var oParam 		=  {};
+				oParam.oPedido	=  {};
+				
+				if(oClienteVenta.Nombre){
+					var sNombre = "";
+					if(oClienteVenta.Apellido){
+						sNombre = oClienteVenta.Nombre+ ', ' + oClienteVenta.Apellido; 
+					}else{
+						sNombre = oClienteVenta.Nombre;
+					}
+					oParam.oPedido.sClienteNombre = sNombre; 
+					oParam.oPedido.sClienteNumIdentificacion = oDocVenta.sNumDocCliente;
+					oParam.oPedido.sDireccionCliente = oClienteVenta.Direccion;
+					oParam.oPedido.sDireccionEntrega = oClienteVenta.Direccion; 
+				}else{
+					oParam.oPedido.sClienteNumIdentificacion = "00000000";
+					oParam.oPedido.sClienteNombre = "Varios"; 
+				} 
+				oParam.oPedido.sCanalPedido = "CAJARAPIDA";
+				oParam.oPedido.dFechaEntrega = new Date(); 
+				oParam.oPedido.fTotal = oCarritoVenta.fTotalVenta; 
+				oParam.aPedidoDetalle	=  [];
+				if(aCarritoCompra){
+					aCarritoCompra.forEach(function(e){
+						oParam.aPedidoDetalle.push(
+							{
+								"sCodProducto":e.Codigo,
+								"sProducto":e.Nombre,
+								"sProductoPresentacion":e.Presentacion,
+								"fCantidad":parseFloat(e.Cantidad),
+								"sUnidadMedida": e.UnidadMedida,
+								"fPrecio": parseFloat(e.ProductoPrecio.PrecioVenta),
+								"fDescuento":0, 
+								"fTotal":parseFloat(e.TotalPrecioProducto )
+							} 
+						);
+					});
+				} 
+				oParam.oVenta =  {}; 
+				
+				oParam.oVenta.sTipoDocumentoVentaCod=oDocVenta.oTipoDocVentaActual.Campo2;
+				oParam.oVenta.sTipoDocumentoVenta=oDocVenta.oTipoDocVentaActual.Campo1;
+				oParam.oVenta.sClienteTipoDocCod=oDocVenta.oTipoIdentificacionActual.Campo2;
+				oParam.oVenta.sClienteTipoDoc=oDocVenta.oTipoIdentificacionActual.Campo1;
+				if(!oClienteVenta.Nombre){
+					oParam.oVenta.sClienteNroIdentificacion="00000000";
+					oParam.oVenta.sClienteRazonSocial="Varios"; 
+					oParam.oVenta.sClienteDireccion="N/A";
+				} else{
+					oParam.oVenta.sClienteNroIdentificacion=oDocVenta.sNumDocCliente;
+					oParam.oVenta.sClienteRazonSocial=sNombre; 
+					oParam.oVenta.sClienteDireccion=oClienteVenta.Direccion;
+					oParam.oVenta.sClienteTelefono=oClienteVenta.Telefono;
+					oParam.oVenta.sClienteEmail=oClienteVenta.Email;
+				} 
+				
+				oParam.oVenta.sMoneda=oCarritoVenta.sMoneda;  
+				oParam.oVenta.fMontoTotal=parseFloat(oCarritoVenta.fTotalVenta);
+				
+				oParam.oVenta.fMontoVuelto= Math.round(parseFloat(oCarritoVenta.fTotalVuelto) *10)/10;
+				oParam.oVenta.fDescuento=0;
+				
+				oParam.aVentaPago		=  [];
+				if(aPagoCarrito){
+					var totalPagoRecibido = 0;
+					var aFormasPagosRecibido = [];
+					aPagoCarrito.forEach(function(e){
+						totalPagoRecibido = totalPagoRecibido + parseFloat(e.fImporteTotal);
+						aFormasPagosRecibido.push(e.sFormaPago);
+						oParam.aVentaPago.push(
+							{
+								"iItem":e.iPosicion,
+								"sCodFormaPago":e.sCodFormaPago,
+								"sFormaPago":e.sFormaPago,
+								"sCodBanco":e.sCodBancoOperador,
+								"sBanco":e.sBanco,
+								"sNumTarjeta":e.sDigitosTarjeta,
+								"sNumOperacion":e.sNumReferencia,
+								"sMoneda":e.sMoneda,
+								"fImporte":parseFloat(e.fImporte),
+								"fImporteTotal":parseFloat(e.fImporteTotal)
+							}
+						); 
+					});
+ 
+						var resultFormaPago = aFormasPagosRecibido.filter((item,index)=>{
+												return aFormasPagosRecibido.indexOf(item) === index;
+											});
+						if(resultFormaPago){
+							if(resultFormaPago.length > 1){
+								oParam.oVenta.sFormaPago="Varios"; 
+							}else{
+								oParam.oVenta.sFormaPago=resultFormaPago[0]; 
+							}
+						}  
+					oParam.oVenta.fMontoRecibido=totalPagoRecibido;
+					oParam.oVenta.fAjusteRedondeo=( Math.round( parseFloat(oCarritoVenta.fTotalVuelto) * 10 ) / 10) - parseFloat(oCarritoVenta.fTotalVuelto) 
+					oParam.oVenta.fAjusteRedondeo = Math.round(parseFloat(oParam.oVenta.fAjusteRedondeo) * 100)/100;
+				}
+					sap.ui.core.BusyIndicator.show(0);
+					VentaService.facturacionRapida(oParam, function(result) {  
+				  	if(result.iCode ===1){    
+					  that.generarDocumentoPDF(result.oResults); 
+					  UtilPopUps.validarRespuestaServicio(result,'Documento Generado: ' + result.oResults.sNumDocumentoVenta,function(e){
+						if(e.cerrar){
+							that.getView().getModel("modelCajaRapida").setProperty("/oControles/btnImprimir", false);
+							if(that.getView().byId("tabDetalleCarrito")){
+								that.getView().byId("tabDetalleCarrito").setSelectedKey("1");
+							  }   
+							  sap.ui.getCore().byId("cajarapidacomp---masterCajaRapidaViewId--txtBuscarProducto").focus();
+						}
+					  });
+					  that.onBtnALimpiarCajaRapida();
+					}else{    
+						UtilPopUps.validarRespuestaServicio(result,'Error al generar documento de venta',function(e){});
+				  	}  
+				  	
+				  	sap.ui.core.BusyIndicator.hide();
+					}, that); 
+				}catch(e){ 
+				  sap.ui.core.BusyIndicator.hide();
+				  console.log(e);
+				}
+		},
+		generarDocumentoPDF: function(oParam){
+
+			var self = this; 
+			var elementHTML = plantillaDocumento.generarPlantillaBoleta(oParam); 
+			var element = elementHTML;
+			const options = {
+				margin: 0.2,
+				filename: oParam.sNombreDocVenta +'.pdf', 
+				image:        { type: 'jpeg', quality: 1 },
+				html2canvas: { 
+					scale: 1
+				},
+				jsPDF: { 
+					unit: 'cm', 
+					format: [8,15], 
+					orientation: 'portrait' 
+				}
+			} 
+			html2pdf().from(element).set(options).output('dataurlnewwindow');  
+		},
+		onBtnALimpiarCajaRapida: function() { 
+			var self = this;  
+			var oParam = {}; 
+			self.onFnLimpiarVenta(); 
+			//self.navigation(self, "cajaRapidaRoute",oParam); 
 		}
 	});
 });

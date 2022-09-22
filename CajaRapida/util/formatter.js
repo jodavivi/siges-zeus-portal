@@ -86,13 +86,26 @@ sap.ui.define([], function() {
       return  nuevoFormat;
   } , 
   redondear2Decimal: function (num) {
+    if(!num){
+      return "0.00";
+    }
     var valor = +(Math.round(num + "e+2")  + "e-2"); 
     valor = valor.toFixed(2);
     const exp = /(\d)(?=(\d{3})+(?!\d))/g;
     const rep = '$1,';
     let arr = valor.toString().split('.');
     arr[0] = arr[0].replace(exp,rep);
-    return arr[1] ? arr.join('.'): arr[0]; 
+    var valorDecimal = arr[1] ? arr.join('.'): arr[0]; 
+    if(!valorDecimal){
+      valorDecimal = "0.00";
+    }
+    return valorDecimal;
+  } , 
+  valorInicial: function (num) {
+     if(!num){
+      return "0.00"
+     }
+    return num;
   } 
   };
 });

@@ -1,4 +1,5 @@
 <mvc:View  
+	id="viewCajaRapidaDetalle"
 	controllerName="com.telcomdataperu.app.CajaRapida.controller.Detail"  
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" 
@@ -22,9 +23,9 @@
 				<attributes>
 					<ObjectAttribute title="T.C" text="{ path : 'modelCajaRapida>/oTipoCambio/Campo1'}" /> 
 				</attributes>
-				<statuses>
+				<!--<statuses>
 					<ObjectStatus title="Status" text="OK" state="Success" />
-				</statuses>
+				</statuses>-->
 			</ObjectHeader>
 			<IconTabBar 
 				id		=	"tabDetalleCarrito" 

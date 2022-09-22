@@ -6,7 +6,8 @@ sap.ui.define([
     "../util/utilPopUps",
     '../util/UtilUi',
     "sap/ui/core/Fragment",
-  ], function(Controller, History, UIComponent, formatter, UtilPopUps, UtilUi, Fragment) {
+    "../servicio/AsignacionCajaService",
+  ], function(Controller, History, UIComponent, formatter, UtilPopUps, UtilUi, Fragment, AsignacionCajaService) {
     "use strict";
   
     return Controller.extend("com.telcomdataperu.app.CajaRapida.controller.BaseController", { 
@@ -126,9 +127,8 @@ sap.ui.define([
         self.getView().getModel("modelCajaRapida").refresh(true);
          
         self.navigation(self, "cajaRapidaVentaRoute",oParam);
-        
-        var bPantalleInicio = self.getView().getModel("modelCajaRapida").getProperty("/oDatosDefault/bPantallDetalle"); 
-        if(bPantalleInicio){
+        var listaProductos = sap.ui.getCore().byId("cajarapidacomp---masterCajaRapidaDetailViewId--listTablaCarrito");
+        if(listaProductos){
           sap.ui.core.BusyIndicator.hide();
         }
       },
@@ -171,7 +171,155 @@ sap.ui.define([
         } catch (error) {
           console.log(error);
         }
+      },
+      onFnLimpiarVenta:function(){
+        var self = this;
+        
+        self.getView().getModel("modelCajaRapida").setProperty("/aProductoDisponible", []);
+        self.getView().getModel("modelCajaRapida").setProperty("/oProductoSeleccionado", {}); 
+        self.getView().getModel("modelCajaRapida").setProperty("/aCarritoCompra", []);
+        
+        self.getView().getModel("modelCajaRapida").setProperty("/oCarritoVenta", {}); 
+        self.getView().getModel("modelCajaRapida").setProperty("/oClienteVenta", {});
+        self.getView().getModel("modelCajaRapida").setProperty("/oDocVenta", {});
+        self.getView().getModel("modelCajaRapida").setProperty("/aPagoCarrito", []);
+        
+        self.onFnCargarTipoIdentificacionDefault();
+        self.onFnCargarTipoDocumentoVentaDefault();
+        
+        self.getView().getModel("modelCajaRapida").refresh(true);
+      },
+      fnMostrarMensajeNoApertura:  function(){
+          // create value help dialog
+          if (!this._oDialogNoApertura) {
+            Fragment.load({
+              name: "com.telcomdataperu.app.CajaRapida.view.frag.dialog.CajaNoAsignada",
+              controller: this
+            }).then(function (oDialog) {
+              this._oDialogNoApertura = oDialog;
+    
+              this.getView().addDependent(this._oDialogNoApertura);
+    
+              this._oDialogNoApertura.open();
+            }.bind(this));
+          } else {
+            this._oDialogNoApertura.open();
+          }
+      },
+      fnMensajeTipoCambioNoEncontrado:  function(){
+          // create value help dialog
+          if (!this._oDialogNoTipoCambio) {
+            Fragment.load({
+              name: "com.telcomdataperu.app.CajaRapida.view.frag.dialog.TipoCambioNoFound",
+              controller: this
+            }).then(function (oDialog) {
+              this._oDialogNoTipoCambio = oDialog;
+    
+              this.getView().addDependent(this._oDialogNoTipoCambio);
+    
+              this._oDialogNoTipoCambio.open();
+            }.bind(this));
+          } else {
+            this._oDialogNoTipoCambio.open();
+          }
+      },
+      onFnValidarParametros: function(){
+        var self = this;  
+        var oCajaApertura = self.getView().getModel("modelCajaRapida").getProperty("/oCajaApertura"); 
+        if(!oCajaApertura.Id){
+          self.fnMostrarMensajeNoApertura();
+        } 
+        var oTipoCambio = self.getView().getModel("modelCajaRapida").getProperty("/oTipoCambio"); 
+        if(!oTipoCambio.Id){
+          self.fnMensajeTipoCambioNoEncontrado();
+        }
+      },
+      onFnCargarTipoIdentificacionDefault:function(){ 
+        this.getView().getModel("modelCajaRapida").setProperty("/oDatosDefault/bPantallDetalle", true);  
+			  var oDatosDefault = this.getView().getModel("modelCajaRapida").getProperty("/oDatosDefault"); 
+			  var oDocVentaDefault = this.getView().getModel("modelCajaRapida").getProperty("/oDocVenta");
+			  if(!oDocVentaDefault.sCodTipoIdentificacion){
+          var aTipoIdentificacionDefault = [];
+          var aTipoIdentificacion = this.getView().getModel("modelCajaRapida").getProperty("/aTipoIdentificacion");
+          for (let index = 0; index < aTipoIdentificacion.length; index++) {
+            const element = aTipoIdentificacion[index];
+            if(element.Campo2 === oDatosDefault.sTipoDocIdent){
+              aTipoIdentificacionDefault.push(element);
+              break;
+            }
+          }
+          
+          this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/oTipoIdentificacionActual", aTipoIdentificacionDefault[0]);
+          this.getView().getModel("modelCajaRapida").setProperty("/aTipoIdentificacionxDocVenta", aTipoIdentificacionDefault);
+          this.getView().getModel("modelCajaRapida").refresh();
+        }  
+      },
+      onFnCargarTipoDocumentoVentaDefault:function(){
+        //var oDocVentaDefault = this.getView().getModel("modelCajaRapida").getProperty("/oDocVenta");
+        //if(oDocVentaDefault.sCodTipoDocVenta){
+         // return;
+        //} 
+        var oDatosDefault = this.getView().getModel("modelCajaRapida").getProperty("/oDatosDefault"); 
+        var oDocVentaDefault = this.getView().getModel("modelCajaRapida").getProperty("/oDocVenta");
+ 
+			  var aTipoDocVenta = this.getView().getModel("modelCajaRapida").getProperty("/aTipoDocVenta");
+        if(!oDocVentaDefault.sCodTipoDocVenta){ 
+          var oTipoDocVentaActual = {};
+          for (let index = 0; index < aTipoDocVenta.length; index++) {
+            const element = aTipoDocVenta[index];
+            if(element.Campo2 === oDatosDefault.sTipoDocVenta) {
+            oTipoDocVentaActual = element;
+            break;
+          }
+        }
+        this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/oTipoDocVentaActual", oTipoDocVentaActual);
+
+        }
+        
+        /*this.getView().byId("txtNumDocCliente").focus();
+        if(oDocVentaDefault.sCodTipoDocVenta){
+          aTipoIdentificacion.forEach(function(e){
+            if(e.Campo7.includes(oDocVentaDefault.sCodTipoDocVenta)){
+              aTipoIdentificacionxDocVenta.push(e);
+            }
+          });
+        } 
+        if(aTipoIdentificacionxDocVenta.length === 1){
+          this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/sCodTipoIdentificacion", aTipoIdentificacionxDocVenta[0].Codigo);
+          this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/oTipoIdentificacionActual", aTipoIdentificacionxDocVenta[0]);
+          
+        }else{
+          this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/sCodTipoIdentificacion", aTipoIdentificacionxDocVenta[aTipoIdentificacionxDocVenta.length - 1].Codigo);
+          this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/oTipoIdentificacionActual", aTipoIdentificacionxDocVenta[aTipoIdentificacionxDocVenta.length - 1]);
+        } 
+        this.getView().getModel("modelCajaRapida").setProperty("/oDocVenta/sNumDocCliente", "");
+        this.getView().getModel("modelCajaRapida").setProperty("/aTipoIdentificacionxDocVenta", aTipoIdentificacionxDocVenta);  
+        //this.onChangeTipoIdentificacion();
+        this.getView().getModel("modelCajaRapida").refresh(true);
+*/
+      },
+      onValidarAperturaCaja: function(){
+        try{ 
+          var that        = this;
+          var oParam 		= {};   
+          AsignacionCajaService.validarAperturaCaja(oParam, function(result) {   
+            if(result.iCode ===1){   
+            that.getView().getModel("modelCajaRapida").setProperty("/oCajaApertura", result.oResults); 
+            }else{  
+            that.getView().getModel("modelCajaRapida").setProperty("/oCajaApertura", {});
+            that.fnMostrarMensajeNoApertura();
+            that.navigation(that, "cajaRapidaRoute",{});  
+            } 
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(that); 
+            oRouter.getRoute("cajaRapidaRoute").attachMatched(that._onRouteMatched, that);
+          }, that);
+         
+          }catch(e){ 
+            console.log(e);
+          }
       }
+
+      
        
     });
   

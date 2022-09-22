@@ -19,61 +19,19 @@ sap.ui.define([
 	return BaseController.extend("com.telcomdataperu.app.CajaRapida.controller.CajaRapida", { 
 		onInit: function () {     
 			var self = this;  
-			self.onValidarAperturaCaja();
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);  
+            oRouter.getRoute("cajaRapidaRoute").attachMatched(this._onRouteMatched, this);
 			self.fnConsultarDatosGenericos();  
+			self.onValidarAperturaCaja();
 		},
 		_onRouteMatched: function(event) {  
-			this.onFnValidarParametros();
-		} ,
-		onFnValidarParametros: function(){
-			var self = this;  
-			var oCajaApertura = self.getView().getModel("modelCajaRapida").getProperty("/oCajaApertura"); 
-			if(!oCajaApertura.Id){
-				self.fnMostrarMensajeNoApertura();
-			} 
-			var oTipoCambio = self.getView().getModel("modelCajaRapida").getProperty("/oTipoCambio"); 
-			if(!oTipoCambio.Id){
-				self.fnMensajeTipoCambioNoEncontrado();
-			}
+			this.onValidarAperturaCaja();
+			//this.onFnValidarParametros();
 		},
 		onAfterRendering: function(){ 
-		},
-		onValidarAperturaCaja: function(){
-			try{ 
-				var that        = this;
-				var oParam 		= {};   
-				AsignacionCajaService.validarAperturaCaja(oParam, function(result) {   
-				  if(result.iCode ===1){   
-					that.getView().getModel("modelCajaRapida").setProperty("/oCajaApertura", result.oResults); 
-				  }else{  
-					that.getView().getModel("modelCajaRapida").setProperty("/oCajaApertura", {});
-					that.fnMostrarMensajeNoApertura();
-					that.navigation(that, "cajaRapidaRoute",{});  
-				  } 
-				  var oRouter = sap.ui.core.UIComponent.getRouterFor(that); 
-					oRouter.getRoute("cajaRapidaRoute").attachMatched(that._onRouteMatched, that);
-				}, that);
-			 
-				}catch(e){ 
-				  console.log(e);
-				}
-		},
-		fnMostrarMensajeNoApertura:  function(){
-				// create value help dialog
-				if (!this._oDialogNoApertura) {
-					Fragment.load({
-						name: "com.telcomdataperu.app.CajaRapida.view.frag.dialog.CajaNoAsignada",
-						controller: this
-					}).then(function (oDialog) {
-						this._oDialogNoApertura = oDialog;
-	
-						this.getView().addDependent(this._oDialogNoApertura);
-	
-						this._oDialogNoApertura.open();
-					}.bind(this));
-				} else {
-					this._oDialogNoApertura.open();
-				}
+			var that = this;
+			that.createId("txtBuscarProducto");
+			sap.ui.getCore().byId(that.createId("txtBuscarProducto"));
 		},
 		fnConsultarDatosGenericos: function(){
 			try{ 
@@ -111,7 +69,9 @@ sap.ui.define([
 					that.getView().getModel("modelCajaRapida").setProperty("/aTipoDocVenta", aTipoDocVenta);
 					that.getView().getModel("modelCajaRapida").setProperty("/aTipoTarjetaVenta", aTipoTarjetaVenta);
 					that.getView().getModel("modelCajaRapida").setProperty("/aTipoAplicacionVenta", aTipoAplicacionVenta);
-				  }else{   
+					that.onFnCargarTipoIdentificacionDefault();
+					that.onFnCargarTipoDocumentoVentaDefault();
+					}else{   
 					that.getView().getModel("modelCajaRapida").setProperty("/oTipoCambio", {}); 
 					that.getView().getModel("modelCajaRapida").setProperty("/aTipoIdentificacion", []); 
 					that.getView().getModel("modelCajaRapida").setProperty("/aTipoDocVenta", []); 
@@ -123,23 +83,6 @@ sap.ui.define([
 			 
 				}catch(e){ 
 				  console.log(e);
-				}
-		},
-		fnMensajeTipoCambioNoEncontrado:  function(){
-				// create value help dialog
-				if (!this._oDialogNoTipoCambio) {
-					Fragment.load({
-						name: "com.telcomdataperu.app.CajaRapida.view.frag.dialog.TipoCambioNoFound",
-						controller: this
-					}).then(function (oDialog) {
-						this._oDialogNoTipoCambio = oDialog;
-	
-						this.getView().addDependent(this._oDialogNoTipoCambio);
-	
-						this._oDialogNoTipoCambio.open();
-					}.bind(this));
-				} else {
-					this._oDialogNoTipoCambio.open();
 				}
 		},
 		onBuscarProductoDisponible: function(oEvent){
@@ -224,25 +167,14 @@ sap.ui.define([
 					this._oDialogProductoAgregarCarrito.open();
 				}
 		},
-		onFnLimpiarVenta:function(){
-			var self = this;
-			
-			self.getView().getModel("modelCajaRapida").setProperty("/aProductoDisponible", []);
-			self.getView().getModel("modelCajaRapida").setProperty("/oProductoSeleccionado", {}); 
-			self.getView().getModel("modelCajaRapida").setProperty("/aCarritoCompra", []);
-			
-			self.getView().getModel("modelCajaRapida").setProperty("/oClienteVenta", {});
-			self.getView().getModel("modelCajaRapida").setProperty("/oDocVenta", {});
-			self.getView().getModel("modelCajaRapida").setProperty("/aPagoCarrito", []);
-			self.getView().getModel("modelCajaRapida").refresh(true);
-		},
-		onBtnAReiniciarCajaRapida: function() {
+		onBtnAReiniciarCajaRapida: function() { 
 			var self = this;
 			UtilPopUps.messageBox("¿Desea generar nueva venta?", 'c', function(bConfirmacion) {
 				if (bConfirmacion) {
 					var oParam = {}; 
 					self.onFnLimpiarVenta(); 
 					self.navigation(self, "cajaRapidaRoute",oParam);
+					sap.ui.getCore().byId("cajarapidacomp---masterCajaRapidaViewId--txtBuscarProducto").focus();
 				} 
 			});
 			

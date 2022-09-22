@@ -262,7 +262,7 @@ sap.ui.define([
                         dialog.close();
                         var oParam = {};
                         oParam.cerrar = true;
-                        //callback(oParam);
+                        callback(oParam);
                     }
                 }),
                 afterClose: function () {

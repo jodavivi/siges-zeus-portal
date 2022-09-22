@@ -63,7 +63,13 @@
 		"resources": {
 			"css": [{
 				"uri": "css/style.css"
-			}]
+			}],
+			"js": [ 
+				{
+					"uri": "lib/html2pdf/html2pdf.bundle.min.js"
+				}
+			]
+
 		},
 		"routing": {
 			"config": {
@@ -95,6 +101,7 @@
 			"targets": { 
 				"TargetHome": {
 					"transition": "slide",
+					"viewId": "masterCajaRapidaViewId",
 					"viewName": "CajaRapida",
 					"controlAggregation": "masterPages",
 					"viewLevel": 0
@@ -108,6 +115,7 @@
 				"targetDetail": {
 					"transition": "slide",
 					"viewName": "Detail",
+					"viewId": "masterCajaRapidaDetailViewId",
 					"controlAggregation": "detailPages",
 					"viewLevel": 2
 				} 
