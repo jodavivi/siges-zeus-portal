@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core">
+	
+	<Dialog  
+        title           =   "Buscar Producto por:" 
+        contentWidth    =   "20rem" 
+		icon			=   "sap-icon://filter"
+        draggable       =   "true">
+        <content>
+		<VBox > 
+		<RadioButtonGroup  id='radioFiltroProducto' selectedIndex = "{ path : 'modelCajaRapida>/oDatosDefault/sFiltroProducto'}">
+			<RadioButton text="Codigo" />
+			<RadioButton text="Codigo de Barras" />
+			<RadioButton text="Nombre" />
+			<RadioButton text="Descripción" /> 
+		</RadioButtonGroup>
+	</VBox>
+		</content>
+    <beginButton>
+       <Button 
+            text            =   "Cerrar" 
+			icon			= "sap-icon://decline"
+            type            =   "Reject" 
+            width           =   "7rem"
+            ariaDescribedBy =   "acceptButtonDescription genericButtonDescription" 
+            press           =   "onPressCerrarFiltroProducto"/> 
+    </beginButton>
+    <endButton> 
+     <Button 
+	 		icon			= "sap-icon://accept"
+            text            =   "Asignar" 
+            type            =   "Emphasized" 
+            ariaDescribedBy =   "acceptButtonDescription genericButtonDescription" 
+            press           =   "onPressFiltroProducto"  />
+        
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,143 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.telcomdataperu.app.Empresa",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "com.telcomdataperu.app.Empresa.view.Home",
+			"type": "XML",
+			"async": true,
+			"id": "Home"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.telcomdataperu.app.Empresa.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.telcomdataperu.app.Empresa.view",
+				"controlAggregation": "pages",
+				"controlId": "idSplitContainer",
+				"clearControlAggregation": false
+			},
+			"routes": [ {
+					"pattern": "empresa:?query:",
+					"name": "empresaRoute",
+					"target": [
+						"TargetHome",
+						"targetNotFound"
+					] 
+			  },{
+					"name": "RouteHomeDetalle",
+					"pattern": "empresa/detalle/{empresaId}:?query:",
+					"target": [
+						"TargetHome",
+						"targetDetail"
+					]
+				},{
+					"name": "RouteHomeAddEmpresa",
+					"pattern": "empresa/detalle/{empresaId}/parametro:?query:",
+					"target": [
+						"TargetHome",
+						"targetAddEmpresa"
+					]
+				},{
+					"name": "RouteHomeEditEmpresa",
+					"pattern": "empresa/detalle/{empresaId}/parametro/{parametroId}:?query:",
+					"target": [
+						"TargetHome",
+						"targetEditParametro"
+					]
+				}
+			],
+			"targets": { 
+				"TargetHome": {
+					"transition": "slide",
+					"viewName": "Empresa",
+					"controlAggregation": "masterPages",
+					"viewLevel": 0
+				},
+				"targetNotFound": {
+					"transition": "slide",
+					"viewName": "NotFound",
+					"controlAggregation": "detailPages",
+					"viewLevel": 1
+				},
+				"targetDetail": {
+					"transition": "slide",
+					"viewName": "Detail",
+					"controlAggregation": "detailPages",
+					"viewLevel": 2
+				},
+				"targetAddEmpresa": {
+					"transition": "slide",
+					"viewName": "EmpresaRegistro",
+					"controlAggregation": "detailPages",
+					"viewLevel": 3
+				},
+				"targetEditEmpresa": {
+					"transition": "slide",
+					"viewName": "EmpresaEditar",
+					"controlAggregation": "detailPages",
+					"viewLevel": 3
+				}
+
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core">
+	<SelectDialog
+		title		=	"Categoría superior"
+		noDataText	="No se encontro Información"
+		class		=	"sapUiPopupWithPadding"
+		items		=	"{modelTablaGenerica>/aTablaBusquedaParametros}"
+		search		=	"_handleValueHelpSearchCategoriaSuperior"
+		confirm		=	"_handleValueHelpCloseCategoriaSuperior"
+		cancel		=	"_handleValueHelpCloseCategoriaSuperior" 
+		id			=	"fragmentCategoriaSuperior"
+		contentWidth	=	"300px">
+		<StandardListItem
+			iconDensityAware	=	"false"
+			iconInset			=	"false"
+			title				=	"{modelTablaGenerica>Id} - {modelTablaGenerica>Codigo} - {modelTablaGenerica>Campo1}"
+			description				= "{modelTablaGenerica>CodigoTabla}"  />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,51 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <VBox class="sapUiSmallMargin">
+				<f:SimpleForm  
+					id ="frmRegistroCliente"
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					adjustLabelSpan="true" 
+					singleContainerFullSize="true" >
+					<f:content> 
+						<Label text="Documento Venta" />
+						<Select forceSelection="true" selectedKey="{modelCajaRapida>/oDocVenta/sCodTipoDocVenta}"  
+						 change="onChangeTipoDocVenta" required="true"  items="{ path: 'modelCajaRapida>/aTipoDocVenta', sorter: { path: 'Codigo' } }">
+							<core:Item key="{modelCajaRapida>Codigo}" text="{modelCajaRapida>Campo1}" />
+						</Select>
+						<Label text="Tipo Identificación" />
+						<Select  forceSelection="true" selectedKey="{modelCajaRapida>/oDocVenta/sCodTipoIdentificacion}"  
+						required="true" change="onChangeTipoIdentificacion"  items="{ path: 'modelCajaRapida>/aTipoIdentificacionxDocVenta', sorter: { path: 'Codigo' } }">
+							<core:Item key="{modelCajaRapida>Codigo}" text="{modelCajaRapida>Campo1}" />
+						</Select>  
+						<Label text="Num. Documento" />
+						<Input id="txtNumDocCliente" required="true"   
+								valueLiveUpdate="true" type="Number"   placeholder="Ingresar Numero Documento"
+								liveChange="onLiveChangeNumDoc"  value="{modelCajaRapida>/oDocVenta/sNumDocCliente}" 
+							  />
+						<Button  icon="sap-icon://search" press="btnBuscarCliente" >
+							<layoutData>
+								<l:GridData span="XL1 L2 M2 S4" />
+							</layoutData>
+						</Button>	    
+						<Label text="Nombre" />
+						<Input enabled = "{modelCajaRapida>/oControles/bActivar}" value="{modelCajaRapida>/oClienteVenta/Nombre}" required="true"/>   
+						<Label   text="Apellido" />
+						<Input  id="txtApellidoCliente" enabled = "{modelCajaRapida>/oControles/txtApellido}" value="{modelCajaRapida>/oClienteVenta/Apellido}" required="{modelCajaRapida>/oControles/txtApellido}"/> 
+						<Label text="Dirección" />
+						<Input enabled = "{modelCajaRapida>/oControles/bActivar}" value="{modelCajaRapida>/oClienteVenta/Direccion}" required="true"/>  
+						<Label text="Telefono" />
+						<Input enabled = "{modelCajaRapida>/oControles/bActivar}" value="{modelCajaRapida>/oClienteVenta/Telefono}" required="false"/>
+						<Label text="Email" />
+						<Input enabled = "{modelCajaRapida>/oControles/bActivar}" value="{modelCajaRapida>/oClienteVenta/Email}" required="false"/>    
+					</f:content>
+				</f:SimpleForm>
+			</VBox> 
+</core:FragmentDefinition>

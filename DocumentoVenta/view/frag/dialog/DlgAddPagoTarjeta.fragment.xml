@@ -1,0 +1,119 @@
+<core:FragmentDefinition 
+    xmlns       =   "sap.m" 
+    xmlns:core  =   "sap.ui.core" 
+    xmlns:l     =   "sap.ui.layout" 
+    xmlns:t     =   "sap.ui.table" 
+    xmlns:fr    =   "sap.ui.layout.form" 
+    xmlns:u     =   "sap.ui.unified">
+	<Dialog 
+        id              =   "dlg_dialogAddAbonoTarjeta" 
+        title           =   "Pago Tarjeta" 
+        contentWidth    =   "37rem"
+        initialFocus    =   "txtMontoPagoTarjeta"
+        draggable       =   "true">
+        <content>
+            <Panel>
+                <content>
+                    <VBox>
+                        <fr:SimpleForm 
+                            id                      =   "frmAbonoTarjeta"
+                            visible                 =   "true"
+                            editable                =   "true"
+                            layout                  =   "ResponsiveGridLayout"
+                            labelSpanXL             =   "4"
+                            labelSpanL              =   "4"
+                            labelSpanM              =   "4"
+                            labelSpanS              =   "4"
+                            adjustLabelSpan         =   "false"
+                            emptySpanXL             =   "0"
+                            emptySpanL              =   "6"
+                            emptySpanM              =   "0"
+                            emptySpanS              =   "0"
+                            columnsXL               =   "4"
+                            columnsL                =   "4"
+                            columnsM                =   "4"
+                            singleContainerFullSize =   "false"> 
+                            <fr:content>
+                                <Label  
+                                    text            =   "Monto"/> 
+                                <Input  
+                                    id              =   "txtMontoPagoTarjeta"
+                                    value           =   "{modelCajaRapida>/oPagoTarjeta/fImporte}" 
+                                    required        =   "true"  
+                                    fieldGroupIds   =   "validarGrupoInputPagoTarjeta" 
+                                    type            =   "Number" 
+                                    textAlign       =   "End" 
+                                    change          =   "trimValueTarjeta" 
+                                    maxLength       =   "8"/>   
+                                <Select  
+                                    forceSelection	=	"true" 
+                                    selectedKey="{modelCajaRapida>/oPagoTarjeta/sMoneda}" 
+                                    fieldGroupIds   =   "validarGrupoSelectPagoTarjeta"
+                                    required="true">
+                                    <items> 
+                                        <core:Item text="PEN" key="PEN"/>
+                                        <core:Item text="USD" key="USD"/> 
+                                    </items>
+                                </Select>  
+                                <Label 
+                                    text            =   "Banco/Operador"
+                                    required        =   "true"/>
+                                <Select 
+                                    id				=	"selectBancoPagoAbonoTarjeta" 
+                                    forceSelection	=	"true"
+                                    change			=	"onChangeBancoOperador"
+                                    required        =   "true"
+                                    items			=	"{ path: 'modelCajaRapida>/aTipoTarjetaVenta', sorter: { path: 'Codigo' } }"
+                                    selectedKey     =   "{modelCajaRapida>/oPagoTarjeta/sCodBancoOperador}"
+                                    fieldGroupIds   =   "validarGrupoSelectPagoTarjeta" > 
+                                    <items>
+                                        <core:ListItem 
+                                            key			=	"{modelCajaRapida>Campo2}" 
+                                            text		=	"{modelCajaRapida>Campo1}" />
+                                    </items>
+                                </Select> 
+                                <Label 
+                                    text            =   "4 último digitos de tarjeta"/>
+                                <Input 
+                                    id              =   "txtNumDigitos"
+                                    value           =   "{modelCajaRapida>/oPagoTarjeta/sDigitosTarjeta}"
+                                    required        =   "true" 
+                                    fieldGroupIds   =   "validarGrupoInputPagoTarjeta"
+                                    type            =   "Number" 
+                                    liveChange      =   "onLiveChangeNumTarjeta"
+                                    valueLiveUpdate =   "true"
+                                    maxLength       =   "4" />
+                                <Label 
+                                    text            =   "Numero Referencia"/>
+                                <Input 
+                                    value           =   "{modelCajaRapida>/oPagoTarjeta/sNumReferencia}"
+                                    required        =   "true" 
+                                    fieldGroupIds   =   "validarGrupoInputPagoTarjeta"
+                                     type            =   "Number" 
+                                    maxLength       =   "14" /> 
+                            </fr:content>
+                        </fr:SimpleForm>
+                    </VBox>
+                </content>
+            </Panel>
+        </content>
+    <beginButton>
+       <Button 
+            text            =   "Cerrar" 
+            type            =   "Reject" 
+            width           =   "7rem"
+            icon            =   "sap-icon://decline"
+            ariaDescribedBy =   "acceptButtonDescription genericButtonDescription" 
+            press           =   "onCloseDlgAddPagoTarjeta"/> 
+    </beginButton>
+    <endButton> 
+     <Button 
+            text            =   "Agregar" 
+            type            =   "Emphasized" 
+            icon            = "sap-icon://add-product"
+            ariaDescribedBy =   "acceptButtonDescription genericButtonDescription" 
+            press           =   "onAgregarPagoTarjeta"  />
+        
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

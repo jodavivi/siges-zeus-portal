@@ -1,0 +1,250 @@
+<core:FragmentDefinition
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m"  
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout" >  
+		<Panel 
+				expandable	=	"false" 
+				expanded	=	"false">   
+				<content> 
+					<FlexBox   
+						alignItems		=	"Center" 
+						justifyContent	=	"SpaceBetween">  
+						<GenericTile  
+							header			=	"Tipo de cambio" 
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							frameType		=	"OneByHalf" 
+							busyIndicatorDelay	=	"0" 
+							busy			=	"0"> 
+							<TileContent 
+								footer	=	"0"> 
+								<NumericContent  
+									withMargin	=	"true" 
+									value		=	"{ path : 'modelCajaRapida>/oTipoCambio/Campo1'}" 
+									scale		=	"PEN" 
+									icon		=	"sap-icon://collections-insight" 
+									truncateValueTo	=	"15"/> 
+							</TileContent> 
+						</GenericTile> 
+						<GenericTile  
+							header			=	" Moneda Extranjera" 
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							press			=	"press" 
+							frameType		=	"OneByHalf" 
+							>  
+							<TileContent  > 
+								<NumericContent  
+									withMargin	=	"true" 
+									value		=	"{ path : 'modelCajaRapida>/oCarritoVenta/fTotalVentaUSD', formatter	:	'.formatter.redondear2Decimal'}" 
+									scale		=	"USD" 
+									truncateValueTo	=	"15"/> 
+							</TileContent> 
+						</GenericTile> 
+						<GenericTile  
+							header			=	" Moneda Local" 
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							frameType		=	"OneByHalf"  > 
+							<TileContent  > 
+								<NumericContent  
+									withMargin	=	"true" 
+									value		=	"{path : 'modelCajaRapida>/oCarritoVenta/fTotalVenta', formatter	:	'.formatter.redondear2Decimal'}"
+									scale		=	"{modelCajaRapida>/oCarritoVenta/sMoneda}"
+									truncateValueTo	=	"15"/> 
+							</TileContent> 
+						</GenericTile> 
+					</FlexBox> 
+				</content> 
+			</Panel> 
+			<!-- Panel de detalle de pago -->
+
+			<Panel    
+				expandable	=	"true" 
+				expanded	=	"true">
+
+				<headerToolbar> 
+					<OverflowToolbar> 
+						<Title  
+							text	=	"Detalle de Pago"/> 
+							<ToolbarSpacer/>
+							<Button  
+							busyIndicatorDelay	=	"0"   
+							type	=	"Ghost" 
+							text	=	"Aplicación" 
+							icon	= "sap-icon://credit-card"
+							press	=	"onBtnAbrirPagoAplicacion" 
+							fieldGroupIds   =   "validarGrupoBtnAgregarPagos"  />
+														
+							<Button  
+							busyIndicatorDelay	=	"0"   
+							type	=	"Accept" 
+							text	=	"Tarjeta" 
+							icon	= "sap-icon://credit-card"
+							press	=	"onBtnAbrirPagoTarjeta" 
+							fieldGroupIds   =   "validarGrupoBtnAgregarPagos"  />
+							<Button 
+							busyIndicatorDelay	=	"0" 
+							type	=	"Neutral"
+							icon    = "sap-icon://money-bills"
+							text	=	"Efectivo"
+							press	=	"onBtnAbrirPagoEfectivo"  
+							fieldGroupIds   =   "validarGrupoBtnAgregarPagos" />
+
+					</OverflowToolbar> 
+				</headerToolbar> 
+				<content> 
+					<Table 
+						id					=	"tbPagos" 
+						items				=	"{modelCajaRapida>/aPagoCarrito}" 
+						noDataText			=	"Sin pagos registrados" 
+						mode				=	"" 
+						selectionChange		=	"onSelectPagos" 
+						busyIndicatorDelay	=	"0"  > 
+						<columns> 
+							<Column  
+								mergeDuplicates	=	"false" 
+								width			=	"5%"> 
+								<header> 
+									<Text   text	=	"N°" /> 
+								</header> 
+							</Column>  
+							<Column  
+								mergeDuplicates	=	"false"> 
+								<header> 
+									<Text   text	=	"Forma de pago" /> 
+								</header> 
+							</Column>  
+							<Column  
+								hAlign			=	"Begin" 
+								minScreenWidth	=	"Tablet" 
+                            	demandPopin		=	"true"> 
+								<header> 
+									<Text   text	=	"Núm. tarjeta" /> 
+								</header> 
+							</Column> 
+                            <Column  
+								hAlign			=	"Begin" 
+								minScreenWidth	=	"Tablet" 
+                            	demandPopin		=	"true"> 
+								<header> 
+									<Text text	=	"Tarjeta/Operador" /> 
+								</header> 
+							</Column> 
+                            <Column  
+								hAlign			=	"Begin" 
+								minScreenWidth	=	"Tablet" 
+                            	demandPopin		=	"true"> 
+								<header> 
+									<Text   text	=	"Núm. operación" /> 
+								</header> 
+							</Column> 
+							<Column 
+								hAlign			=	"End" > 
+								<header> 
+									<Text text	=	"Moneda" /> 
+								</header> 
+							</Column>  
+							<Column 
+								hAlign			=	"End" > 
+								<header> 
+									<Text text	=	"Importe" /> 
+								</header> 
+							</Column>  
+							<Column 
+							visible = "false"
+								hAlign			=	"Center" 
+								width			=	"5%" > 
+								<header> 
+									<Text text	=	"" /> 
+								</header> 
+							</Column> 
+							<Column 
+								hAlign			=	"Center" 
+								width			=	"5%" > 
+								<header> 
+									<Text text	=	"" /> 
+								</header> 
+							</Column>  
+						</columns> 
+						<ColumnListItem> 
+							<ObjectIdentifier  
+								text	=	"{modelCajaRapida>iPosicion}"/> 
+							<ObjectIdentifier  
+								title	=	" {path: 'modelCajaRapida>sFormaPago'}"/>  
+							<Text  
+								text	=	"{	path		:	'modelCajaRapida>sDigitosTarjeta'}"/> 
+                            <Text  
+								text	=	"{	path		:	'modelCajaRapida>sBanco'}"/> 
+                            <Text  
+								text	=	"{	path		:	'modelCajaRapida>sNumReferencia'}"/> 
+							<Text  
+								text	=	"{	path		:	'modelCajaRapida>sMoneda'}"/> 
+							<ObjectNumber 
+								number	=	"{
+											parts:[{path:'modelCajaRapida>fImporte'},{path:'modelCajaRapida>sMoneda'}],
+											type: 'sap.ui.model.type.Currency',
+											formatOptions: {showMeasure: false, groupingSeparator: ',', decimalSeparator : '.', minFractionDigits: 2, minIntegerDigits: 2},
+											constraints: { maximum: 2 }
+										}"
+								 /> 
+							
+							<Button  
+								visible = "false"
+                                icon    =   "sap-icon://edit" 
+                                press   =   "openFormularioEdit"   />  
+								<Button  
+								type	= "Reject"
+                                icon    =   "sap-icon://delete" 
+                                press   =   "onPressBtnEliminarPago"   />  
+						</ColumnListItem> 
+					</Table> 
+				</content> 
+			</Panel> 
+			<!-- Panel de resumen -->
+
+			<Panel    
+				expandable	=	"true" 
+				expanded	=	"true"> 
+				<headerToolbar> 
+					<OverflowToolbar> 
+						<Title  
+							text	=	"Resumen"/> 
+					</OverflowToolbar> 
+				</headerToolbar> 
+				<content>  
+					<FlexBox   
+						alignItems="Center"
+						justifyContent="End">   
+						<GenericTile  
+							header			=	" Por Cobrar" 
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							press			=	"press" 
+							frameType		=	"OneByHalf" 
+							> 
+							<TileContent  > 
+								<NumericContent  
+									withMargin	=	"true" 
+									value		=	"{	path		:	'modelCajaRapida>/oCarritoVenta/fTotalPorCobrar', formatter	:	'.formatter.redondear2Decimal'}"
+									scale		=	"PEN" 
+									truncateValueTo	=	"15"/> 
+							</TileContent> 
+						</GenericTile> 
+						<GenericTile  
+							header			=	" Vuelto" 
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							frameType		=	"OneByHalf"  > 
+							<TileContent  > 
+								<NumericContent  
+									withMargin	=	"true" 
+									value		=	"{	path		:	'modelCajaRapida>/oCarritoVenta/fTotalVuelto', formatter	:	'.formatter.redondear2Decimal'}"
+									scale		=	"PEN"
+									truncateValueTo	=	"15"/> 
+							</TileContent> 
+						</GenericTile> 
+					</FlexBox>  
+				</content>
+
+			</Panel>
+
+</core:FragmentDefinition>

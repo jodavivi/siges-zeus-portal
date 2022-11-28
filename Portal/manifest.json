@@ -170,6 +170,16 @@
 			"pattern": "cajarapida/venta",
 			"name": "appCajaRapida2",
 			"target": "targetCajaRapida"
+		},
+		{
+			"pattern": "documentoventa:?query:",
+			"name": "appDocumentoVenta",
+			"target": "targetDocumentoVenta"
+		},
+		{
+			"pattern": "empresa:?query:",
+			"name": "appEmpresa",
+			"target": "targetEmpresa"
 		}],
 			"targets": {
 				"home": {
@@ -230,6 +240,18 @@
 					"viewName": "CajaRapidaComponent",
 					"viewId": "CajaRapidaComponent",
 					"viewLevel": 9
+				  },
+				  "targetDocumentoVenta": {
+					"transition": "slide",
+					"viewName": "DocumentoVentaComponent",
+					"viewId": "DocumentoVentaComponent",
+					"viewLevel": 109
+				  },
+				  "targetEmpresa": {
+					"transition": "slide",
+					"viewName": "EmpresaComponent",
+					"viewId": "EmpresaComponent",
+					"viewLevel": 110
 				  }
 			}
 		}

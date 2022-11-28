@@ -1,0 +1,47 @@
+<core:FragmentDefinition
+	xmlns		=	"sap.m"
+	xmlns:core	=	"sap.ui.core"
+	xmlns:rte	=	"sap.ui.richtexteditor"
+	xmlns:l		=	"sap.ui.layout"
+	xmlns:f		=	"sap.ui.layout.form"
+	xmlns:t		=	"sap.ui.table"
+	xmlns:u		=	"sap.ui.unified"
+	xmlns:tnt	=	"sap.tnt"
+	xmlns:table	=	"sap.ui.table"
+	xmlns:w		=	"sap.m.Table">
+	      
+		<List 
+			id="listTablaCarrito" 
+			updateStarted="MasterSegmented" 
+			updateFinished="selectFirstItem" 
+			items="{ path : 'modelCajaRapida>/aCarritoCompra', sorter: { path: 'Item', descending: true }}" 
+			mode="SingleSelectMaster" 
+			select="onSelectProductoCarrito" 
+			class="marcoimagenheader" 
+			enableBusyIndicator="true">
+				<items>
+					<ObjectListItem  
+					title="[{modelCajaRapida>Item}] - {modelCajaRapida>Descripcion}" 
+					type="Active"
+					number="{ path : 'modelCajaRapida>TotalPrecioProducto', formatter	:	'.formatter.redondear2Decimal'}"
+					numberUnit="{modelCajaRapida>ProductoPrecio/Moneda}"
+					>
+					<firstStatus>
+					<ObjectStatus
+						text    =   "{	path		:	'modelCajaRapida>Cantidad', formatter	:	'.formatter.textEstadoCantidad'}"
+						state   =   "{	path		:	'modelCajaRapida>CantidadDisponible', formatter	:	'.formatter.stateEstadoStock'}" />
+						 
+					</firstStatus> 
+					<secondStatus>
+					<ObjectStatus
+						text    =   "{	path		:	'modelCajaRapida>ProductoPrecio/PrecioVenta', formatter	:	'.formatter.textPrecioVenta'}"
+						state   =   "{	path		:	'modelCajaRapida>CantidadDisponible', formatter	:	'.formatter.stateEstadoStock'}" />
+						 
+					</secondStatus>
+					<ObjectAttribute text="{modelCajaRapida>Nombre}" />
+					<ObjectAttribute text="{modelCajaRapida>Codigo}" /> 
+					</ObjectListItem>
+				</items>
+		</List> 
+
+</core:FragmentDefinition>

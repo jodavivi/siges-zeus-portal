@@ -1,0 +1,92 @@
+<mvc:View 
+	controllerName	=	"com.telcomdataperu.app.Empresa.controller.Empresa"  
+	xmlns:html		=	"http://www.w3.org/1999/xhtml"
+	xmlns:mvc		=	"sap.ui.core.mvc" 
+	displayBlock	=	"true" 
+	xmlns			=	"sap.m" 
+	xmlns:f			=	"sap.ui.layout.form" 
+	xmlns:core		=	"sap.ui.core" 
+	xmlns:l			=	"sap.ui.layout"
+	xmlns:ui		=	"sap.ui.table">
+	<Page 
+		id			=	"master"  
+		class		= "appMaestra"
+		showHeader	=	"true">
+		
+		<customHeader>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"Empresa" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+				<Button 
+					icon		=	"sap-icon://synchronize" 
+					tooltip		=	"Actualizar Empresa" 
+					type		="Emphasized"
+					press		=	"onPressActualizarEmpresa"/>
+			</Toolbar>
+		</customHeader>
+		
+		<!-- Barra de busqueda -->
+		<subHeader>
+			<Toolbar>
+				<SearchField 
+					width				=	"100%" 
+					liveChange			=	"onLiveSearch" 
+					showSearchButton	=	"true"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content> 
+			<ScrollContainer height="100%" vertical="true">
+								<List id="listTablaMaestra" updateStarted="MasterSegmented" updateFinished="selectFirstItem" items="{ path : 'modelTablaGenerica>/aTablaMaestra' , sorter: { path: 'Id', descending: true }}" mode="SingleSelectMaster" select="onSelectMaestro" class="marcoimagenheader" enableBusyIndicator="true">
+									<items>
+										<ObjectListItem title="{modelTablaGenerica>DescripcionTabla}" type="Active">
+										<firstStatus>
+											<ObjectStatus
+												text="{modelTablaGenerica>Codigo}"  />
+										</firstStatus>
+											<attributes>
+												<ObjectAttribute text="{modelTablaGenerica>CodigoTabla}"/> 
+											</attributes>
+										</ObjectListItem>
+									</items>
+								</List>
+			</ScrollContainer>
+		</content>
+		
+		<footer>
+			<Toolbar>
+				<Button 
+					icon		=	"sap-icon://add" 
+					tooltip		=	"Agregar Empresa" 
+					enabled     =   "{
+						parts: [
+      {path: 'modelPermisosApp>/sPermisosApp'},
+      {path: 'modelPermisosApp>/sBtnMaestroRegistrar'}
+    ], 
+    formatter: '.formatter.validarPermisoControl'
+ 
+  }"
+					type="Emphasized"
+					press		=	"onAgregarTabla"/>
+				<Button 
+					icon		=	"sap-icon://less" 
+					tooltip		=	"Eliminar Maestro" 
+					type="Reject"
+					press		=	"onEliminarTabla"
+					enabled     =   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnMaestroEliminar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+    />
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://sort" tooltip="Ordenar" type="Emphasized" press="onPressSortMaestro"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

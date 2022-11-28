@@ -1,0 +1,187 @@
+<mvc:View  
+	id="viewDocumentoVentaDetalle"
+	controllerName="com.telcomdataperu.app.DocumentoVenta.controller.DocumentoVentaDetail"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table">
+	
+	 <Page 
+		id		=	"detailDocumentoVenta"  
+		showHeader	=	"false"
+		class	=	"sapUiStdPage"> 
+		<content>  
+			 <ui:Table
+					id="tblDocumentosVenta"
+					selectionMode="MultiToggle"
+					rows="{ path : 'modelDocumentoVenta>/aListaDocVenta' , sorter: { path: 'Id', descending: true }}"
+					visibleRowCount="15"  
+					class="tbTabla"
+					alternateRowColors="true" 
+					rowActionCount="2"    
+					enableBusyIndicator="true"  
+					selectionBehavior="RowSelector"
+					fixedColumnCount="2"
+					showOverlay="false" 
+					ariaLabelledBy="title">
+					<ui:extension>
+						<OverflowToolbar style="Clear"> 
+						<Title text="Items({modelDocumentoVenta>/iNumItems})"/> 
+							<ToolbarSpacer/> 
+							<Button 
+							icon		=	"sap-icon://add-document" 
+							tooltip		=	"Crear Usuario" 
+							press		=	"onPressCrearUsuario"  
+							enabled		=   "{
+										parts: [
+													{path: 'modelPermisosApp>/sPermisosApp'},
+													{path: 'modelPermisosApp>/sBtnUsuarioRegistrar'}
+												], 
+										formatter: '.formatter.validarPermisoControl' 
+									}"
+							/>
+							
+						</OverflowToolbar>
+					</ui:extension>
+					<ui:columns>
+						<ui:Column width="2.5rem" hAlign="Center"> 
+							<ui:template>
+								<core:Icon press="onVerAuditoriaUsuario"  size="1.2rem"  src="sap-icon://show"/>
+							</ui:template>
+						</ui:Column>  
+						<ui:Column
+							width="5rem"
+							filterProperty="Id"
+							defaultFilterOperator="StartsWith">
+							<Label text="Id" />
+							<ui:template> 
+								<Link text="{modelDocumentoVenta>Id}" press="onPressDetalleUsuario" /> 
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="9rem"
+							filterProperty="TipoDocumentoVenta"
+							defaultFilterOperator="StartsWith">
+							<Label text="Tipo Doc. Venta" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>TipoDocumentoVenta}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							filterProperty="NumeroDocVenta"
+							defaultFilterOperator="StartsWith">
+							<Label text="Numero Venta" />
+							<ui:template> 
+								<!--<Link text="{modelDocumentoVenta>NumeroDocVenta}" press="onPressDetalleUsuario" />-->
+								<Text text="{modelDocumentoVenta>NumeroDocVenta}" wrapping="false" /> 
+							</ui:template>
+						</ui:Column> 
+						<ui:Column
+							width="10rem"
+							filterProperty="FechaCreacion"
+							defaultFilterOperator="StartsWith">
+							<Label text="Fecha" />
+							<ui:template> 
+								<!--<Link text="{modelDocumentoVenta>NumeroDocVenta}" press="onPressDetalleUsuario" />-->
+								<Text text=" {	path:'modelDocumentoVenta>FechaCreacion', formatter	:	'.formatter.formatoFecha'}" wrapping="false" /> 
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="8rem"
+							filterProperty="ClienteNroIdentificacion"
+							defaultFilterOperator="StartsWith">
+							<Label text="Doc. Cliente" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>ClienteNroIdentificacion}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						<ui:Column
+							width="14rem"
+							filterProperty="ClienteRazonSocial"
+							defaultFilterOperator="StartsWith">
+							<Label text="Cliente" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>ClienteRazonSocial}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="6rem" hAlign="Center">
+							<Label text="Moneda" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>Moneda}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="6rem" hAlign="Right">
+							<Label text="Sub-Total" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>MontoSubTotal}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="6rem" hAlign="Right">
+							<Label text="Igv" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>MontoIgv}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						<ui:Column width="8rem" hAlign="Right">
+							<Label text="Total" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>MontoTotal}" wrapping="false" />
+							</ui:template>
+						</ui:Column> 
+						
+						<ui:Column
+							width="9rem"
+							filterProperty="Empresa"
+							defaultFilterOperator="StartsWith">
+							<Label text="Empresa" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>Empresa}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						
+						<ui:Column
+							width="8rem"
+							filterProperty="Sede"
+							defaultFilterOperator="StartsWith">
+							<Label text="Sede" />
+							<ui:template>
+								<Text text="{modelDocumentoVenta>Sede}" wrapping="false" />
+							</ui:template>
+						</ui:Column>
+						  
+						<ui:Column width="7rem" hAlign="Center">
+							<Label text="Estado" />
+							<ui:template>
+							<ObjectStatus 
+								text    =   "{modelDocumentoVenta>Estado}" /> 
+						</ui:template>
+						</ui:Column>  
+						<ui:Column width="7rem" hAlign="Center">
+							<Label text="Accion" />
+							<ui:template>
+								<core:Icon press="onVerAuditoriaUsuario"  size="1.2rem"  src="sap-icon://action"/> 
+							</ui:template>
+						</ui:Column>  
+					</ui:columns> 
+				</ui:Table>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>  
+				 <Button 
+busyIndicatorDelay	=	"0"
+icon	=	"sap-icon://print"
+text    = "Imprimir"
+type	=	"Success"
+press	=	"onImpresion"
+enabled =   "{path: 'modelCajaRapida>/oControles/btnImprimir'}"/>
+
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

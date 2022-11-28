@@ -1,0 +1,79 @@
+<mvc:View 
+ 	id="viewDocumentoVenta"
+	controllerName	=	"com.telcomdataperu.app.DocumentoVenta.controller.DocumentoVenta"  
+	xmlns:html		=	"http://www.w3.org/1999/xhtml"
+	xmlns:mvc		=	"sap.ui.core.mvc" 
+	displayBlock	=	"true" 
+	xmlns			=	"sap.m" 
+	xmlns:f			=	"sap.ui.layout.form" 
+	xmlns:core		=	"sap.ui.core" 
+	xmlns:l			=	"sap.ui.layout"
+	xmlns:ui		=	"sap.ui.table">
+	<Page 
+		id			=	"masterDocumentoVenta"   
+		class		= "appMaestra"
+		showHeader	=	"true">
+		<customHeader>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"DOCUMENTO DE VENTA" 
+					level	=	"H2"/>
+				<ToolbarSpacer/> 
+			</Toolbar>
+		</customHeader> 
+		<content> 
+			<ScrollContainer height="100%" vertical="true">
+				<VBox class="sapUiTinyMargin">
+					<f:SimpleForm 
+						editable="false"
+						layout="ResponsiveGridLayout" 
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="3"
+						labelSpanS="12"
+						adjustLabelSpan="true"
+						emptySpanXL="4"
+						emptySpanL="4"
+						emptySpanM="4"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1"
+						singleContainerFullSize="true" >
+						<f:content> 
+							<Label text="Sede" />
+							<Select forceSelection="true" selectedKey="{modelCajaRapida>/oDocVenta/sCodTipoDocVenta}"  
+						 change="onChangeTipoDocVenta" required="true"  items="{ path: 'modelCajaRapida>/aTipoDocVenta', sorter: { path: 'Codigo' } }">
+							<core:Item key="{modelCajaRapida>Codigo}" text="{modelCajaRapida>Campo1}" />
+							</Select>
+							<Label text="Fecha" />
+							<DateRangeSelection  delimiter="al" displayFormat="dd/MM/YYYY"  tooltip="Fecha" placeholder="Rango de fechas"/>
+							<Label text="Nro. Identificación " />
+							<Input 
+							 value="{modelCajaRapida>/oDocVenta/sNumDocCliente}" 
+							  />
+							<Label text="Tipo Documento Venta" />
+							<Select forceSelection="true" selectedKey="{modelCajaRapida>/oDocVenta/sCodTipoDocVenta}"  
+						 change="onChangeTipoDocVenta" required="true"  items="{ path: 'modelCajaRapida>/aTipoDocVenta', sorter: { path: 'Codigo' } }">
+							<core:Item key="{modelCajaRapida>Codigo}" text="{modelCajaRapida>Campo1}" />
+							</Select> 
+							<Label text="Nro. Documento Venta" />
+							<Input 
+							 value="{modelCajaRapida>/oDocVenta/sNumDocCliente}" 
+							  />
+							
+						</f:content>
+					</f:SimpleForm>
+				</VBox> 
+			</ScrollContainer>
+		</content>
+		
+		<footer>
+			<Toolbar> 
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://search" text    = "Buscar"  tooltip="Buscar" type="Emphasized" press="onPressSortMaestro"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,108 @@
+<mvc:View  
+	controllerName="com.telcomdataperu.app.Maestra.controller.ParametroRegistro"  
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.ui.table"> 
+	 <Page 
+		id		=	"AgregarParametro"
+		showNavButton="true" 
+		class	=	"sapUiStdPage">  
+		<customHeader>
+			<Toolbar>
+				<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancelarParametro" />
+				<ToolbarSpacer/>
+				<Title 
+					text	=	"{modelTablaGenerica>/oTablaSeleccionada/CodigoTabla}" 
+					level	=	"H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content> 
+			 <VBox class="sapUiSmallMargin">
+		<f:SimpleForm  
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Agregar Parametro"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content> 
+				<Label text="Campo1" />
+				<Input value="{modelTablaGenerica>/oParametroNuevo/sCampo1}"/>  
+				<Label text="Campo2" />
+				<Input value="{modelTablaGenerica>/oParametroNuevo/sCampo2}"/>  
+				<Label text="Campo3" />
+				<Input value="{modelTablaGenerica>/oParametroNuevo/sCampo3}"/>  
+				<Label text="Campo4" />
+				<Input value="{modelTablaGenerica>/oParametroNuevo/sCampo4}"/>  
+				<Label text="Campo5" />
+				<Input value="{modelTablaGenerica>/oParametroNuevo/sCampo5}"/>  
+				<Label text="Campo6" />
+				<Input value="{modelTablaGenerica>/oParametroNuevo/sCampo6}"/>  
+				<Label text="Campo7" />
+				<Input value="{modelTablaGenerica>/oParametroNuevo/sCampo7}"/>  
+				<Label text="Padre" />
+				<Input 
+						id					=	"inputCategoriaSuperior"
+						showValueHelp		=	"true" 
+						showSuggestion		=	"true"
+						valueHelpRequest	=	"handleValueCategoriaSuperior"
+						suggestionItems		=	"{modelTablaGenerica>/aTablaBusquedaParametros}" 
+						valueHelpOnly		=	"true">
+						<suggestionItems>
+							<core:Item 
+								text	=	"{modelTablaGenerica>/aTablaBusquedaParametros/sPadreCod}" />
+						</suggestionItems>
+				</Input>
+				<Button icon="sap-icon://sys-cancel" type="Reject" tooltip="Limpiar" press="onLimpiarPadreParametro">
+					<layoutData>
+						<l:GridData span="L1 M1 S1" />
+					</layoutData>
+				</Button>
+  
+				<Label text="Estado"/>
+				<Select  selectedKey="{modelTablaGenerica>/oParametroNuevo/iIdEstado}">
+					<items>
+						<core:Item text="--Seleccionar Estado--" key=""/>
+						<core:Item text="Activo" key="1"/>
+						<core:Item text="Desactivo" key="0"/> 
+					</items>
+				</Select>  
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+ 
+				<Button   
+				type		=	"Reject" 
+				text		=	"Regresar" 
+				press		=	"onPressCancelarParametro" 
+				icon		=	"sap-icon://arrow-left"/>
+				<Button   
+				type		=	"Accept" 
+				text		=	"Guardar" 
+				press		=	"onPressGuardarParametro" 
+				icon		=	"sap-icon://save"
+				/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
