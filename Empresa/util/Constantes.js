@@ -4,6 +4,7 @@ sap.ui.define([], function() {
         IdApp: 'Maestra', 
 		services: {
 			consultarTablaGenerica: "http://localhost:2001/api-gateway/maestra/tabla",
+			consultarEmpresa: "http://localhost:2001/api-gateway/configuracion/empresa",
 		}
 	};
 });
