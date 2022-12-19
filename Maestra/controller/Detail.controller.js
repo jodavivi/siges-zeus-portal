@@ -12,8 +12,8 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	'sap/ui/model/Sorter',
 	"../servicio/CampoGenericaService",
-	"../util/utilValidation",
-	"../util/utilPopUps",
+	"../util/UtilValidation",
+	"../util/UtilPopUps",
 	"../util/UtilHttp",
 	"../servicio/TablaGenericaService" 
 ], function (Controller, BaseController, Filter, FilterOperator, JSONModel, Models, Dialog, Button, Text, MessageBox, MessageToast,Sorter, CampoGenericaService, UtilValidation, UtilPopUps, UtilHttp, TablaGenericaService ) {

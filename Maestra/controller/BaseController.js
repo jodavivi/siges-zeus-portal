@@ -4,7 +4,7 @@ sap.ui.define([
     "sap/ui/core/UIComponent", 
     '../util/formatter',
     "../servicio/TablaGenericaService" ,
-    "../util/utilPopUps",
+    "../util/UtilPopUps",
   ], function(Controller, History, UIComponent, formatter, TablaGenericaService, UtilPopUps) {
     "use strict";
   
