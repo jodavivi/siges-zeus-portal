@@ -134,7 +134,7 @@
 					"transition": "slide",
 					"viewName": "EmpresaEditar",
 					"controlAggregation": "detailPages",
-					"viewLevel": 3
+					"viewLevel": 4
 				}
 
 			}

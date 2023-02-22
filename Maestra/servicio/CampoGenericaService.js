@@ -7,7 +7,7 @@
 	"use strict";
 	return {
 		consultarParametrosTabla: function(oParam, callback,context) {
-			UtilHttp.httpGet(Constantes.services.consultarParametrosTabla+"?iId="+oParam.iId , Constantes.IdApp, function(result) {
+			UtilHttp.httpGet(Constantes.services.consultarParametrosTabla+"?iIdTabla="+oParam.iId , Constantes.IdApp, function(result) {
 				var oAuditResponse = result.oAuditResponse;
 				if (oAuditResponse.iCode === 1) {
 					callback(UtilResponse.success(oAuditResponse.sIdTransaction, oAuditResponse.sMessage, result.oData));
